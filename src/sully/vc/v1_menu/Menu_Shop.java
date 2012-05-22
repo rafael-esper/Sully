@@ -586,8 +586,8 @@ public class Menu_Shop {
 	
 		for (i = 0; i < SupplyCount(); i++)
 		{
-			if( longest_x < textwidth(menu_font[0], master_items[supply_inventory[i].item_ref].name) )
-				longest_x = textwidth(menu_font[0], master_items[supply_inventory[i].item_ref].name);
+			if( longest_x < menu_font[0].textwidth( master_items[supply_inventory[i].item_ref].name) )
+				longest_x = menu_font[0].textwidth( master_items[supply_inventory[i].item_ref].name);
 		}
 	
 		if (_supply_count == 0)
@@ -598,14 +598,14 @@ public class Menu_Shop {
 		
 		for (i = menu_start; i < _supply_count; i++)
 		{
-			printstring(135, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[0], master_items[supply_inventory[i].item_ref].name);
-			printstring(135+longest_x, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[2], "_x"+str(supply_inventory[i].quant));
+			menu_font[0].printstring(135, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, master_items[supply_inventory[i].item_ref].name);
+			menu_font[2].printstring(135+longest_x, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, "_x"+str(supply_inventory[i].quant));
 			
-			printright(285, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[0], str(master_items[supply_inventory[i].item_ref].price/2));
+			menu_font[0].printright(285, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, str(master_items[supply_inventory[i].item_ref].price/2));
 			
 			use = icon_get(master_items[supply_inventory[i].item_ref].icon);
-			if (i == menu_item) tblit(115, 21 + ((menu_fonth + 2) * (i - menu_start)), use, screen);
-			else tscaleblit(115, 25 + ((menu_fonth + 2) * (i - menu_start)), 8, 8, use, screen);
+			if (i == menu_item) screen.tblit(115, 21 + ((menu_fonth + 2) * (i - menu_start)), use);
+			else screen.tscaleblit(115, 25 + ((menu_fonth + 2) * (i - menu_start)), 8, 8, use);
 			//FreeImage(use);
 			if (menu_start + 10 <= i) i = _supply_count + 1;
 		}
@@ -620,8 +620,8 @@ public class Menu_Shop {
 	
 		for (i = 0; i < EquipmentCount(); i++)
 		{		
-			if( longest_x < textwidth(menu_font[0], master_items[equipment_inventory[i].item_ref].name) )
-				longest_x = textwidth(menu_font[0], master_items[equipment_inventory[i].item_ref].name);
+			if( longest_x < menu_font[0].textwidth( master_items[equipment_inventory[i].item_ref].name) )
+				longest_x = menu_font[0].textwidth( master_items[equipment_inventory[i].item_ref].name);
 		}
 	
 		if (_equip_count == 0)
@@ -632,14 +632,14 @@ public class Menu_Shop {
 		
 		for (i = menu_start; i < _equip_count; i++)
 		{
-			printstring(135, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[0], master_items[equipment_inventory[i].item_ref].name);
-			printstring(135+longest_x, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[2], "_x"+str(equipment_inventory[i].quant));
+			menu_font[0].printstring(135, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, master_items[equipment_inventory[i].item_ref].name);
+			menu_font[2].printstring(135+longest_x, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, "_x"+str(equipment_inventory[i].quant));
 			
-			printright(285, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[0], str(master_items[equipment_inventory[i].item_ref].price/2));
+			menu_font[0].printright(285, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, str(master_items[equipment_inventory[i].item_ref].price/2));
 			
 			use = icon_get(master_items[equipment_inventory[i].item_ref].icon);
-			if (i == menu_item) tblit(115, 21 + ((menu_fonth + 2) * (i - menu_start)), use, screen);
-			else tscaleblit(115, 25 + ((menu_fonth + 2) * (i - menu_start)), 8, 8, use, screen);
+			if (i == menu_item) screen.tblit(115, 21 + ((menu_fonth + 2) * (i - menu_start)), use);
+			else screen.tscaleblit(115, 25 + ((menu_fonth + 2) * (i - menu_start)), 8, 8, use);
 			//FreeImage(use);
 			if (menu_start + 10 <= i) i = _equip_count + 1;
 		}
@@ -656,8 +656,8 @@ public class Menu_Shop {
 		{
 			item_idx = val(gettoken(save_display[0].text, "&", i));
 			
-			if( longest_x < textwidth(menu_font[equip],master_items[item_idx].name) )
-				longest_x = textwidth(menu_font[equip],master_items[item_idx].name);
+			if( longest_x < menu_font[equip].textwidth(master_items[item_idx].name) )
+				longest_x = menu_font[equip].textwidth(master_items[item_idx].name);
 		}
 		
 	
@@ -672,17 +672,17 @@ public class Menu_Shop {
 	//			equip = 1;
 	//		}
 			
-			printstring(135, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[equip], master_items[item_idx].name);
-			printstring(135+longest_x, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[equip], " x"+str(menu_number));
+			menu_font[equip].printstring(135, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, master_items[item_idx].name);
+			menu_font[equip].printstring(135+longest_x, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, " x"+str(menu_number));
 			
-			printright(285, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[equip], str(master_items[item_idx].price * menu_number));
+			menu_font[equip].printright(285, 23 + ((menu_fonth + 2) * (i - menu_start)), screen, str(master_items[item_idx].price * menu_number));
 			equipImage = icon_get(master_items[item_idx].icon);
-			if (i == menu_item) tblit(115, 21 + ((menu_fonth + 2) * (i - menu_start)), equipImage, screen);
-			else tscaleblit(115, 25 + ((menu_fonth + 2) * (i - menu_start)), 8, 8, equipImage, screen);
+			if (i == menu_item) screen.tblit(115, 21 + ((menu_fonth + 2) * (i - menu_start)), equipImage);
+			else screen.tscaleblit(115, 25 + ((menu_fonth + 2) * (i - menu_start)), 8, 8, equipImage);
 			//FreeImage(equip);
 			if (menu_start + 6 <= i) i = menu_sub + 1;
 		}
-		//if (i == equ_count) printstring(55, 133 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[0], "(none)"); // if near end
+		//if (i == equ_count) printstring(55, 133 + ((menu_fonth + 2) * (i - menu_start)), screen, "(none)"); // if near end
 	
 	
 		MenuDrawBackground(90, 140, 310, 230, false);
@@ -731,16 +731,16 @@ public class Menu_Shop {
 				{
 					if( i==member )
 					{
-						rectfill( x+(i*24)-1, y-1, x+(i*24)+17, y+33, menu_colour[MENU_COLOR_ACTIVE], screen );
+						screen.rectfill( x+(i*24)-1, y-1, x+(i*24)+17, y+33, menu_colour[MENU_COLOR_ACTIVE]);
 					}
 	
 					if( CanEquipI(party[i],item_idx)!=0 )
 					{
-						blitentityframe(x + (i * 24), y + 16, master_cast[party[i]].entity, GetFrameWalk(), screen);
+						screen.blitentityframe(x + (i * 24), y + 16, master_cast[party[i]].entity, GetFrameWalk());
 					}
 					else
 					{
-						blitentityframe(x + (i * 24), y + 16, master_cast[party[i]].entity, GetFrameSad(), screen);
+						screen.blitentityframe(x + (i * 24), y + 16, master_cast[party[i]].entity, GetFrameSad());
 					}
 				}
 			}
@@ -750,10 +750,10 @@ public class Menu_Shop {
 				{
 					if( i==member )
 					{
-						rectfill( x+(i*24)-1, y-1, x+(i*24)+17, y+33, menu_colour[MENU_COLOR_ACTIVE], screen );
+						screen.rectfill( x+(i*24)-1, y-1, x+(i*24)+17, y+33, menu_colour[MENU_COLOR_ACTIVE]);
 					}
 	
-					blitentityframe(x + (i * 24), y + 16, master_cast[party[i]].entity, GetFrameSad(), screen);
+					screen.blitentityframe(x + (i * 24), y + 16, master_cast[party[i]].entity, GetFrameSad());
 				}
 			}
 		}
@@ -763,34 +763,34 @@ public class Menu_Shop {
 			{
 				if( i==member )
 				{
-					rectfill( x+(i*24)-1, y-1, x+(i*24)+17, y+33, menu_colour[MENU_COLOR_ACTIVE], screen );
+					screen.rectfill( x+(i*24)-1, y-1, x+(i*24)+17, y+33, menu_colour[MENU_COLOR_ACTIVE]);
 				}
 	
-				blitentityframe(x + (i * 24), y + 16, master_cast[party[i]].entity, GetFrameSad(), screen);
+				screen.blitentityframe(x + (i * 24), y + 16, master_cast[party[i]].entity, GetFrameSad());
 			}
 		}
 		
 		
 		
-		printstring(x + 115, y, screen, menu_font[0], master_cast[party[member]].name);
-		//printstring(x + 35, y + 10, screen, menu_font[0], master_classes[master_cast[party[member]].class_ref].name);
-		//printstring(x + 115, y, screen, menu_font[0], "Level: ");
-		//printright(x + 185, y, screen, menu_font[0], str(master_cast[party[member]].level));
+		menu_font[0].printstring(x + 115, y, screen, master_cast[party[member]].name);
+		//printstring(x + 35, y + 10, screen, master_classes[master_cast[party[member]].class_ref].name);
+		//printstring(x + 115, y, screen, "Level: ");
+		//printright(x + 185, y, screen, str(master_cast[party[member]].level));
 		
 		if( _shop_pretend_equip!=0 )
 		{	
-			printstring(x + 115, y + 10, screen, menu_font[0], "HP:");
-			printright(x + 161, y + 10, screen, menu_font[0], str(master_cast[party[member]].cur_hp)+"/" );
-			printstring(x + 115, y + 20, screen, menu_font[0], "MP:");
-			printright(x + 161, y + 20, screen, menu_font[0], str(master_cast[party[member]].cur_mp)+"/" );
+			menu_font[0].printstring(x + 115, y + 10, screen, "HP:");
+			menu_font[0].printright(x + 161, y + 10, screen, str(master_cast[party[member]].cur_hp)+"/" );
+			menu_font[0].printstring(x + 115, y + 20, screen, "MP:");
+			menu_font[0].printright(x + 161, y + 20, screen, str(master_cast[party[member]].cur_mp)+"/" );
 		}
 		else
 		{
-			printstring(x + 115, y + 10, screen, menu_font[0], "Cannot equip.");
+			menu_font[0].printstring(x + 115, y + 10, screen, "Cannot equip.");
 			
 			if( menu_idx == 1 )
 			{
-				printstring(x-5, y + 50, screen, menu_font[0], "(Press [b4] to change party member)");
+				menu_font[0].printstring(x-5, y + 50, screen, "(Press [b4] to change party member)");
 			}
 		}
 	}
@@ -804,12 +804,12 @@ public class Menu_Shop {
 		MenuDrawBackground(10, 70, 80, 230, active);
 		
 		if( selected != 3 )
-			printstring(16, selected * 30 + 85, screen, menu_font[0], ">");
+			menu_font[0].printstring(16, selected * 30 + 85, screen, ">");
 		else
-			printstring(16, (selected+1) * 30 + 85, screen, menu_font[0], ">");
+			menu_font[0].printstring(16, (selected+1) * 30 + 85, screen, ">");
 			
-		printstring(22, 85, screen, menu_font[0], "BUY");
-		printright(68, 95, screen, menu_font[0], "ITEMS");
+		menu_font[0].printstring(22, 85, screen, "BUY");
+		menu_font[0].printright(68, 95, screen, "ITEMS");
 		
 		
 	
@@ -817,62 +817,62 @@ public class Menu_Shop {
 	
 		{
 	
-			printstring(22, 115, screen, menu_font[0], "SELL");
-			printright(68, 125, screen, menu_font[0], "SUPPLY");
+			menu_font[0].printstring(22, 115, screen, "SELL");
+			menu_font[0].printright(68, 125, screen, "SUPPLY");
 		}
 		else
 		{
-			printstring(22, 115, screen, menu_font[1], "SELL");
-			printright(68, 125, screen, menu_font[1], "SUPPLY");
+			menu_font[1].printstring(22, 115, screen, "SELL");
+			menu_font[1].printright(68, 125, screen, "SUPPLY");
 		}
 		
 	
 		if( _shop_can_sell_equipment ) 
 		{
-			printstring(22, 145, screen, menu_font[0], "SELL");
-			printright(68, 155, screen, menu_font[0], "EQUIP");
+			menu_font[0].printstring(22, 145, screen, "SELL");
+			menu_font[0].printright(68, 155, screen, "EQUIP");
 		}
 		else
 		{
-			printstring(22, 145, screen, menu_font[1], "SELL");
-			printright(68, 155, screen, menu_font[1], "EQUIP");		
+			menu_font[1].printstring(22, 145, screen, "SELL");
+			menu_font[1].printright(68, 155, screen, "EQUIP");		
 		}
 		
-		printstring(22, 205, screen, menu_font[0], "EXIT");
+		menu_font[0].printstring(22, 205, screen, "EXIT");
 		MenuBlitShopTop();
 	}
 	
 	public static void MenuBlitShopTop()
 	{
 		MenuDrawBackground(10, 10, 80, 60, false);
-		printright(70, 20, screen, menu_font[0], "A Shop");
-		printstring(20, 35, screen, menu_font[0], moneyname + ":");
-		printright(70, 45, screen, menu_font[0], str(money));
+		menu_font[0].printright(70, 20, screen, "A Shop");
+		menu_font[0].printstring(20, 35, screen, moneyname + ":");
+		menu_font[0].printright(70, 45, screen, str(money));
 	}
 	
 	
 	 // A small notification box
 	static int MenuSellingbox(int item_idx, int max_quant, String draw_func)
 	{
-		int wid = textwidth( menu_font[0], "selling: " + master_items[item_idx].name );
+		int wid = menu_font[0].textwidth( "selling: " + master_items[item_idx].name );
 	
-		if( wid < textwidth(menu_font[0], "How many would you like to sell?") )
-			wid = textwidth( menu_font[0], "How many would you like to sell?" );
+		if( wid < menu_font[0].textwidth( "How many would you like to sell?") )
+			wid = menu_font[0].textwidth( "How many would you like to sell?" );
 		
-		if( wid < textwidth(menu_font[0], "Quantity: " + str( MAX_INV_SLOT )) )
-			wid = textwidth( menu_font[0], "Quantity: " + str(MAX_INV_SLOT) );
+		if( wid < menu_font[0].textwidth( "Quantity: " + str( MAX_INV_SLOT )) )
+			wid = menu_font[0].textwidth( "Quantity: " + str(MAX_INV_SLOT) );
 	
-		if( wid < textwidth(menu_font[0], "Total "+moneyname+": "+str(9999999)) )
-			wid = textwidth( menu_font[0], "Total "+moneyname+": "+str(9999999) );
+		if( wid < menu_font[0].textwidth( "Total "+moneyname+": "+str(9999999)) )
+			wid = menu_font[0].textwidth( "Total "+moneyname+": "+str(9999999) );
 		
-		int high = (fontheight( menu_font[0] ) + 1)*6;
+		int high = (menu_font[0].fontheight( ) + 1)*6;
 		
 		int border = 5;
 		
-		int x1 = ((imagewidth(screen)-wid)/2);
-		int y1 = (imageheight(screen)/2)-(high/2);
-		int x2 = ((imagewidth(screen)-wid)/2)+wid+(high/2);
-		int y2 = (imageheight(screen)/2)+(high/2);
+		int x1 = ((screen.getWidth()-wid)/2);
+		int y1 = (screen.getHeight()/2)-(high/2);
+		int x2 = ((screen.getWidth()-wid)/2)+wid+(high/2);
+		int y2 = (screen.getHeight()/2)+(high/2);
 		
 		int quant = 1;
 		boolean done = false;
@@ -889,10 +889,10 @@ public class Menu_Shop {
 				quant = max_quant;
 			}
 			
-			printstring(x1+border, y1+border, screen, menu_font[0], "selling: " + master_items[item_idx].name);
-			printstring(x1+border, y1+border+(fontheight(menu_font[0])+1), screen, menu_font[0], "How many would you like to sell?");
-			printstring(x1+border, y1+((fontheight(menu_font[0])+1)*3), screen, menu_font[0], "Quantity: " + str(quant));
-			printstring(x1+border, y1-border+((fontheight(menu_font[0])+1)*5), screen, menu_font[0],  "Total "+moneyname+": "+str((master_items[item_idx].price/2)*quant));
+			menu_font[0].printstring(x1+border, y1+border, screen, "selling: " + master_items[item_idx].name);
+			menu_font[0].printstring(x1+border, y1+border+(menu_font[0].fontheight()+1), screen, "How many would you like to sell?");
+			menu_font[0].printstring(x1+border, y1+((menu_font[0].fontheight()+1)*3), screen, "Quantity: " + str(quant));
+			menu_font[0].printstring(x1+border, y1-border+((menu_font[0].fontheight()+1)*5), screen, "Total "+moneyname+": "+str((master_items[item_idx].price/2)*quant));
 			
 			showpage();
 			

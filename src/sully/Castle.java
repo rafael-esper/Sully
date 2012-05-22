@@ -177,7 +177,7 @@ public class Castle {
 				AlterFTile(22,19,397,2);
 				
 				AlterFTile(23,24,495,2);
-				setzone( 23,24, 74 );
+				current_map.setzone( 23,24, 74 );
 	
 				TextBox(T_DARIN,	"A ha! The [Pearl of Truth] fits ",
 									"perfectly, and the gate has opened!",
@@ -236,7 +236,7 @@ public class Castle {
 			AlterFTile(22,19,397,2);
 			
 			AlterFTile(23,24,495,2);
-			setzone( 23,24, 74 );
+			current_map.setzone( 23,24, 74 );
 		}
 	
 		if(flags[F_HECK_WALL_CLOSE]!=0)
@@ -257,12 +257,12 @@ public class Castle {
 		}
 		
 		
-		if (flags[CHEST_HECK_B1A]!=0) settile(5,100, 0, 443);	
-		if (flags[CHEST_HECK_B1B]!=0) settile(5,110, 0, 443);	
-		if (flags[CHEST_HECK_B1C]!=0) settile(6,110, 0, 443);
-		if (flags[CHEST_HECK_B1D]!=0) settile(7,110, 0, 443);
-		if (flags[CHEST_HECK_B1E]!=0) settile(8,110, 0, 443);
-		if (flags[CHEST_HECK_WEST]!=0) settile(49,101, 0, 443);
+		if (flags[CHEST_HECK_B1A]!=0) current_map.settile(5,100, 0, 443);	
+		if (flags[CHEST_HECK_B1B]!=0) current_map.settile(5,110, 0, 443);	
+		if (flags[CHEST_HECK_B1C]!=0) current_map.settile(6,110, 0, 443);
+		if (flags[CHEST_HECK_B1D]!=0) current_map.settile(7,110, 0, 443);
+		if (flags[CHEST_HECK_B1E]!=0) current_map.settile(8,110, 0, 443);
+		if (flags[CHEST_HECK_WEST]!=0) current_map.settile(49,101, 0, 443);
 	
 	
 		if(flags[F_HECK_WEST_GATE]!=0)
@@ -1367,8 +1367,8 @@ public class Castle {
 			{
 				for( y=y1; y<=(y1+103); y+=16 )
 				{
-					blittile(x1+x,y,378, v1_vclayer);
-					blittile(x2-x,y,378, v1_vclayer);
+					v1_vclayer.blittile(x1+x,y,378);
+					v1_vclayer.blittile(x2-x,y,378);
 				}
 				
 				Wait(3);
@@ -1474,12 +1474,12 @@ public class Castle {
 								"these walls.");
 		}
 		
-		EntStart();
+		EntFinish();
 	}
 	
 	public static void sara_event() // 54 //
 	{
-		EntFinish();
+		EntStart();
 		
 		if(flags[F_HECK_WALLCRUSH]!=0)
 		{
@@ -1794,7 +1794,7 @@ public class Castle {
 			
 			AlterBTile(x1,43,390,2);
 			AlterFTile(x2,51,a,0);
-			setzone(x2,51,c);
+			current_map.setzone(x2,51,c);
 			flags[flag]=1;
 			unpress(0);
 		}
@@ -1802,7 +1802,7 @@ public class Castle {
 		{
 			AlterBTile(x1,43,389,2);
 			AlterFTile(x2,51,b,0);
-			setzone(x2,51,d);
+			current_map.setzone(x2,51,d);
 			unpress(0);
 			flags[flag]=0;
 		}
@@ -1815,7 +1815,7 @@ public class Castle {
 		{
 			AlterBTile( x1,43,390,2 );
 			AlterFTile( x2,51,377,0 );
-			setzone( x2,51, zone );
+			current_map.setzone( x2,51, zone );
 		}
 	}
 	

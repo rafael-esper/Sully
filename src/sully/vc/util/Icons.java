@@ -43,7 +43,7 @@ public class Icons {
 	
 	// returns the number of icons that live inside the given source image.
 	int icon_max( VImage src_img ) {
-		return (imagewidth(src_img)/(ICON_WIDTH+1))*(imageheight(src_img)/(ICON_HEIGHT+1));
+		return (src_img.getWidth()/(ICON_WIDTH+1))*(src_img.getHeight()/(ICON_HEIGHT+1));
 	}
 	
 	// Initializes the icon library.
@@ -51,8 +51,8 @@ public class Icons {
 	public static void icon_init( String src_file ) {
 		im_iconsource = new VImage(load(src_file));
 		
-		_icon_cols	= imagewidth(im_iconsource)/(ICON_WIDTH+1);
-		_icon_rows	= imageheight(im_iconsource)/(ICON_HEIGHT+1);
+		_icon_cols	= im_iconsource.getWidth()/(ICON_WIDTH+1);
+		_icon_rows	= im_iconsource.getHeight()/(ICON_HEIGHT+1);
 		_icon_max	= _icon_rows * _icon_cols;
 	}
 	
@@ -71,7 +71,7 @@ public class Icons {
 			
 		// [Rafael, the Esper]
 		VImage dst = new VImage(ICON_WIDTH, ICON_HEIGHT);
-		grabregion(x, y, x+ICON_WIDTH, y+ICON_HEIGHT, 0, 0, im_iconsource, dst);
+		dst.grabregion(x, y, x+ICON_WIDTH, y+ICON_HEIGHT, 0, 0, im_iconsource);
 		return dst;
 		//return imageshell(x, y, ICON_WIDTH, ICON_HEIGHT, im_iconsource );
 	}

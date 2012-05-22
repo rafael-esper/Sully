@@ -36,8 +36,8 @@ public class Menu_Choice {
 		int linenum, i, start = 0, current = 0;
 		int wid = 180;
 		int high = 80;
-		int xpos = (imagewidth(screen) / 2) - (wid / 2);
-		int ypos = (imageheight(screen) / 2) - (high / 2);
+		int xpos = (screen.getWidth() / 2) - (wid / 2);
+		int ypos = (screen.getHeight() / 2) - (high / 2);
 		int mini_hold = menu_idx;
 		menu_idx = 1000000; // To make a grue happy
 		
@@ -57,7 +57,7 @@ public class Menu_Choice {
 	//log( "MIB 3" );
 			V1_Box(xpos, ypos, wid, high);
 	//log( "MIB 4" );
-			wrapinput = wraptext(menu_font[1], inputtext, wid - 30);
+			wrapinput = menu_font[1].wraptext(inputtext, wid - 30);
 	//log( "MIB 5" );
 			linenum = wrapinput.size(); // Rafael: due to new wraptext implementation. // tokencount(wrapinput, "&");
 	//log( "MIB 6" );
@@ -92,8 +92,8 @@ public class Menu_Choice {
 	{
 		if (systemtime % 100 > 50)
 		{
-			line(x+textwidth(fnt, left(text, pos)), y, x+textwidth(fnt, left(text, pos)), y+fontheight(fnt)-1, new Color(255, 255, 255), screen);
-			line(x+textwidth(fnt, left(text, pos))+1, y, x+textwidth(fnt, left(text, pos))+1, y+fontheight(fnt)-1, Color.BLACK, screen);
+			screen.line(x+fnt.textwidth(left(text, pos)), y, x+fnt.textwidth(left(text, pos)), y+fnt.fontheight()-1, new Color(255, 255, 255));
+			screen.line(x+fnt.textwidth(left(text, pos))+1, y, x+fnt.textwidth(left(text, pos))+1, y+fnt.fontheight()-1, Color.BLACK);
 		}
 	
 	}
@@ -398,8 +398,8 @@ public class Menu_Choice {
 		int high = 56;
 		int w = 56;
 		int wid = PartySize() * w;
-		int xpos = (imagewidth(screen) / 2) - (wid / 2);
-		int ypos = (imageheight(screen) / 2) - (high / 2);
+		int xpos = (screen.getWidth() / 2) - (wid / 2);
+		int ypos = (screen.getHeight() / 2) - (high / 2);
 		int mini_hold = menu_idx;
 		menu_idx = 1000000; // To make a grue happy
 	
@@ -445,12 +445,12 @@ public class Menu_Choice {
 	
 			menu_item = MenuControlArrows(menu_item, count);
 			MenuDrawBackground(5, 185, 315, 235, true);
-			printstring(12, 192, screen, v1rpg_LargeFont, question);
+			v1rpg_LargeFont.printstring(12, 192, screen, question);
 			for(i = 0; i < count; i++)
 			{
-				printstring((i / 2) * 150 + 20, (i % 2) * 14 + 206, screen, v1rpg_LargeFont, gettoken(choices, "&", i));
+				v1rpg_LargeFont.printstring((i / 2) * 150 + 20, (i % 2) * 14 + 206, screen, gettoken(choices, "&", i));
 			}
-			printstring((menu_item / 2) * 150 + 10, (menu_item % 2) * 14 + 206, screen, v1rpg_LargeFont, ">");
+			v1rpg_LargeFont.printstring((menu_item / 2) * 150 + 10, (menu_item % 2) * 14 + 206, screen, ">");
 			showpage();
 		}
 		return menu_item;
@@ -469,12 +469,12 @@ public class Menu_Choice {
 	
 			menu_item = MenuControlArrows(menu_item, count);
 			MenuDrawBackground(5, 215 - (14 * count), 315, 235, true);
-			printstring(12, 220 - (14 * count), screen, v1rpg_LargeFont, question);
+			v1rpg_LargeFont.printstring(12, 220 - (14 * count), screen, question);
 			for(i = 0; i < count; i++)
 			{
-				printstring(20, 232 - ((count - i)  * 14), screen, v1rpg_LargeFont, gettoken(choices, "&", i));
+				v1rpg_LargeFont.printstring(20, 232 - ((count - i)  * 14), screen, gettoken(choices, "&", i));
 			}
-			printstring(10, 232 - ((count - menu_item)  * 14), screen, v1rpg_LargeFont, ">");
+			v1rpg_LargeFont.printstring(10, 232 - ((count - menu_item)  * 14), screen, ">");
 			showpage();
 		}
 		return menu_item;
@@ -495,10 +495,10 @@ public class Menu_Choice {
 			else if (menu_start > menu_item) menu_start = menu_item;
 			MenuDrawBackground(5, 185, 315, 235, true);
 			MenuDrawSubWindow(10, 200, 310, 230, menu_item, 14, count, menu_start, 4);
-			printstring(12, 190, screen, v1rpg_LargeFont, question);
+			v1rpg_LargeFont.printstring(12, 190, screen, question);
 			for(i = menu_start; i < count; i++)
 			{
-				printstring(25, (i - menu_start) * 14  + 204, screen, v1rpg_LargeFont, gettoken(choices, "&", i));
+				v1rpg_LargeFont.printstring(25, (i - menu_start) * 14  + 204, screen, gettoken(choices, "&", i));
 				if (menu_start + 1 <= i) i = count + 1;
 			}
 			showpage();

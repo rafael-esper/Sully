@@ -77,9 +77,9 @@ public class Menu_Cast {
 		// Display background, party, and prompt
 		MenuBlitRight(false, menu_option);
 		MenuBlitCenter(MenuIsActive("Cast"));
-		printright(220, 15, screen, menu_font[0], "Select Party Member");
+		menu_font[0].printright(220, 15, screen, "Select Party Member");
 	
 		// Display cursor by currently selected part member
-		printstring(16, 30 + (menu_cast * 42), screen, menu_font[0], ">");
+		menu_font[0].printstring(16, 30 + (menu_cast * 42), screen, ">");
 	}
 }

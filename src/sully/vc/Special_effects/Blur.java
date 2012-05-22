@@ -18,7 +18,7 @@ public class Blur {
 	void loadBlurBuffer(){
 		int i;
 		for(i=0;i<BLUR_ITERATIONS;i++){
-			blur_buffer[i]=new VImage(imagewidth(screen),imageheight(screen));
+			blur_buffer[i]=new VImage(screen.getWidth(),screen.getHeight());
 		}
 	}
 	
@@ -35,32 +35,32 @@ public class Blur {
 		if(timer>blur_stamp+BLUR_DLY){
 			blur_stamp=timer;     
 			for(i=1;i<BLUR_ITERATIONS;i++){
-				blit(0,0,blur_buffer[i],blur_buffer[i-1]);
+				blur_buffer[i-1].blit(0,0,blur_buffer[i]);
 			}
-			blit(0,0,screen,blur_buffer[i-1]);
+			blur_buffer[i-1].blit(0,0,screen);
 		}
 	//blur blitting
 		for(i=0;i<BLUR_ITERATIONS-1;i++){
 			setlucent(100/(BLUR_ITERATIONS-i));
-			blit(0,0,blur_buffer[i],screen);
+			screen.blit(0,0,blur_buffer[i]);
 		}
 		setlucent(0);
 	}
 	
 	void focalBlur(int iterations, int distance, VImage src){
 		int i;
-		VImage tempImage=new VImage(imagewidth(src),imageheight(src));
-		blit(0,0,src,tempImage);
+		VImage tempImage=new VImage(src.getWidth(),src.getHeight());
+		tempImage.blit(0,0,src);
 		
 		if(iterations >= distance) iterations=distance-1;
 		
 		for(i=1;i<=iterations;i++){  
 			setlucent(100/iterations *i);
-			tscaleblit(0-(distance/iterations *i /2), 
+			src.tscaleblit(0-(distance/iterations *i /2), 
 				0-(distance/iterations*i /2), 
-				imagewidth(tempImage)+(distance/iterations*i), 
-				imageheight(tempImage)+(distance/iterations*i), 
-				tempImage, src);
+				tempImage.getWidth()+(distance/iterations*i), 
+				tempImage.getHeight()+(distance/iterations*i), 
+				tempImage);
 		}
 		setlucent(0);
 		//freeImage(tempImage);
@@ -70,14 +70,14 @@ public class Blur {
 		int i;
 	
 	//check for offscreen extremes
-		if(x > imagewidth(screen)) x=imageheight(screen);
-		if(y > imageheight(screen)) y=imageheight(screen);
+		if(x > screen.getWidth()) x=screen.getHeight();
+		if(y > screen.getHeight()) y=screen.getHeight();
 		if(x < 0) x=0;
 		if(y < 0) y=0;
 	
 	//grab focus region
-		VImage tempImage=new VImage(imagewidth(screen)*2, imageheight(screen)*2);
-		grabregion(x-(imagewidth(tempImage)/2), y-(imageheight(tempImage)/2), x+(imagewidth(tempImage)/2), y+(imageheight(tempImage)/2),0,0,src, tempImage);
+		VImage tempImage=new VImage(screen.getWidth()*2, screen.getHeight()*2);
+		tempImage.grabregion(x-(tempImage.getWidth()/2), y-(tempImage.getHeight()/2), x+(tempImage.getWidth()/2), y+(tempImage.getHeight()/2),0,0,src);
 		
 	//Make sure that the iterations does not exceed the distance
 		if(iterations >= distance) iterations=distance-1;
@@ -85,11 +85,11 @@ public class Blur {
 	//streach focus region to create blur
 		for(i=1;i<=iterations;i++){  
 			setlucent(100/iterations *i);
-			scaleblit(		x - (imagewidth(tempImage)/2)-(distance/iterations *i /2), 
-						y - (imageheight(tempImage)/2)-(distance/iterations *i /2), 
-						imagewidth(tempImage)+(distance/iterations*i), 
-						imageheight(tempImage)+(distance/iterations*i), 
-						tempImage, src);
+			src.scaleblit(		x - (tempImage.getWidth()/2)-(distance/iterations *i /2), 
+						y - (tempImage.getHeight()/2)-(distance/iterations *i /2), 
+						tempImage.getWidth()+(distance/iterations*i), 
+						tempImage.getHeight()+(distance/iterations*i), 
+						tempImage);
 		}
 		
 	//end of function
@@ -99,12 +99,12 @@ public class Blur {
 	
 	static void radialBlur(int iterations, int distance, VImage src){
 		int i;
-		VImage tempImage=new VImage(imagewidth(src),imageheight(src));
-		blit(0,0,src,tempImage);
+		VImage tempImage=new VImage(src.getWidth(),src.getHeight());
+		tempImage.blit(0,0,src);
 		
 		for(i=0;i<iterations;i++){
 			setlucent(100/iterations *i);
-			rotscale(imagewidth(src)/2, imageheight(src)/2, distance/(iterations-i), 1000, tempImage, src);
+			src.rotscale(src.getWidth()/2, src.getHeight()/2, distance/(iterations-i), 1000, tempImage);
 		}
 		setlucent(0);
 		////freeImage(tempImage);
@@ -112,14 +112,14 @@ public class Blur {
 	
 	void crossBlur(int iterations, int distance, VImage src){
 		int i;
-		VImage tempImage=new VImage(imagewidth(src),imageheight(src));
-		blit(0,0,src,tempImage);
+		VImage tempImage=new VImage(src.getWidth(),src.getHeight());
+		tempImage.blit(0,0,src);
 		
 		if(iterations >= distance) iterations=distance-1;
 		
 		for(i=1;i<=iterations;i++){  
 			setlucent(100/iterations *i);
-			blit(0-(distance/iterations *i), 0-(distance/iterations *i), tempImage, src);
+			src.blit(0-(distance/iterations *i), 0-(distance/iterations *i), tempImage);
 		}
 		setlucent(0);
 		//freeImage(tempImage);
@@ -127,20 +127,20 @@ public class Blur {
 	
 	void imageBlur(int iterations, int distance, VImage src){
 		int i;
-		VImage tempImage=new VImage(imagewidth(src),imageheight(src));
-		blit(0,0,src,tempImage);
+		VImage tempImage=new VImage(src.getWidth(),src.getHeight());
+		tempImage.blit(0,0,src);
 		
 		if(iterations >= distance) iterations=distance-1;
 		
 		for(i=1;i<=iterations;i++){  
 			setlucent(100/iterations *i);
-			blit(0-(distance/iterations *i), 0, tempImage, src);
+			src.blit(0-(distance/iterations *i), 0, tempImage);
 		}
 		setlucent(0);
-		blit(0,0,src,tempImage);
+		tempImage.blit(0,0,src);
 		for(i=1;i<=iterations;i++){  
 			setlucent(100/iterations *i);
-			blit(0, 0-(distance/iterations *i), tempImage, src);
+			src.blit(0, 0-(distance/iterations *i), tempImage);
 		}
 		setlucent(0);
 		//freeImage(tempImage);

@@ -43,8 +43,8 @@ public class V1_RPG {
 	
 	// the two vc layers!  
 	// These are basically optional persistant images you can draw to.
-	public static VImage v1_vclayer = duplicateimage(screen);
-	public static VImage v1_vclayer2 = duplicateimage(screen);
+	public static VImage v1_vclayer = screen.duplicateimage();
+	public static VImage v1_vclayer2 = screen.duplicateimage();
 	
 	/****************************** internal data *****************************/
 	
@@ -134,13 +134,13 @@ public class V1_RPG {
 			}
 		}
 		
-		tblit(0, 0, v1_vclayer, screen);
+		screen.tblit(0, 0, v1_vclayer);
 		
 		//for vclayer tinting.
 		if (tint_on )
 		{
 			setlucent(tint_lucent);
-			rectfill(0, 0, 320, 240, tint_color, screen);//[Rafael, the Esper]
+			screen.rectfill(0, 0, 320, 240, tint_color);//[Rafael, the Esper]
 			setlucent(0);
 		}
 		
@@ -270,11 +270,11 @@ public class V1_RPG {
 	//
 	public static void ClearVCLayer() 
 	{
-		rectfill(0, 0, imagewidth(v1_vclayer), imageheight(v1_vclayer), transcolor, v1_vclayer); //blanks the vc layer
-		//v1_vclayer.g.clearRect(0, 0, imagewidth(v1_vclayer), imageheight(v1_vclayer));
+		v1_vclayer.rectfill(0, 0, v1_vclayer.getWidth(), v1_vclayer.getHeight(), transcolor); //blanks the vc layer
+		//v1_vclayer.g.clearRect(0, 0, v1_vclayer.getWidth(), v1_vclayer.getHeight());
 		
-	//	rectfill(0, 0, ImageWidth(v1_vclayer), 20, RGB(0,0,0), v1_vclayer); //Letterboxing!
-	//	rectfill(0, ImageHeight(v1_vclayer)-20, ImageWidth(v1_vclayer), ImageHeight(v1_vclayer), RGB(0,0,0), v1_vclayer); //Letterboxing!
+	//	rectfill(0, 0, v1_vclayer.getWidth(), 20, RGB(0,0,0), v1_vclayer); //Letterboxing!
+	//	rectfill(0, v1_vclayer.getHeight()-20, v1_vclayer.getWidth(), v1_vclayer.getHeight(), RGB(0,0,0), v1_vclayer); //Letterboxing!
 	}
 	
 	// Takes an image's path and filename, and the position to put it onto the 
@@ -288,12 +288,12 @@ public class V1_RPG {
 	public static void VCPutIMG( String img_name, int x_pos, int y_pos )
 	{
 		VImage img = new VImage(load(img_name));
-		tblit( x_pos, y_pos, img, v1_vclayer );
+		v1_vclayer.tblit( x_pos, y_pos, img);
 	}
 	
 	// Fills the vclayer with an RGB()-defined colorvalue.
 	public static void FillVCLayer( Color matte_color ) {
-		rectfill(0, 0, imagewidth(v1_vclayer), imageheight(v1_vclayer), matte_color, v1_vclayer); //fills the vc layer with matte_color
+		v1_vclayer.rectfill(0, 0, v1_vclayer.getWidth(), v1_vclayer.getHeight(), matte_color); //fills the vc layer with matte_color
 	}
 	
 	// Prints string s at (x,y) on the VCLayer in the v1-rpg lib's SmallFont.
@@ -301,7 +301,7 @@ public class V1_RPG {
 	// the v1-rpg lib's SmallFont.can be changed with v1_setSmallfont()
 	public static void VCText( int x, int y, String s ) 
 	{
-		printstring( x,y, v1_vclayer, v1rpg_SmallFont, s);
+		v1rpg_SmallFont.printstring( x,y, v1_vclayer, s);
 	}
 	
 	
@@ -310,7 +310,7 @@ public class V1_RPG {
 	//
 	public static void VCCenterText( int y, String s ) 
 	{
-		printcenter( imagewidth(v1_vclayer)/2, y, v1_vclayer, v1rpg_SmallFont, s );
+		v1rpg_SmallFont.printcenter( v1_vclayer.getWidth()/2, y, v1_vclayer, s );
 	}
 	
 	// Turns on vc-layer quaking with a horizontal shake of quake_x and a vertical
@@ -355,7 +355,7 @@ public class V1_RPG {
 		
 	
 		//clear vclayer2 before we start!
-		rectfill(0, 0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), transcolor, v1_vclayer2); //clear vclayer2
+		v1_vclayer2.rectfill(0, 0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), transcolor); //clear vclayer2
 		
 		hookretrace("sully.vc.v1_rpg.V1_RPG.V1RPG_RenderFunc_DUALMODE");
 	}
@@ -386,7 +386,7 @@ public class V1_RPG {
 			V1RPG_RenderFunc();
 			_dualmode_counter = 1;
 		} else {
-			tblit(0, 0, v1_vclayer2, screen);
+			screen.tblit(0, 0, v1_vclayer2);
 			_dualmode_counter = 0;
 		}	
 	}
@@ -410,8 +410,8 @@ public class V1_RPG {
 		v1rpg_SmallFont = new VFont(load("res/system/smallfont3.gif"));
 		_v1rpg_SmallFont = v1rpg_SmallFont; //stores the original smallfont.
 	
-		enablevariablewidth(v1rpg_LargeFont);
-		enablevariablewidth(v1rpg_SmallFont);
+		v1rpg_LargeFont.enablevariablewidth();
+		v1rpg_SmallFont.enablevariablewidth();
 	}
 	
 	
@@ -445,9 +445,9 @@ public class V1_RPG {
 		{
 			case 1: V1_Maineffects.FadeOut(30);break;
 			case 2: V1_Maineffects.WhiteOut(30);break;
-			case 3: blit(0, 0, screen, V1_Maineffects.crossfade_img);break;
+			case 3: V1_Maineffects.crossfade_img.blit(0, 0, screen);break;
 			case 4: V1_Maineffects.BoxOut(30);break;
-			case 5: blit(0, 0, screen, V1_Maineffects.crossfade_img);break;
+			case 5: V1_Maineffects.crossfade_img.blit(0, 0, screen);break;
 			case 6: V1_Maineffects.CircleOut(50);break;
 		}
 		
@@ -500,9 +500,10 @@ public class V1_RPG {
 		{
 			case 1:	V1_Maineffects.FadeOut(30);break;
 			case 2: V1_Maineffects.WhiteOut(30);break;
-			case 3: blit(0, 0, screen, V1_Maineffects.crossfade_img);break;
+			case 3: V1_Maineffects.crossfade_img.blit(0, 0, screen);break;
+			//case 3: V1_Maineffects.crossfade_img.blit(0, 0, screen);break;
 			case 4: V1_Maineffects.BoxOut(30);break;
-			case 5: blit(0, 0, screen, V1_Maineffects.crossfade_img);break;
+			case 5: V1_Maineffects.crossfade_img.blit(0, 0, screen);break;
 			case 6: V1_Maineffects.CircleOut(50);break;
 		}
 	
@@ -544,12 +545,12 @@ public class V1_RPG {
 	static void CenterMessageBox( VFont font, String msg ) {
 		int wid, high;
 		
-		high = fontheight( font );
-		wid = textwidth( font, msg );
+		high = font.fontheight();
+		wid = font.textwidth(msg );
 	
-		V1_Box( (imagewidth(screen)/2)-(wid/2)-high, (imageheight(screen)/2)-high, wid+(high*2), high*3 );
+		V1_Box( (screen.getWidth()/2)-(wid/2)-high, (screen.getHeight()/2)-high, wid+(high*2), high*3 );
 		
-		printcenter(imagewidth(screen)/2, imageheight(screen)/2, screen, font, msg);
+		font.printcenter(screen.getWidth()/2, screen.getHeight()/2, screen, msg);
 	}
 	
 	
@@ -601,10 +602,10 @@ public class V1_RPG {
 	// obstructs the tile if obs is 1, unobstructs the tile if obs is 0
 	// leaves the obstruction alone if obs is any other value.
 	public static void AlterBTile(int x, int y, int t, int obs) {
-		settile(x,y,0,t);
+		current_map.settile(x,y,0,t);
 		
 		if( obs==0 || obs == 1  ) 
-			setobs(x,y,obs);
+			current_map.setobs(x,y,obs);
 	}
 	
 	// Places tile t onto map layer 1 at (x,y).
@@ -612,10 +613,10 @@ public class V1_RPG {
 	// obstructs the tile if obs is 1, unobstructs the tile if obs is 0
 	// leaves the obstruction alone if obs is any other value.
 	public static void AlterFTile(int x, int y, int t, int obs) {
-		settile(x,y,1,t);
+		current_map.settile(x,y,1,t);
 		
 		if( obs==0 || obs == 1  ) 
-			setobs(x,y,obs);
+			current_map.setobs(x,y,obs);
 	}
 	
 	// The master Chest-opening script.
@@ -629,7 +630,7 @@ public class V1_RPG {
 	public static boolean OpenTreasure( int flag, int x, int y, int open_tile ) {
 		if( Flags.flags[flag] == 0 ) {
 			Flags.flags[flag] = 1;
-			settile(x,y,0,open_tile);
+			current_map.settile(x,y,0,open_tile);
 			SoundSwitch();
 			return true;
 		} else {

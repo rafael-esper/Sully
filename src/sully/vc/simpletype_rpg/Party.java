@@ -401,17 +401,17 @@ public class Party {
 		int bordersize = 5;
 		VFont f = new VFont(load("res/system/menu_font_white.png")); //make this alterable. // TODO [Rafael, the Esper] Load a default font
 			
-		int x1 = textwidth(f, "_HP");
-		int x2 = x1 + textwidth(f, "X");
-		int x3 = x2 + textwidth(f, "000");
-		int x4 = x3 + textwidth(f, "/");
-		int x5 = x4 + textwidth(f, "000");
+		int x1 = f.textwidth("_HP");
+		int x2 = x1 + f.textwidth("X");
+		int x3 = x2 + f.textwidth("000");
+		int x4 = x3 + f.textwidth("/");
+		int x5 = x4 + f.textwidth("000");
 		
 		int y_spacer = 1; //make this alterable.
 		int y1 = y_spacer;
-		int y2 = y1+ fontheight(f)+y_spacer;
-		int y3 = y2+ fontheight(f)+y_spacer; 
-		int y4 = y3+ fontheight(f)+y_spacer;
+		int y2 = y1+ f.fontheight()+y_spacer;
+		int y3 = y2+ f.fontheight()+y_spacer; 
+		int y4 = y3+ f.fontheight()+y_spacer;
 		
 		if( _MPB_restore!=0 )
 		{
@@ -423,29 +423,29 @@ public class Party {
 		{
 			_MPB_panes[i] = new VImage(x5,y4);
 			
-			rectfill(0,0, x5,y4, transcolor, _MPB_panes[i]);
+			_MPB_panes[i].rectfill(0,0, x5,y4, transcolor);
 			
-			printstring(x1, y1, _MPB_panes[i], f, master_cast[party[i]].name);
-			printstring(x3, y2, _MPB_panes[i], f, "/");
-			printstring(x3, y3, _MPB_panes[i], f, "/");
+			f.printstring(x1, y1, _MPB_panes[i], master_cast[party[i]].name);
+			f.printstring(x3, y2, _MPB_panes[i], "/");
+			f.printstring(x3, y3, _MPB_panes[i], "/");
 			
-			printright(x1, y2, _MPB_panes[i], f, "HP");
-			printright(x1, y3, _MPB_panes[i], f, "MP");
+			f.printright(x1, y2, _MPB_panes[i], "HP");
+			f.printright(x1, y3, _MPB_panes[i], "MP");
 			
-			printright(x3, y2, _MPB_panes[i], f, str(master_cast[party[i]].cur_hp));
-			printright(x5, y2, _MPB_panes[i], f, str(master_cast[party[i]].stats[STAT_MAX_HP]));
+			f.printright(x3, y2, _MPB_panes[i], str(master_cast[party[i]].cur_hp));
+			f.printright(x5, y2, _MPB_panes[i], str(master_cast[party[i]].stats[STAT_MAX_HP]));
 			
-			printright(x3, y3, _MPB_panes[i], f, str(master_cast[party[i]].cur_mp));
-			printright(x5, y3, _MPB_panes[i], f, str(master_cast[party[i]].stats[STAT_MAX_MP]));
+			f.printright(x3, y3, _MPB_panes[i], str(master_cast[party[i]].cur_mp));
+			f.printright(x5, y3, _MPB_panes[i], str(master_cast[party[i]].stats[STAT_MAX_MP]));
 		}
 		
-		int high = PartySize() * (y4+fontheight(f)) + (bordersize*2);
-		int wid = ( x5+textwidth(f, "000") ) + (bordersize*2);
-		int xpos = (imagewidth(screen) / 2) - (wid / 2) - bordersize;
-		int ypos = (imageheight(screen) / 2) - (high / 2) - bordersize;
+		int high = PartySize() * (y4+f.fontheight()) + (bordersize*2);
+		int wid = ( x5+f.textwidth("000") ) + (bordersize*2);
+		int xpos = (screen.getWidth() / 2) - (wid / 2) - bordersize;
+		int ypos = (screen.getHeight() / 2) - (high / 2) - bordersize;
 		
-		int x_in = xpos+textwidth(f, "00");
-		int y_in = ypos+fontheight(f);
+		int x_in = xpos+f.textwidth("00");
+		int y_in = ypos+f.fontheight();
 		
 		unpress(0);
 	
@@ -459,10 +459,10 @@ public class Party {
 	
 			for(i = 0; i < PartySize(); i++)
 			{
-				tblit( x_in, y_in + (i*(y4+fontheight(f))), _MPB_panes[i], screen );
+				screen.tblit( x_in, y_in + (i*(y4+f.fontheight())), _MPB_panes[i]);
 	
 				if (i == selected) {
-					printstring( x_in, y_in+(i*(y4+fontheight(f))), screen, f, "_>" );
+					f.printstring( x_in, y_in+(i*(y4+f.fontheight())), screen, "_>" );
 				}
 			}
 			

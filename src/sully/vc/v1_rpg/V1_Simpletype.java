@@ -81,8 +81,8 @@ public class V1_Simpletype {
 		
 		icon = icon_get( master_items[idx].icon );
 		
-		high = fontheight( v1rpg_SmallFont );
-		wid = textwidth( v1rpg_SmallFont, msgstr );
+		high = v1rpg_SmallFont.fontheight();
+		wid = v1rpg_SmallFont.textwidth(msgstr );
 		
 		timer = 0;
 		EntStart(); // [Rafael, the Esper]
@@ -90,11 +90,11 @@ public class V1_Simpletype {
 		{
 			render();
 		
-			V1_Box( (imagewidth(screen)/2)-(wid/2)-high, ((imageheight(screen)/2)-high)-16, wid+(high*2), high*3+32 );
+			V1_Box( (screen.getWidth()/2)-(wid/2)-high, ((screen.getHeight()/2)-high)-16, wid+(high*2), high*3+32 );
 	
-			printcenter(imagewidth(screen)/2, (imageheight(screen)/2)-16, screen, v1rpg_SmallFont, msgstr);
+			v1rpg_SmallFont.printcenter(screen.getWidth()/2, (screen.getHeight()/2)-16, screen, msgstr);
 	
-			tblit( (imagewidth(screen)/2)-8, (imageheight(screen)/2)+8, icon, screen );
+			screen.tblit( (screen.getWidth()/2)-8, (screen.getHeight()/2)+8, icon);
 			
 			showpage();
 		}
@@ -163,7 +163,7 @@ public class V1_Simpletype {
 		while ( !b1 ) 
 		{
 			render();
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), Color.BLACK, screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
 			CenterMessageBox( v1rpg_SmallFont, "Recovered full HP and MP!" );
 	
 			if( systemtime > end_song_time ) {

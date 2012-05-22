@@ -325,7 +325,7 @@ public class V1_Textbox {
 		for( i=0; i<tokencount(text," "); i++ ) {
 			
 			tok = gettoken(text," ",i);
-			if( textwidth(v1rpg_LargeFont,temp+tok+" ") > TEXTBOX_TEXTAREA_WIDTH ) {
+			if( v1rpg_LargeFont.textwidth(temp+tok+" ") > TEXTBOX_TEXTAREA_WIDTH ) {
 				
 				AT_temp = AT_temp + temp + "&";
 				atTempCount++;
@@ -419,7 +419,7 @@ public class V1_Textbox {
 		int line_it, line_num, time_last;
 		
 	
-		int font_h = fontheight(v1rpg_LargeFont) + TEXTBOX_Y_BUFF;
+		int font_h = v1rpg_LargeFont.fontheight() + TEXTBOX_Y_BUFF;
 		
 	
 		if (global_noscroll)
@@ -440,23 +440,23 @@ public class V1_Textbox {
 			//draw the textbox bg.
 			V1_Box( TEXTBOX_BORDER_X1,TEXTBOX_BORDER_Y1,  TEXTBOX_BORDER_WIDTH,TEXTBOX_BORDER_HIGH );
 			
-			setclip( 	TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y, 
-						TEXTBOX_TEXTAREA_X+TEXTBOX_TEXTAREA_WIDTH,TEXTBOX_TEXTAREA_Y+TEXTBOX_TEXTAREA_HIGH, screen );
+			screen.setclip( 	TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y, 
+						TEXTBOX_TEXTAREA_X+TEXTBOX_TEXTAREA_WIDTH,TEXTBOX_TEXTAREA_Y+TEXTBOX_TEXTAREA_HIGH);
 						
 			for (line_it = 0; line_it < line_num; line_it++)
 			{ 
-				printstring(TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y + (font_h * line_it), screen, v1rpg_LargeFont, gettoken(s, "&", line_it)); 
+				v1rpg_LargeFont.printstring(TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y + (font_h * line_it), screen, gettoken(s, "&", line_it)); 
 			}
 					
-			printstring(TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y + (font_h * line_num), screen, v1rpg_LargeFont, left(gettoken(s, "&", line_num), (systemtime - time_last) / 2));
+			v1rpg_LargeFont.printstring(TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y + (font_h * line_num), screen, left(gettoken(s, "&", line_num), (systemtime - time_last) / 2));
 			
-			setclip(0, 0, imagewidth(screen), imageheight(screen), screen);
+			screen.setclip(0, 0, screen.getWidth(), screen.getHeight());
 			
 			if (MenuConfirm()) { line_num++; time_last = systemtime; }
 			else if ((systemtime - time_last) / 2 >= len(gettoken(s, "&", line_num)))
 			{
 				if (line_num < (TEXTBOX_LINES-1)) { line_num++; time_last = systemtime; }
-				else if (m == 1) tblit(TEXTMORE_X,TEXTMORE_Y + (cos(systemtime * 2) * 4 / 65536), V1_RPG.textmore, screen);
+				else if (m == 1) screen.tblit(TEXTMORE_X,TEXTMORE_Y + (cos(systemtime * 2) * 4 / 65536), V1_RPG.textmore);
 				else if (m == 2 && global_noscroll) line_num++;
 			}
 			
@@ -476,16 +476,16 @@ public class V1_Textbox {
 				//draw the textbox bg.
 				V1_Box( TEXTBOX_BORDER_X1,TEXTBOX_BORDER_Y1,  TEXTBOX_BORDER_WIDTH,TEXTBOX_BORDER_HIGH );
 				
-				//setclip( 	TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y, 
+				//screen.setclip( 	TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y, 
 					//		TEXTBOX_TEXTAREA_X+TEXTBOX_TEXTAREA_WIDTH,TEXTBOX_TEXTAREA_Y+TEXTBOX_TEXTAREA_HIGH, screen );
 				
 				for (line_it = 0; line_it < line_num; line_it++)
 				{ 
-					if(TEXTBOX_TEXTAREA_Y + (font_h * line_it) - ((systemtime - time_last) * 2) > TEXTBOX_TEXTAREA_Y) // [Rafael, the Esper] (Easier to do Setclip things)
-					printstring(TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y + (font_h * line_it) - ((systemtime - time_last) * 2), screen, v1rpg_LargeFont, gettoken(s, "&", line_it)); 
+					if(TEXTBOX_TEXTAREA_Y + (font_h * line_it) - ((systemtime - time_last) * 2) > TEXTBOX_TEXTAREA_Y) // [Rafael, the Esper] (Easier to do screen.setclip things)
+						v1rpg_LargeFont.printstring(TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y + (font_h * line_it) - ((systemtime - time_last) * 2), screen, gettoken(s, "&", line_it)); 
 				}
 				
-				//setclip(0,0, imagewidth(screen), imageheight(screen), screen);
+				//screen.setclip(0,0, screen.getWidth(), screen.getHeight());
 				
 				DrawSpeechPortrait( sp );
 				
@@ -517,12 +517,12 @@ public class V1_Textbox {
 	int PromptDirect(int sp, String question, String choices)
 	{
 		int i;
-		int font_h = fontheight(v1rpg_LargeFont) + PROMPT_Y_BUFF;
-		int tex_font_h = fontheight(v1rpg_LargeFont) + TEXTBOX_Y_BUFF;
+		int font_h = v1rpg_LargeFont.fontheight() + PROMPT_Y_BUFF;
+		int tex_font_h = v1rpg_LargeFont.fontheight() + TEXTBOX_Y_BUFF;
 		int prompt_wid, prompt_high;
 		int prompt_x1, prompt_x2;
 		
-		int ptr_w = textwidth(v1rpg_LargeFont, "> ");
+		int ptr_w = v1rpg_LargeFont.textwidth("> ");
 		
 		int count = tokencount(choices, "&");
 		if (count > MAX_PROMPT_OPTIONS) error("Moar than "+str(MAX_PROMPT_OPTIONS)+" options passed to the choicebox. This may cause graphical oddness");
@@ -551,7 +551,7 @@ public class V1_Textbox {
 		}
 		
 		//if the promptbox would've gone off the screen... make it align with the textbox
-		if( (PROMPT_X+prompt_wid) > imagewidth(screen) ) {
+		if( (PROMPT_X+prompt_wid) > screen.getWidth() ) {
 			prompt_x2 = TEXTBOX_BORDER_WIDTH+TEXTBOX_BORDER_X1;
 			prompt_x1 = prompt_x2 - prompt_wid;
 		} else {
@@ -571,36 +571,36 @@ public class V1_Textbox {
 			V1_Box( TEXTBOX_BORDER_X1,TEXTBOX_BORDER_Y1,  TEXTBOX_BORDER_WIDTH,TEXTBOX_BORDER_HIGH );
 			
 			//set clipping so we cannot draw outside the textbox
-			setclip( 	TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y, 
-						TEXTBOX_TEXTAREA_X+TEXTBOX_TEXTAREA_WIDTH,TEXTBOX_TEXTAREA_Y+TEXTBOX_TEXTAREA_HIGH, screen );
+			screen.setclip( 	TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y, 
+						TEXTBOX_TEXTAREA_X+TEXTBOX_TEXTAREA_WIDTH,TEXTBOX_TEXTAREA_Y+TEXTBOX_TEXTAREA_HIGH);
 			//print out the textbox lines.
 			for (i = 0; i < TEXTBOX_LINES; i++)
 			{
-				printstring(TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y + (tex_font_h * i), screen, v1rpg_LargeFont, gettoken(question, "&", i)); 
+				v1rpg_LargeFont.printstring(TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y + (tex_font_h * i), screen, gettoken(question, "&", i)); 
 			}
 	
 			//restore clipping
-			setclip(0,0, imagewidth(screen), imageheight(screen), screen);
+			screen.setclip(0,0, screen.getWidth(), screen.getHeight());
 	
 			menu_item = MenuControlArrows(menu_item, count);
 	
 			V1_Box( prompt_x1, prompt_y1-TEXTBOX_Y_BUFF, prompt_wid, prompt_high );
 	
 			//set the clipping rectangle so we cannot draw outside the promptbox's area!
-			setclip( 	prompt_x1+PROMPT_PADDING, prompt_y1+PROMPT_PADDING, 
-						prompt_x2-PROMPT_PADDING,prompt_y1+prompt_high-PROMPT_PADDING, screen );
+			screen.setclip( 	prompt_x1+PROMPT_PADDING, prompt_y1+PROMPT_PADDING, 
+						prompt_x2-PROMPT_PADDING,prompt_y1+prompt_high-PROMPT_PADDING);
 	
 			//print out the options.
 			for(i = 0; i <= count; i++)	
 			{
-				printstring(prompt_x1+PROMPT_PADDING+ptr_w+TEXTBOX_Y_BUFF, prompt_y1+PROMPT_PADDING+((i) * font_h), screen, v1rpg_LargeFont, gettoken(choices, "&", i));
+				v1rpg_LargeFont.printstring(prompt_x1+PROMPT_PADDING+ptr_w+TEXTBOX_Y_BUFF, prompt_y1+PROMPT_PADDING+((i) * font_h), screen, gettoken(choices, "&", i));
 			}
 			
 			//print the pointer...
-			printstring(prompt_x1+PROMPT_PADDING+TEXTBOX_Y_BUFF, prompt_y1+PROMPT_PADDING+((menu_item) * font_h), screen, v1rpg_LargeFont, ">");
+			v1rpg_LargeFont.printstring(prompt_x1+PROMPT_PADDING+TEXTBOX_Y_BUFF, prompt_y1+PROMPT_PADDING+((menu_item) * font_h), screen, ">");
 			
 			//restore the clipping rectangle.
-			setclip(0,0, imagewidth(screen), imageheight(screen), screen);
+			screen.setclip(0,0, screen.getWidth(), screen.getHeight());
 			
 			
 			DrawSpeechPortrait( sp );
@@ -617,7 +617,7 @@ public class V1_Textbox {
 		int i, longest = 0, temp;
 		
 		for( i=0; i<tokencount(choices,"&"); i++ ) {
-			temp = textwidth(v1rpg_LargeFont, gettoken(choices, "&", i) );
+			temp = v1rpg_LargeFont.textwidth(gettoken(choices, "&", i) );
 			
 			if( temp > longest ) longest = temp;
 		}

@@ -64,7 +64,7 @@ public class Funk_o_rama {
 	
 	static void processDisco(int index){
 		setlucent(75);
-		circlefill(disco[index].x,disco[index].y,disco[index].radius,disco[index].radius,disco[index].color,screen);
+		screen.circlefill(disco[index].x,disco[index].y,disco[index].radius,disco[index].radius,disco[index].color);
 		setlucent(0);
 		
 		if(timer-disco[index].stamp >= disco[index].delay){
@@ -101,8 +101,8 @@ public class Funk_o_rama {
 			mixC[1]=funk_c[1];
 		}
 		
-		rectfill(0,0,320,240,mixcolor(mixC[0], mixC[1], mixnum),scrn);
-		alphablit(0,0,scrn,borderMask,screen);
+		scrn.rectfill(0,0,320,240,mixcolor(mixC[0], mixC[1], mixnum));
+		screen.alphablit(0,0,scrn,borderMask);
 		//freeImage(scrn);
 	}
 	

@@ -72,9 +72,9 @@ public class Camscroll {
 				// scroll directly to where the /screen/ will be; without these checks we get the camera
 				// hitting the edge of the screen and sliding along it until it reaches the right place
 		if(txwin < 0) txwin = 0;
-		if(txwin > (((current_map.getWidth())*16) - imagewidth(screen))) txwin = (((current_map.getWidth())*16) - (imagewidth(screen)) - 1);
+		if(txwin > (((current_map.getWidth())*16) - screen.getWidth())) txwin = (((current_map.getWidth())*16) - (screen.getWidth()) - 1);
 		if(tywin < 0) tywin = 0;
-		if(tywin > ((current_map.getHeight()*16) - imageheight(screen))) tywin = (((current_map.getHeight())*16) - (imageheight(screen)) - 1);
+		if(tywin > ((current_map.getHeight()*16) - screen.getHeight())) tywin = (((current_map.getHeight())*16) - (screen.getHeight()) - 1);
 	
 		dx = ((txwin*10000) - (xwin*10000)) / time;			// calculate the pixel "step" for each timer tick
 		dy = ((tywin*10000) - (ywin*10000)) / time;			// we use the *10000 value, to smooth the travelling
@@ -142,8 +142,8 @@ public class Camscroll {
 		int txwin, tywin;			// target xwin and ywin
 		int done = 0;				// a finishing flag
 		
-		txwin = (targetx - (imagewidth(screen)/2));			// calculate txwin, tywin
-		tywin = (targety - (imageheight(screen)/2));
+		txwin = (targetx - (screen.getWidth()/2));			// calculate txwin, tywin
+		tywin = (targety - (screen.getHeight()/2));
 		
 		camx = xwin*10000;									// get camx and camy
 		camy = ywin*10000;
@@ -152,9 +152,9 @@ public class Camscroll {
 				// scroll directly to where the /screen/ will be; without these checks we get the camera
 				// hitting the edge of the screen and sliding along it until it reaches the right place
 		if(txwin < 0) txwin = 0;
-		if(txwin > (((current_map.getWidth())*16) - imagewidth(screen))) txwin = (((current_map.getWidth())*16) - (imagewidth(screen)) - 1);
+		if(txwin > (((current_map.getWidth())*16) - screen.getWidth())) txwin = (((current_map.getWidth())*16) - (screen.getWidth()) - 1);
 		if(tywin < 0) tywin = 0;
-		if(tywin > ((current_map.getHeight()*16) - imageheight(screen))) tywin = (((current_map.getHeight())*16) - (imageheight(screen)) - 1);
+		if(tywin > ((current_map.getHeight()*16) - screen.getHeight())) tywin = (((current_map.getHeight())*16) - (screen.getHeight()) - 1);
 	
 		dx = ((txwin*10000) - (xwin*10000)) / time;			// calculate the pixel "step" for each timer tick
 		dy = ((tywin*10000) - (ywin*10000)) / time;			// we use the *10000 value, to smooth the travelling
@@ -229,15 +229,15 @@ public class Camscroll {
 	public static void camCtrScrollToS(int targetx, int targety, int speed) {
 			// wrapper for camScrollTo()...
 		int txwin, tywin;
-		txwin = (targetx - (imagewidth(screen)/2));
-		tywin = (targety - (imageheight(screen)/2));
+		txwin = (targetx - (screen.getWidth()/2));
+		tywin = (targety - (screen.getHeight()/2));
 	
 			// adjust txwin/tywin to account for being next to the edge of the map
 			// without these adjustments, the time calculated will be somewhat less accurate
 		if(txwin < 0) txwin = 0;
-		if(txwin > ((current_map.getWidth()*16) - imagewidth(screen))) txwin = ((current_map.getWidth()*16) - (imagewidth(screen)));
+		if(txwin > ((current_map.getWidth()*16) - screen.getWidth())) txwin = ((current_map.getWidth()*16) - (screen.getWidth()));
 		if(tywin < 0) tywin = 0;
-		if(tywin > ((current_map.getHeight()*16) - imageheight(screen))) tywin = ((current_map.getHeight()*16) - (imageheight(screen)));
+		if(tywin > ((current_map.getHeight()*16) - screen.getHeight())) tywin = ((current_map.getHeight()*16) - (screen.getHeight()));
 	
 			// calculate the distance to your desired cam location...
 		int dx = xwin - txwin, dy = ywin - tywin;
@@ -258,9 +258,9 @@ public class Camscroll {
 			// adjust txwin/tywin to account for being next to the edge of the map
 			// without these adjustments, the time calculated will be somewhat less accurate
 		if(txwin < 0) txwin = 0;
-		if(txwin > ((current_map.getWidth()*16) - imagewidth(screen))) txwin = ((current_map.getWidth()*16) - (imagewidth(screen)));
+		if(txwin > ((current_map.getWidth()*16) - screen.getWidth())) txwin = ((current_map.getWidth()*16) - (screen.getWidth()));
 		if(tywin < 0) tywin = 0;
-		if(tywin > ((current_map.getHeight()*16) - imageheight(screen))) tywin = ((current_map.getHeight()*16) - (imageheight(screen)));
+		if(tywin > ((current_map.getHeight()*16) - screen.getHeight())) tywin = ((current_map.getHeight()*16) - (screen.getHeight()));
 	
 			// calculate the distance to your desired cam location...
 		int dx = xwin - txwin, dy = ywin - tywin;
@@ -278,13 +278,13 @@ public class Camscroll {
 			// basically the same as camScrollToS, except that we use the entity's middle-of-hotspot,
 			// rather than passed in parameters
 		int txwin, tywin;
-		txwin = (entity.get(playerentity).getx()+(entity.get(playerentity).getHotW()/2) - (imagewidth(screen)/2));
-		tywin = (entity.get(playerentity).gety()+(entity.get(playerentity).getHotH()/2) - (imageheight(screen)/2));
+		txwin = (entity.get(playerentity).getx()+(entity.get(playerentity).getHotW()/2) - (screen.getWidth()/2));
+		tywin = (entity.get(playerentity).gety()+(entity.get(playerentity).getHotH()/2) - (screen.getHeight()/2));
 		
 		if(txwin < 0) txwin = 0;
-		if(txwin > ((current_map.getWidth()*16) - imagewidth(screen))) txwin = ((current_map.getWidth()*16) - (imagewidth(screen)));
+		if(txwin > ((current_map.getWidth()*16) - screen.getWidth())) txwin = ((current_map.getWidth()*16) - (screen.getWidth()));
 		if(tywin < 0) tywin = 0;
-		if(tywin > ((current_map.getHeight()*16) - imageheight(screen))) tywin = ((current_map.getHeight()*16) - (imageheight(screen)));
+		if(tywin > ((current_map.getHeight()*16) - screen.getHeight())) tywin = ((current_map.getHeight()*16) - (screen.getHeight()));
 	
 		int dx = xwin - txwin, dy = ywin - tywin;
 		
@@ -314,13 +314,13 @@ public class Camscroll {
 			// basically the same as camScrollToS, except that we use the entity's middle-of-hotspot,
 			// rather than passed in parameters
 		int txwin, tywin;
-		txwin = (entity.get(ent).getx()+(entity.get(ent).getHotW()/2) - (imagewidth(screen)/2));
-		tywin = (entity.get(ent).gety()+(entity.get(ent).getHotH()/2) - (imageheight(screen)/2));
+		txwin = (entity.get(ent).getx()+(entity.get(ent).getHotW()/2) - (screen.getWidth()/2));
+		tywin = (entity.get(ent).gety()+(entity.get(ent).getHotH()/2) - (screen.getHeight()/2));
 		
 		if(txwin < 0) txwin = 0;
-		if(txwin > ((current_map.getWidth()*16) - imagewidth(screen))) txwin = ((current_map.getWidth()*16) - (imagewidth(screen)));
+		if(txwin > ((current_map.getWidth()*16) - screen.getWidth())) txwin = ((current_map.getWidth()*16) - (screen.getWidth()));
 		if(tywin < 0) tywin = 0;
-		if(tywin > ((current_map.getHeight()*16) - imageheight(screen))) tywin = ((current_map.getHeight()*16) - (imageheight(screen)));
+		if(tywin > ((current_map.getHeight()*16) - screen.getHeight())) tywin = ((current_map.getHeight()*16) - (screen.getHeight()));
 	
 		int dx = xwin - txwin, dy = ywin - tywin;
 		

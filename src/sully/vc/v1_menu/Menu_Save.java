@@ -143,13 +143,13 @@ public class Menu_Save {
 		if (menu_option == 5) // If saving
 		{
 			// Draw title and sub window for number of saves plus one (for 'New save' slot)
-			printright(220, 15, screen, menu_font[0], "Save");
+			menu_font[0].printright(220, 15, screen, "Save");
 			MenuDrawSubWindow(20, 45, 220, 210, menu_item, 31, menu_sub + 1, menu_start, 0);
 		}
 		else // If Loading
 		{
 			// Draw title and sub window for number of saves
-			printright(220, 15, screen, menu_font[0], "Load");
+			menu_font[0].printright(220, 15, screen, "Load");
 			MenuDrawSubWindow(20, 45, 220, 210, menu_item, 31, menu_sub, menu_start, 0);
 		}
 	
@@ -164,8 +164,8 @@ public class Menu_Save {
 	
 		if (menu_item < menu_sub) // If a full save slot is currently selected
 		{
-			printright(220, 35, screen, menu_font[0], save_display[(menu_item) % 5].time); // Print when game was saved
-			printstring(20, 35, screen, menu_font[0], GetTimeString(save_display[menu_item % 5].gametime)); // Print playtime of game
+			menu_font[0].printright(220, 35, screen, save_display[(menu_item) % 5].time); // Print when game was saved
+			menu_font[0].printstring(20, 35, screen, GetTimeString(save_display[menu_item % 5].gametime)); // Print playtime of game
 		}
 	}
 	
@@ -175,7 +175,7 @@ public class Menu_Save {
 	// Clips long descriptions, no other error detection
 	{
 		int i;
-		java.util.List<String> rows = wraptext(menu_font[0], text, 125); // Wrap any text passed
+		java.util.List<String> rows = menu_font[0].wraptext( text, 125); // Wrap any text passed
 		int lines = rows.size(); // Count lines used
 		if (lines > 2) // If there are more than two lines
 		{
@@ -185,13 +185,13 @@ public class Menu_Save {
 		for (i = 0; i < lines; i++) // Loops throught text lines
 		{
 			// Displays the text
-			printstring(40, 52 + (menu_fonth * i) + (location * 31), screen, menu_font[0], rows.get(i));
+			menu_font[0].printstring(40, 52 + (menu_fonth * i) + (location * 31), screen, rows.get(i));
 		}
 		// Displays a rectangle if no image was passed, otherwise blits the image
-		if (image == null) rect(172, 51 + (location * 31), 203, 74 + (location * 31), menu_colour[2], screen);
-		else blit(172, 51 + (location * 31), image, screen);
+		if (image == null) screen.rect(172, 51 + (location * 31), 203, 74 + (location * 31), menu_colour[2]);
+		else screen.blit(172, 51 + (location * 31), image);
 		// Pretty outer rectangle for framing purposes
-		rect(35, 49 + (location * 31), 205, 76 + (location * 31), menu_colour[2], screen);
+		screen.rect(35, 49 + (location * 31), 205, 76 + (location * 31), menu_colour[2]);
 	}
 	
 	// Called before the saves are displayed, checks number of saves and loads data to slots
@@ -267,10 +267,10 @@ public class Menu_Save {
 		int xc, yc;
 		String gamedesc = "Save game in file: save/save"+ThreeDigit(slot)+".sve";
 		int ver = (VERSION_4_BYTE << 24) + (VERSION_3_BYTE << 16) + (VERSION_2_BYTE << 8) + VERSION_1_BYTE;
-		VImage screenshot = new VImage(imagewidth(screen), imageheight(screen));
+		VImage screenshot = new VImage(screen.getWidth(), screen.getHeight());
 		VImage mini = new VImage(32, 24);
-		rendermap(xwin, ywin, screenshot);
-		scaleblit(0, 0, 32, 24, screenshot, mini);
+		current_map.render(xwin, ywin, screenshot);
+		mini.scaleblit(0, 0, 32, 24, screenshot);
 		
 		File savegame = new File(load(".").getFile() + "save/save"+ThreeDigit(slot)+".sve");
 		log("Saving file at: " + savegame);
@@ -301,7 +301,7 @@ public class Menu_Save {
 			{
 				for (xc = 0; xc <  32; xc++)
 				{
-					edos.writeSignedIntegerLittleEndian(readpixel(xc, yc, mini));
+					edos.writeSignedIntegerLittleEndian(mini.readpixel(xc, yc));
 				}
 			}
 		// Party Data
@@ -383,9 +383,9 @@ public class Menu_Save {
 				edos.writeSignedIntegerLittleEndian(0);
 			}
 			else {	
-				edos.writeSignedIntegerLittleEndian(len(current_map.mapname));
+				edos.writeSignedIntegerLittleEndian(len(current_map.getMapname()));
 				edos.writeShort(0);//[Rafael, the Esper]
-				edos.writeSimpleString(current_map.mapname);
+				edos.writeSimpleString(current_map.getMapname());
 				edos.writeSignedIntegerLittleEndian(entity.get(playerent).getx());
 				edos.writeSignedIntegerLittleEndian(entity.get(playerent).gety());
 			}
@@ -575,7 +575,7 @@ public class Menu_Save {
 			{
 				for (xc = 0; xc <  32; xc++)
 				{
-					 setpixel(xc, yc, new Color(edis.readSignedIntegerLittleEndian()), save_display[slot % 5].image);
+					save_display[slot % 5].image.setpixel(xc, yc, new Color(edis.readSignedIntegerLittleEndian()));
 				}
 			}
 		edis.close();

@@ -29,8 +29,8 @@ public class Chasm {
 			// If the boulder's been moved, keep it out of the way
 			if( flags[F_RAVEN_GULCH] !=0 )	
 			{
-				settile( 41,29, 1, 182 );
-				setobs( 41,29, 0 );
+				current_map.settile( 41,29, 1, 182 );
+				current_map.setobs( 41,29, 0 );
 			}
 		}
 	}
@@ -99,8 +99,8 @@ public class Chasm {
 			entitymove(event_entity, "D1 R4 W30");
 			WaitForEntity( event_entity );
 	
-			settile( 41,29, 1, 182 );
-			setobs( 41,29, 0 );
+			current_map.settile( 41,29, 1, 182 );
+			current_map.setobs( 41,29, 0 );
 	
 			entitymove(event_entity,"W30 L4 U1 F0");
 			WaitForEntity( event_entity );

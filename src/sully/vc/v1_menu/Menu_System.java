@@ -184,11 +184,11 @@ public class Menu_System {
 		menu_font[1] = new VFont(load("res/system/menu_font_grey1.png"));
 		menu_font[2] = new VFont(load("res/system/menu_font_green.png"));
 		menu_font[3] = new VFont(load("res/system/menu_font_red.png"));
-		menu_fonth = fontheight(menu_font[0]);
-		enablevariablewidth(menu_font[0]);
-		enablevariablewidth(menu_font[1]);
-		enablevariablewidth(menu_font[2]);
-		enablevariablewidth(menu_font[3]);
+		menu_fonth = menu_font[0].fontheight();
+		menu_font[0].enablevariablewidth();
+		menu_font[1].enablevariablewidth();
+		menu_font[2].enablevariablewidth();
+		menu_font[3].enablevariablewidth();
 	}
 	
 	// Set default colour scheme
@@ -303,7 +303,7 @@ public class Menu_System {
 	// A small notification box
 	static void MenuMinibox(String text, String draw_func)
 	{
-		int wid = textwidth( menu_font[0], " "+text+" " );
+		int wid = menu_font[0].textwidth(" "+text+" " );
 		int border = 5;
 		
 		//int mini_hold = menu_idx;
@@ -312,8 +312,8 @@ public class Menu_System {
 			MenuBackGroundDraw(); //draw universal things
 			callfunction(draw_func);
 			
-			MenuDrawBackground(((imagewidth(screen)-wid)/2)-border, 110, ((imagewidth(screen)-wid)/2)+wid+border, 130, true); // CatchMe
-			printcenter(160, 120 - (menu_fonth / 2) + 1, screen, menu_font[0], " "+text+" ");
+			MenuDrawBackground(((screen.getWidth()-wid)/2)-border, 110, ((screen.getWidth()-wid)/2)+wid+border, 130, true); // CatchMe
+			menu_font[0].printcenter(160, 120 - (menu_fonth / 2) + 1, screen, " "+text+" ");
 	
 			showpage();
 		}
@@ -326,7 +326,7 @@ public class Menu_System {
 	// the choice index is accessible via GetMenuChoiceAnswer();
 	static int MenuMiniChoicebox(String text, String choices, String draw_func)
 	{
-		int wid = textwidth( menu_font[0], " "+text+" " );
+		int wid = menu_font[0].textwidth(" "+text+" " );
 		int border = 5;
 		int done=0;
 		//int mini_hold = menu_idx;
@@ -336,8 +336,8 @@ public class Menu_System {
 			MenuBackGroundDraw(); //draw universal things
 			callfunction(draw_func);
 			
-			MenuDrawBackground(((imagewidth(screen)-wid)/2)-border, 110, ((imagewidth(screen)-wid)/2)+wid+border, 130, true); // CatchMe
-			printcenter(160, 120 - (menu_fonth / 2) + 1, screen, menu_font[0], " "+text+" ");
+			MenuDrawBackground(((screen.getWidth()-wid)/2)-border, 110, ((screen.getWidth()-wid)/2)+wid+border, 130, true); // CatchMe
+			menu_font[0].printcenter(160, 120 - (menu_fonth / 2) + 1, screen, " "+text+" ");
 			
 			MenuSimplePrompt( choices );
 	
@@ -362,12 +362,12 @@ public class Menu_System {
 	static void MenuSimplePrompt(String choices)
 	{
 		int i;
-		int font_h = fontheight(promptBox_font) + PROMPT_Y_BUFF;
+		int font_h = promptBox_font.fontheight() + PROMPT_Y_BUFF;
 		// Unused code. int tex_font_h = fontheight(textBox_font) + TEXTBOX_Y_BUFF;
 		int prompt_wid, prompt_high;
 		int prompt_x1, prompt_x2;
 		
-		int ptr_w = textwidth(promptBox_font, "> ");
+		int ptr_w = promptBox_font.textwidth("> ");
 		
 		int count = tokencount(choices, "&");
 		if (count > MAX_PROMPT_OPTIONS) error("Moar than "+str(MAX_PROMPT_OPTIONS)+" options passed to the choicebox. This may cause graphical oddness");
@@ -393,7 +393,7 @@ public class Menu_System {
 		}
 		
 		//if the promptbox would've gone off the screen... make it align with the textbox
-		if( (PROMPT_X+prompt_wid) > imagewidth(screen) ) {
+		if( (PROMPT_X+prompt_wid) > screen.getWidth() ) {
 			prompt_x2 = TEXTBOX_BORDER_WIDTH+TEXTBOX_BORDER_X1;
 			prompt_x1 = prompt_x2 - prompt_wid;
 		} else {
@@ -407,20 +407,20 @@ public class Menu_System {
 		MenuDrawBackground(prompt_x1, prompt_y1-TEXTBOX_Y_BUFF, prompt_x1+prompt_wid, prompt_high+prompt_y1-TEXTBOX_Y_BUFF, true);
 	
 		//set the clipping rectangle so we cannot draw outside the promptbox's area!
-		setclip( 	prompt_x1+PROMPT_PADDING, prompt_y1+PROMPT_PADDING, 
-					prompt_x2-PROMPT_PADDING,prompt_y1+prompt_high-PROMPT_PADDING, screen );
+		screen.setclip( 	prompt_x1+PROMPT_PADDING, prompt_y1+PROMPT_PADDING, 
+					prompt_x2-PROMPT_PADDING,prompt_y1+prompt_high-PROMPT_PADDING);
 	
 		//print out the options.
 		for(i = 0; i <= count; i++)	
 		{
-			printstring(prompt_x1+PROMPT_PADDING+ptr_w+TEXTBOX_Y_BUFF, prompt_y1+PROMPT_PADDING+((i) * font_h), screen, promptBox_font, gettoken(choices, "&", i));
+			promptBox_font.printstring(prompt_x1+PROMPT_PADDING+ptr_w+TEXTBOX_Y_BUFF, prompt_y1+PROMPT_PADDING+((i) * font_h), screen, gettoken(choices, "&", i));
 		}
 	
 		//print the pointer...
-		printstring(prompt_x1+PROMPT_PADDING+TEXTBOX_Y_BUFF, prompt_y1+PROMPT_PADDING+((_menu_simple_choice) * font_h), screen, promptBox_font, ">");
+		promptBox_font.printstring(prompt_x1+PROMPT_PADDING+TEXTBOX_Y_BUFF, prompt_y1+PROMPT_PADDING+((_menu_simple_choice) * font_h), screen, ">");
 	
 		//restore the clipping rectangle.
-		setclip(0,0, imagewidth(screen), imageheight(screen), screen);
+		screen.setclip(0,0, screen.getWidth(), screen.getHeight());
 	
 		Menu1ArrowSetSounds( "" );
 	}
@@ -614,14 +614,14 @@ public class Menu_System {
 	static void MenuDrawBackgroundSimple(int x1, int y1, int x2, int y2, boolean active)
 	{
 		setlucent(20);
-		rect(x1, y1, x2 - 1, y2 - 1,
-		 menu_colour[3], screen);
-		rect(x1 + 1, y1 + 1, x2 - 2, y2 - 2,
-		 menu_colour[0], screen);
-		rect(x1 + 2, y1 + 2, x2 - 3, y2 - 3,
-		 menu_colour[1], screen);
-		rectfill(x1 + 3, y1 + 3, x2 - 4, y2 - 4,
-		 menu_colour[2 + (active ? 1: 0)], screen);
+		screen.rect(x1, y1, x2 - 1, y2 - 1,
+		 menu_colour[3]);
+		screen.rect(x1 + 1, y1 + 1, x2 - 2, y2 - 2,
+		 menu_colour[0]);
+		screen.rect(x1 + 2, y1 + 2, x2 - 3, y2 - 3,
+		 menu_colour[1]);
+		screen.rectfill(x1 + 3, y1 + 3, x2 - 4, y2 - 4,
+		 menu_colour[2 + (active ? 1: 0)]);
 		setlucent(0);
 	}
 	
@@ -636,40 +636,40 @@ public class Menu_System {
 		setlucent(global_menuluc * 10);
 		//[Rafael, the Esper] TODO: Make it work as a filter?
 		//setcustomcolorfilter(ColourDivider(menu_colour[2 + (active ? 1: 0)], 4), menu_colour[2 + (active ? 1: 0)]);
-		//VImage act = imageshell(x1 + 4, y1 + 4, x2 - 5 - x1, y2 - 5 - y1, screen);
+		//VImage act = imageshell(x1 + 4, y1 + 4, x2 - 5 - x1, y2 - 5 - y1);
 		//colorfilter(CF_CUSTOM, act);
 		//act = null;
 
-		rectfill(x1+4, y1+4, x2-4, y2-4, menu_colour[2 + (active?1:0)], screen);
+		screen.rectfill(x1+4, y1+4, x2-4, y2-4, menu_colour[2 + (active?1:0)]);
 		setlucent(0);
 	
 		
-		line(x1, y1 + 2, x1, y2 - 3, menu_colour[0], screen); // TL -> BL
-		line(x1 + 2, y1, x2 - 3, y1, menu_colour[0], screen); // TL -> TR
+		screen.line(x1, y1 + 2, x1, y2 - 3, menu_colour[0]); // TL -> BL
+		screen.line(x1 + 2, y1, x2 - 3, y1, menu_colour[0]); // TL -> TR
 		
-		line(x2 - 1, y2 - 3, x2 - 1, y1 + 2, menu_colour[0], screen); // BR -> TR
-		line(x2 - 3, y2 - 1, x1 + 2, y2 - 1, menu_colour[0], screen); // BR -> BL
-		
-	
-		rect(x1 + 1, y1 + 1, x2 - 2, y2 - 2, menu_colour[1], screen);
-		 setpixel(x1 + 1, y1 + 1, menu_colour[0], screen); // TL
-		 setpixel(x2 - 2, y1 + 1, menu_colour[0], screen); // TR
-		 setpixel(x1 + 1, y2 - 2, menu_colour[0], screen); // BL
-		 setpixel(x2 - 2, y2 - 2, menu_colour[0], screen); // BR
+		screen.line(x2 - 1, y2 - 3, x2 - 1, y1 + 2, menu_colour[0]); // BR -> TR
+		screen.line(x2 - 3, y2 - 1, x1 + 2, y2 - 1, menu_colour[0]); // BR -> BL
 		
 	
-		rect(x1 + 2, y1 + 2, x2 - 3, y2 - 3, menu_colour[2], screen);
-		 setpixel(x1 + 2, y1 + 2, menu_colour[1], screen); // TL
-		 setpixel(x2 - 3, y1 + 2, menu_colour[1], screen); // TR
-		 setpixel(x1 + 2, y2 - 3, menu_colour[1], screen); // BL
-		 setpixel(x2 - 3, y2 - 3, menu_colour[1], screen); // BR
+		screen.rect(x1 + 1, y1 + 1, x2 - 2, y2 - 2, menu_colour[1]);
+		screen.setpixel(x1 + 1, y1 + 1, menu_colour[0]); // TL
+		 screen.setpixel(x2 - 2, y1 + 1, menu_colour[0]); // TR
+		 screen.setpixel(x1 + 1, y2 - 2, menu_colour[0]); // BL
+		 screen.setpixel(x2 - 2, y2 - 2, menu_colour[0]); // BR
 		
 	
-		rect(x1 + 3, y1 + 3, x2 - 4, y2 - 4, menu_colour[0], screen);
-		 setpixel(x1 + 3, y1 + 3, menu_colour[2], screen); // TL
-		 setpixel(x2 - 4, y1 + 3, menu_colour[2], screen); // TR
-		 setpixel(x1 + 3, y2 - 4, menu_colour[2], screen); // BL
-		 setpixel(x2 - 4, y2 - 4, menu_colour[2], screen); // BR
+		 screen.rect(x1 + 2, y1 + 2, x2 - 3, y2 - 3, menu_colour[2]);
+		screen.setpixel(x1 + 2, y1 + 2, menu_colour[1]); // TL
+		 screen.setpixel(x2 - 3, y1 + 2, menu_colour[1]); // TR
+		 screen.setpixel(x1 + 2, y2 - 3, menu_colour[1]); // BL
+		 screen.setpixel(x2 - 3, y2 - 3, menu_colour[1]); // BR
+		
+	
+		screen.rect(x1 + 3, y1 + 3, x2 - 4, y2 - 4, menu_colour[0]);
+		screen.setpixel(x1 + 3, y1 + 3, menu_colour[2]); // TL
+		screen.setpixel(x2 - 4, y1 + 3, menu_colour[2]); // TR
+		screen.setpixel(x1 + 3, y2 - 4, menu_colour[2]); // BL
+		screen.setpixel(x2 - 4, y2 - 4, menu_colour[2]); // BR
 		 
 		if( VCCustomFilterOn() )
 		{
@@ -681,14 +681,14 @@ public class Menu_System {
 	static void MenuBlitRight(boolean active, int selected)
 	{
 		MenuDrawBackground(MENU_B_X1, MENU_B_Y1, MENU_B_X2, MENU_B_Y2, active);
-		printstring(248, selected * 20 + 25, screen, menu_font[0], ">");
-		printstring(255, 25, screen, menu_font[0], "ITEM");
-		printstring(255, 45, screen, menu_font[0], "SKILL");
-		printstring(255, 65, screen, menu_font[0], "EQUIP");
-		printstring(255, 85, screen, menu_font[0], "STATUS");
-		printstring(255, 105, screen, menu_font[0], "OPTION");
-		printstring(255, 125, screen, menu_font[1 - (can_save ? 1: 0)], "SAVE");
-		printstring(255, 145, screen, menu_font[0], "LOAD");
+		menu_font[0].printstring(248, selected * 20 + 25, screen, ">");
+		menu_font[0].printstring(255, 25, screen, "ITEM");
+		menu_font[0].printstring(255, 45, screen, "SKILL");
+		menu_font[0].printstring(255, 65, screen, "EQUIP");
+		menu_font[0].printstring(255, 85, screen, "STATUS");
+		menu_font[0].printstring(255, 105, screen, "OPTION");
+		menu_font[1 - (can_save ? 1: 0)].printstring(255, 125, screen, "SAVE");
+		menu_font[0].printstring(255, 145, screen, "LOAD");
 		MenuBlitBottom();
 	}
 	
@@ -696,10 +696,10 @@ public class Menu_System {
 	static void MenuBlitBottom()
 	{
 		MenuDrawBackground(MENU_C_X1, MENU_C_Y1, MENU_C_X2, MENU_C_Y2, false);
-		printstring(245, 185, screen, menu_font[0], moneyname + ":");
-		printright(305, 195, screen, menu_font[0], str(money));
-		printstring(245, 205, screen, menu_font[0], "Time:");
-		printright(305, 215, screen, menu_font[0], GetTimeString(global_gametime + systemtime));
+		menu_font[0].printstring(245, 185, screen, moneyname + ":");
+		menu_font[0].printright(305, 195, screen, str(money));
+		menu_font[0].printstring(245, 205, screen, "Time:");
+		menu_font[0].printright(305, 215, screen, GetTimeString(global_gametime + systemtime));
 	}
 	
 	// Return time in (H)H:MM:SS format
@@ -746,23 +746,23 @@ public class Menu_System {
 	// Displays info about one party member
 	static void MenuBlitCastFull(int x, int y, int member, int frame)
 	{
-		blitentityframe(x, y + 10, master_cast[party[member]].entity, frame, screen);
-		printstring(x + 25, y, screen, menu_font[0], master_cast[party[member]].name);
-	//	printstring(x + 35, y + 10, screen, menu_font[0], master_classes[master_cast[party[member]].class_ref].name);
-		printstring(x + 115, y, screen, menu_font[0], "Level: ");
-		printright(x + 185, y, screen, menu_font[0], str(master_cast[party[member]].level));
-		printstring(x + 115, y + 10, screen, menu_font[0], "HP:");
-		printright(x + 161, y + 10, screen, menu_font[0], str(master_cast[party[member]].cur_hp)+"/");
-		printstring(x + 115, y + 20, screen, menu_font[0], "MP:");
-		printright(x + 161, y + 20, screen, menu_font[0], str(master_cast[party[member]].cur_mp)+"/");
+		screen.blitentityframe(x, y + 10, master_cast[party[member]].entity, frame);
+		menu_font[0].printstring(x + 25, y, screen, master_cast[party[member]].name);
+	//	printstring(x + 35, y + 10, screen, master_classes[master_cast[party[member]].class_ref].name);
+		menu_font[0].printstring(x + 115, y, screen, "Level: ");
+		menu_font[0].printright(x + 185, y, screen, str(master_cast[party[member]].level));
+		menu_font[0].printstring(x + 115, y + 10, screen, "HP:");
+		menu_font[0].printright(x + 161, y + 10, screen, str(master_cast[party[member]].cur_hp)+"/");
+		menu_font[0].printstring(x + 115, y + 20, screen, "MP:");
+		menu_font[0].printright(x + 161, y + 20, screen, str(master_cast[party[member]].cur_mp)+"/");
 	}
 	
 	
 	// Draw the max point separately, as equip needs to do them apart
 	static void MenuBlitCastPoints(int x, int y, int member, int location)
 	{
-		printright(x + 185, y + 10, screen, menu_font[0], str(master_cast[party[member]].stats[STAT_MAX_HP]));
-		printright(x + 185, y + 20, screen, menu_font[0], str(master_cast[party[member]].stats[STAT_MAX_MP]));
+		menu_font[0].printright(x + 185, y + 10, screen, str(master_cast[party[member]].stats[STAT_MAX_HP]));
+		menu_font[0].printright(x + 185, y + 20, screen, str(master_cast[party[member]].stats[STAT_MAX_MP]));
 	}
 	
 	
@@ -782,7 +782,7 @@ public class Menu_System {
 		{
 			wt_tpara = gettoken(wt_s, "&", 0);
 			wt_s = right(wt_s, len(wt_s) - len(wt_tpara) - 1);
-			if (textwidth(wt_font, wt_tpara) < wt_linelen)
+			if (wt_font.textwidth(wt_tpara) < wt_linelen)
 			{
 				wt_output = wt_output + wt_tpara + "&";
 			}
@@ -792,7 +792,7 @@ public class Menu_System {
 				{
 					wt_tline = wt_tline + gettoken(wt_tpara, " ", 0);
 					wt_tpara = right(wt_tpara, len(wt_tpara) - len(gettoken(wt_tpara, " ", 0)) - 1);
-					if (textwidth(wt_font, wt_tline + gettoken(wt_tpara, " ", 0) + " ") > wt_linelen)
+					if (wt_font.textwidth(wt_tline + gettoken(wt_tpara, " ", 0) + " ") > wt_linelen)
 					{
 						wt_output = wt_output + wt_tline + "&";
 						wt_tline = "";
@@ -870,40 +870,40 @@ public class Menu_System {
 		setlucent(global_menuluc * 10);
 		//[Rafael, the Esper] TODO: Make it work as a filter?
 //		setcustomcolorfilter(ColourDivider(menu_colour[2 + (active ? 1: 0)], 4), menu_colour[2 + (active ? 1: 0)]);
-//		VImage act = imageshell(x1 + 4, y1 + 4, x2 - 5 - x1, y2 - 5 - y1, dest);
+//		VImage act = imageshell(x1 + 4, y1 + 4, x2 - 5 - x1, y2 - 5 - y1);
 //		colorfilter(CF_CUSTOM, act);
 //		act = null;
 
-		rectfill(x1+4, y1+4, x2-4, y2-4, menu_colour[2 + (active?1:0)], screen);
+		dest.rectfill(x1+4, y1+4, x2-4, y2-4, menu_colour[2 + (active?1:0)]);
 		setlucent(0); 
 	
 		
-		line(x1, y1 + 2, x1, y2 - 3, menu_colour[0], dest); // TL -> BL
-		line(x1 + 2, y1, x2 - 3, y1, menu_colour[0], dest); // TL -> TR
+		dest.line(x1, y1 + 2, x1, y2 - 3, menu_colour[0]); // TL -> BL
+		dest.line(x1 + 2, y1, x2 - 3, y1, menu_colour[0]); // TL -> TR
 		
-		line(x2 - 1, y2 - 3, x2 - 1, y1 + 2, menu_colour[0], dest); // BR -> TR
-		line(x2 - 3, y2 - 1, x1 + 2, y2 - 1, menu_colour[0], dest); // BR -> BL
-		
-	
-		rect(x1 + 1, y1 + 1, x2 - 2, y2 - 2, menu_colour[1], dest);
-		 setpixel(x1 + 1, y1 + 1, menu_colour[0], dest); // TL
-		 setpixel(x2 - 2, y1 + 1, menu_colour[0], dest); // TR
-		 setpixel(x1 + 1, y2 - 2, menu_colour[0], dest); // BL
-		 setpixel(x2 - 2, y2 - 2, menu_colour[0], dest); // BR
+		dest.line(x2 - 1, y2 - 3, x2 - 1, y1 + 2, menu_colour[0]); // BR -> TR
+		dest.line(x2 - 3, y2 - 1, x1 + 2, y2 - 1, menu_colour[0]); // BR -> BL
 		
 	
-		rect(x1 + 2, y1 + 2, x2 - 3, y2 - 3, menu_colour[2], dest);
-		 setpixel(x1 + 2, y1 + 2, menu_colour[1], dest); // TL
-		 setpixel(x2 - 3, y1 + 2, menu_colour[1], dest); // TR
-		 setpixel(x1 + 2, y2 - 3, menu_colour[1], dest); // BL
-		 setpixel(x2 - 3, y2 - 3, menu_colour[1], dest); // BR
+		dest.rect(x1 + 1, y1 + 1, x2 - 2, y2 - 2, menu_colour[1]);
+		dest.setpixel(x1 + 1, y1 + 1, menu_colour[0]); // TL
+		dest.setpixel(x2 - 2, y1 + 1, menu_colour[0]); // TR
+		dest.setpixel(x1 + 1, y2 - 2, menu_colour[0]); // BL
+		dest.setpixel(x2 - 2, y2 - 2, menu_colour[0]); // BR
 		
 	
-		rect(x1 + 3, y1 + 3, x2 - 4, y2 - 4, menu_colour[0], dest);
-		 setpixel(x1 + 3, y1 + 3, menu_colour[2], dest); // TL
-		 setpixel(x2 - 4, y1 + 3, menu_colour[2], dest); // TR
-		 setpixel(x1 + 3, y2 - 4, menu_colour[2], dest); // BL
-		 setpixel(x2 - 4, y2 - 4, menu_colour[2], dest); // BR
+		dest.rect(x1 + 2, y1 + 2, x2 - 3, y2 - 3, menu_colour[2]);
+		dest.setpixel(x1 + 2, y1 + 2, menu_colour[1]); // TL
+		dest.setpixel(x2 - 3, y1 + 2, menu_colour[1]); // TR
+		dest.setpixel(x1 + 2, y2 - 3, menu_colour[1]); // BL
+		dest.setpixel(x2 - 3, y2 - 3, menu_colour[1]); // BR
+		
+	
+		dest.rect(x1 + 3, y1 + 3, x2 - 4, y2 - 4, menu_colour[0]);
+		dest.setpixel(x1 + 3, y1 + 3, menu_colour[2]); // TL
+		dest.setpixel(x2 - 4, y1 + 3, menu_colour[2]); // TR
+		dest.setpixel(x1 + 3, y2 - 4, menu_colour[2]); // BL
+		dest.setpixel(x2 - 4, y2 - 4, menu_colour[2]); // BR
 
 		if( VCCustomFilterOn() )
 		{

@@ -75,7 +75,7 @@ public class Intro {
 		thread.stop(); 
 		//thread.interrupt();
 		
-		tblit(74, 17, arTempImg[4], v1_vclayer);
+		v1_vclayer.tblit(74, 17, arTempImg[4]);
 		
 		Wait( 100 );
 		
@@ -103,22 +103,21 @@ public class Intro {
 			DrawVC2(0,0,arTempImg[0]);
 	
 			FadeIn( 100 );
-	
+
 			Wait(75);
 			
 			entity.get(darin).speed = 50;
 			entitymove(darin, "W20 L8 W10 R0 W10 L0 W10 R0 W10 L0");
 			
 			timer = 0;
-			while( timer < imageheight(arTempImg[0]) )
+			while( timer < arTempImg[0].imageheight() )
 			{
 				render();
 				DrawVC2(0,0-timer,arTempImg[0]);
 				showpage();
 			}
 			
-		
-			rectfill( 0,0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), transcolor, v1_vclayer2 );
+			v1_vclayer2.rectfill( 0,0, v1_vclayer2.imagewidth(), v1_vclayer2.imageheight(), transcolor);
 			
 			current_map.renderstring = "2,R,1,E,R";
 			
@@ -178,7 +177,7 @@ public class Intro {
 			}
 			
 			VCLayerTintOff();
-			tblit( 74, (arTemp[posy_100]/100), arTempImg[1], v1_vclayer );
+			v1_vclayer.tblit( 74, (arTemp[posy_100]/100), arTempImg[1]);
 		
 			int stan		= entityspawn(0, 0, "res/chrs/stan.chr");
 			int lil_stan	= entityspawn(0, 0, "res/chrs/lil_stan.chr");
@@ -247,7 +246,7 @@ public class Intro {
 			
 			WaitForEntity( lil_stan );
 			
-			tblit(74, (arTemp[posy_100]/100), arTempImg[1], v1_vclayer);
+			v1_vclayer.tblit(74, (arTemp[posy_100]/100), arTempImg[1]);
 			
 			timer = 0;
 			while( timer < 100 )
@@ -255,7 +254,7 @@ public class Intro {
 				render();
 				
 				setlucent( 100-timer );
-				tblit(74, 17, arTempImg[4], screen);
+				screen.tblit(74, 17, arTempImg[4]);
 				setlucent( 0 );
 				
 				showpage();
@@ -321,7 +320,7 @@ public class Intro {
 			
 			arrow = MenuControlArrows(arrow, 4);	
 			
-			tblit( 118, 161+(arrow*9), ptr, screen );
+			screen.tblit( 118, 161+(arrow*9), ptr);
 			
 			showpage();
 		}
@@ -371,9 +370,9 @@ public class Intro {
 	// helper function: draws an image to vc layer 2
 	static void DrawVC2( int x, int y, VImage im )
 	{
-		rectfill( 0,0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), transcolor, v1_vclayer2 );
-		//v1_vclayer2.g.clearRect(0,0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2));
-		tblit(x, y, im, v1_vclayer2);
+		v1_vclayer2.rectfill( 0,0, v1_vclayer2.imagewidth(), v1_vclayer2.imageheight(), transcolor);
+		//v1_vclayer2.g.clearRect(0,0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight());
+		v1_vclayer2.tblit(x, y, im);
 	}
 	
 	// a helper function to clean up the temporary images.

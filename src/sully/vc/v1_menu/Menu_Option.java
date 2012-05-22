@@ -78,54 +78,54 @@ public class Menu_Option {
 		MenuDisplayOption(MenuIsActive("Option"));
 		if (menu_sub == 0)
 		{
-			printstring(20, 32, screen, menu_font[0], ">");
-			if (menu_item < 4) rect(27 + (menu_item * 50), 47, 63 + (menu_item * 50), 83, menu_colour[2], screen);
-			else rect(166, 88, 214, 90+menu_fonth, menu_colour[2], screen);
+			menu_font[0].printstring(20, 32, screen, ">");
+			if (menu_item < 4) screen.rect(27 + (menu_item * 50), 47, 63 + (menu_item * 50), 83, menu_colour[2]);
+			else screen.rect(166, 88, 214, 90+menu_fonth, menu_colour[2]);
 		}
 		else if (menu_sub == 1)
 		{
-			printstring(20, 105, screen, menu_font[0], ">");
+			menu_font[0].printstring(20, 105, screen, ">");
 	
 		}
 		else if (menu_sub == 2)
 		{
-			printstring(20, 150, screen, menu_font[0], ">");
+			menu_font[0].printstring(20, 150, screen, ">");
 		}
 		else if (menu_sub == 3)
 		{
-			printstring(20, 170, screen, menu_font[0], ">");
+			menu_font[0].printstring(20, 170, screen, ">");
 		}
 	}
 	
 	public static void MenuDrawOptionVol()
 	{
 		MenuDisplayOption(MenuIsActive("OptionVol"));
-		rect(20 + (menu_item * 65), 115, 86 + (menu_item * 65), 145, menu_colour[2], screen);
+		screen.rect(20 + (menu_item * 65), 115, 86 + (menu_item * 65), 145, menu_colour[2]);
 	}
 	
 	public static void MenuDisplayOption(boolean active)
 	{
 		MenuBlitRight(false, menu_option);
 		MenuDrawBackground(MENU_A_X1, MENU_A_Y1, MENU_A_X2, MENU_A_Y2, active);
-		printright(220, 15, screen, menu_font[0], "Option");
-		printstring(30, 32, screen, menu_font[0], "Interface colours");
-		printstring(170, 90, screen, menu_font[0], "Defaults");
+		menu_font[0].printright(220, 15, screen, "Option");
+		menu_font[0].printstring(30, 32, screen, "Interface colours");
+		menu_font[0].printstring(170, 90, screen, "Defaults");
 		MenuBlitColour(0);
 		MenuBlitColour(1);
 		MenuBlitColour(2);
 		MenuBlitColour(3);
-		printstring(30, 105, screen, menu_font[0], "Volume levels");
-		printstring(23, 118, screen, menu_font[0], "Music:");
-		printstring(88, 118, screen, menu_font[0], "FX:");
-		printstring(153, 118, screen, menu_font[0], "Menu:");
+		menu_font[0].printstring(30, 105, screen, "Volume levels");
+		menu_font[0].printstring(23, 118, screen, "Music:");
+		menu_font[0].printstring(88, 118, screen, "FX:");
+		menu_font[0].printstring(153, 118, screen, "Menu:");
 		MenuBlitSlider(0, Sfx.global_music_volume);
 		MenuBlitSlider(1, Sfx.sfx_volume);
 		MenuBlitSlider(2, Sfx.interface_volume);
-		printstring(30, 150, screen, menu_font[0], "Text Scroll");
-		printcenter(130, 150, screen, menu_font[0], "ON");
-		printcenter(190, 150, screen, menu_font[0], "OFF");
-		rect(110 + (global_noscroll?1:0) * 60, 148, 150 + (global_noscroll?1:0) * 60, 159, menu_colour[2], screen);
-		printstring(30, 170, screen, menu_font[0], "Menu Lucency: " + str(global_menuluc*10) + "%");
+		menu_font[0].printstring(30, 150, screen, "Text Scroll");
+		menu_font[0].printcenter(130, 150, screen, "ON");
+		menu_font[0].printcenter(190, 150, screen, "OFF");
+		screen.rect(110 + (global_noscroll?1:0) * 60, 148, 150 + (global_noscroll?1:0) * 60, 159, menu_colour[2]);
+		menu_font[0].printstring(30, 170, screen, "Menu Lucency: " + str(global_menuluc*10) + "%");
 	}
 	
 	
@@ -192,32 +192,32 @@ public class Menu_Option {
 	public static void MenuDrawOptionRGB()
 	{
 		MenuDisplayOption(MenuIsActive("OptionRGB"));
-		rect(27 + (menu_item * 50), 47, 63 + (menu_item * 50), 83, menu_colour[2], screen);
-		rect(23 + (menu_cast * 65), 88, 87 + (menu_cast * 65), 102, menu_colour[2], screen);
-		rectfill(25, 90, 85, 100, RGB(menu_colour[menu_item].getRed(), 0, 0), screen);
-		rectfill(90, 90, 150, 100, RGB(0, menu_colour[menu_item].getGreen(), 0), screen);
-		rectfill(155, 90, 215, 100, RGB(0, 0, menu_colour[menu_item].getBlue()), screen);
-		printstring(35, 92, screen, menu_font[0], "R:"+str(menu_colour[menu_item].getRed()));
-		printstring(100, 92, screen, menu_font[0], "G:"+str(menu_colour[menu_item].getGreen()));
-		printstring(165, 92, screen, menu_font[0], "B:"+str(menu_colour[menu_item].getBlue()));
+		screen.rect(27 + (menu_item * 50), 47, 63 + (menu_item * 50), 83, menu_colour[2]);
+		screen.rect(23 + (menu_cast * 65), 88, 87 + (menu_cast * 65), 102, menu_colour[2]);
+		screen.rectfill(25, 90, 85, 100, RGB(menu_colour[menu_item].getRed(), 0, 0));
+		screen.rectfill(90, 90, 150, 100, RGB(0, menu_colour[menu_item].getGreen(), 0));
+		screen.rectfill(155, 90, 215, 100, RGB(0, 0, menu_colour[menu_item].getBlue()));
+		menu_font[0].printstring(35, 92, screen, "R:"+str(menu_colour[menu_item].getRed()));
+		menu_font[0].printstring(100, 92, screen, "G:"+str(menu_colour[menu_item].getGreen()));
+		menu_font[0].printstring(165, 92, screen, "B:"+str(menu_colour[menu_item].getBlue()));
 	}
 	
 	// Displays a square of colour for options
 	public static void MenuBlitColour(int number)
 	{
-		rectfill(30 + (number * 50), 50, 60 + (number * 50), 80, menu_colour[number], screen);
-		rect(29 + (number * 50), 49, 61 + (number * 50), 81, Color.BLACK, screen);
+		screen.rectfill(30 + (number * 50), 50, 60 + (number * 50), 80, menu_colour[number]);
+		screen.rect(29 + (number * 50), 49, 61 + (number * 50), 81, Color.BLACK);
 	}
 	
 	// Displays a linear slider of pretty triangle type for options
 	public static void MenuBlitSlider(int number, int value)
 	{
-		triangle(23 + (number * 65), 140,
+		screen.triangle(23 + (number * 65), 140,
 		 23 + (number * 65) + 60, 140,
-		 23 + (number * 65) + 60, 140 - 15, Color.BLACK, screen);
-		triangle(20 + (number * 65), 137,
+		 23 + (number * 65) + 60, 140 - 15, Color.BLACK);
+		screen.triangle(20 + (number * 65), 137,
 		 20 + (number * 65) + (value * 60 / 100), 137,
-		 20 + (number * 65) + (value * 60 / 100), 137 - (value * 15 / 100), menu_colour[2], screen);
+		 20 + (number * 65) + (value * 60 / 100), 137 - (value * 15 / 100), menu_colour[2]);
 	}
 
 }

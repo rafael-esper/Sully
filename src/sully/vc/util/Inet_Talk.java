@@ -109,9 +109,9 @@ public class Inet_Talk {
 	
 		VImage img = geturlimage( img_url );
 	
-		tblit( SPEECH_X, SPEECH_Y-68, img, v1_vclayer );
-		MakeBox(SPEECH_X+2+imagewidth(img), TEXTBOX_BORDER_Y1-fontheight(textBox_font)-13, textwidth(textBox_font, name)+12, fontheight(textBox_font)+12, true, v1_vclayer);
-		printstring( SPEECH_X+2+imagewidth(img)+6, TEXTBOX_BORDER_Y1-fontheight(textBox_font)-6, v1_vclayer, textBox_font, name );	
+		v1_vclayer.tblit( SPEECH_X, SPEECH_Y-68, img);
+		MakeBox(SPEECH_X+2+img.getWidth(), TEXTBOX_BORDER_Y1-textBox_font.fontheight()-13, textBox_font.textwidth(name)+12, textBox_font.fontheight()+12, true, v1_vclayer);
+		textBox_font.printstring( SPEECH_X+2+img.getWidth()+6, TEXTBOX_BORDER_Y1-textBox_font.fontheight()-6, v1_vclayer, name );	
 	
 		//FreeImage(img);
 		

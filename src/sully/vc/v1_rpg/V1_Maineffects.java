@@ -16,8 +16,8 @@ public class V1_Maineffects {
 
 	/********************************** data **********************************/
 	
-	static VImage crossfade_img = duplicateimage(screen);
-	static VImage alpha_img = duplicateimage(screen);
+	static VImage crossfade_img = screen.duplicateimage();
+	static VImage alpha_img = screen.duplicateimage();
 	static VImage wipe_img = new VImage(load("res/system/wipe2.gif"));
 	
 	/********************************** code **********************************/
@@ -35,7 +35,7 @@ public class V1_Maineffects {
 		{
 			render();
 			setlucent(timer*100/_dur);
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), Color.BLACK, screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
 			setlucent(0);
 			showpage();
 		}
@@ -55,7 +55,7 @@ public class V1_Maineffects {
 			render();
 			setlucent(timer);
 			V1_Music.V1_SetCurVolume(timer);
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), Color.BLACK, screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
 			setlucent(0);
 			showpage();
 		}
@@ -73,7 +73,7 @@ public class V1_Maineffects {
 		{
 			render();
 			setlucent(100 - (timer*100/_dur));
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), Color.BLACK, screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
 			setlucent(0);	
 			showpage();
 		}
@@ -94,7 +94,7 @@ public class V1_Maineffects {
 			setlucent(100 - (timer*100/_dur));
 			V1_Music.V1_SetCurVolume(100 - (timer*100/_dur));
 			
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), Color.BLACK, screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
 			setlucent(0);	
 			showpage();
 		}
@@ -111,7 +111,7 @@ public class V1_Maineffects {
 		{
 			render();
 			setlucent(timer*100/_dur);
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), RGB(255,255,255), screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), RGB(255,255,255));
 			setlucent(0);
 			showpage();
 		}
@@ -126,7 +126,7 @@ public class V1_Maineffects {
 		{
 			render();
 			setlucent(100 - (timer*100/_dur));
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), RGB(255,255,255), screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), RGB(255,255,255));
 			setlucent(0);	
 			showpage();
 		}
@@ -143,7 +143,7 @@ public class V1_Maineffects {
 		{
 			render();
 			setlucent(timer*100/_dur);
-			blit(0, 0, crossfade_img, screen);
+			screen.blit(0, 0, crossfade_img);
 			setlucent(0);	
 			showpage();
 		}
@@ -155,17 +155,17 @@ public class V1_Maineffects {
 	// This renders over everything.
 	static void TransWipe(int _dur)
 	{
-		rectfill(0, 0, 320, 240, RGB(255,255,255), alpha_img);
+		alpha_img.rectfill(0, 0, 320, 240, RGB(255,255,255));
 	
 		timer = 0;
 		int x;
 		while (timer<_dur)
 		{
 			x = (timer*370/_dur)-25;
-			blit(x, 0, wipe_img, alpha_img);
-			rectfill(0-30, 0, x-1, 240, Color.BLACK, alpha_img);
+			alpha_img.blit(x, 0, wipe_img);
+			alpha_img.rectfill(0-30, 0, x-1, 240, Color.BLACK);
 			render();
-			alphablit(0, 0, crossfade_img, alpha_img, screen);
+			screen.alphablit(0, 0, crossfade_img, alpha_img);
 			showpage();
 		}
 	}
@@ -183,10 +183,10 @@ public class V1_Maineffects {
 			render();
 			hd=timer*160/_dur;
 			vd=timer*120/_dur;
-			rectfill(0,0,hd,240,Color.BLACK,screen);
-			rectfill(320-hd,0,320,240,Color.BLACK,screen);
-			rectfill(0,0,320,vd,Color.BLACK,screen);
-			rectfill(0,240-vd,320,240,Color.BLACK,screen);
+			screen.rectfill(0,0,hd,240,Color.BLACK);
+			screen.rectfill(320-hd,0,320,240,Color.BLACK);
+			screen.rectfill(0,0,320,vd,Color.BLACK);
+			screen.rectfill(0,240-vd,320,240,Color.BLACK);
 			showpage();
 		}
 	}
@@ -206,10 +206,10 @@ public class V1_Maineffects {
 			vd=timer*120/_dur;
 			hd = 160-hd;
 			vd = 120-vd;
-			rectfill(0,0,hd,240,Color.BLACK,screen);
-			rectfill(320-hd,0,320,240,Color.BLACK,screen);
-			rectfill(0,0,320,vd,Color.BLACK,screen);
-			rectfill(0,240-vd,320,240,Color.BLACK,screen);
+			screen.rectfill(0,0,hd,240,Color.BLACK);
+			screen.rectfill(320-hd,0,320,240,Color.BLACK);
+			screen.rectfill(0,0,320,vd,Color.BLACK);
+			screen.rectfill(0,240-vd,320,240,Color.BLACK);
 			showpage();
 		}
 	}
@@ -224,9 +224,9 @@ public class V1_Maineffects {
 		while (timer<dur)
 		{
 			render();
-			rectfill(0,0,320,240,Color.BLACK,crossfade_img);
-			circlefill(160, 120, 200-(timer*200/dur), 200-(timer*200/dur), transcolor, crossfade_img);
-			tblit(0, 0, crossfade_img, screen);
+			crossfade_img.rectfill(0,0,320,240,Color.BLACK);
+			crossfade_img.circlefill(160, 120, 200-(timer*200/dur), 200-(timer*200/dur), transcolor);
+			screen.tblit(0, 0, crossfade_img);
 			showpage();
 		}
 	}
@@ -241,9 +241,9 @@ public class V1_Maineffects {
 		while (timer<dur)
 		{
 			render();
-			rectfill(0,0,320,240,Color.BLACK,crossfade_img);
-			circlefill(160, 120, timer*200/dur, timer*200/dur, transcolor, crossfade_img);
-			tblit(0, 0, crossfade_img, screen);
+			crossfade_img.rectfill(0,0,320,240,Color.BLACK);
+			crossfade_img.circlefill(160, 120, timer*200/dur, timer*200/dur, transcolor);
+			screen.tblit(0, 0, crossfade_img);
 			showpage();
 		}
 	}
@@ -256,9 +256,9 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<_dur)
 		{
-			blit(0, 0, _img, screen);
+			screen.blit(0, 0, _img);
 			setlucent(timer*100/_dur);
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), Color.BLACK, screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
 			setlucent(0);
 			showpage();
 		}
@@ -271,12 +271,12 @@ public class V1_Maineffects {
 	public static void FadeOutImg(int _dur)
 	{
 		timer = 0;
-		VImage _img = duplicateimage(screen);
+		VImage _img = screen.duplicateimage();
 		while (timer<_dur)
 		{
-			blit(0, 0, _img, screen);
+			screen.blit(0, 0, _img);
 			setlucent(100 - (timer*100/_dur));
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), Color.BLACK, screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
 			setlucent(0);	
 			showpage();
 		}
@@ -287,9 +287,9 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<_dur)
 		{
-			blit(0, 0, _img, screen);
+			screen.blit(0, 0, _img);
 			setlucent(timer*100/_dur);
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), RGB(255,255,255), screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), RGB(255,255,255));
 			setlucent(0);
 			showpage();
 		}
@@ -298,12 +298,12 @@ public class V1_Maineffects {
 	public static void WhiteOutImg(int _dur)
 	{
 		timer = 0;
-		VImage _img = duplicateimage(screen);
+		VImage _img = screen.duplicateimage();
 		while (timer<_dur)
 		{
-			blit(0, 0, _img, screen);
+			screen.blit(0, 0, _img);
 			setlucent(100 - (timer*100/_dur));
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), RGB(255,255,255), screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), RGB(255,255,255));
 			setlucent(0);	
 			showpage();
 		}
@@ -312,12 +312,12 @@ public class V1_Maineffects {
 	public static void CrossFadeImg(int _dur, VImage _img)
 	{
 		timer = 0;
-		VImage _scr = duplicateimage(screen);
+		VImage _scr = screen.duplicateimage();
 		while (timer<_dur)
 		{
-			blit(0, 0, _img, screen);
+			screen.blit(0, 0, _img);
 			setlucent(timer*100/_dur);
-			blit(0, 0, _scr, screen);
+			screen.blit(0, 0, _scr);
 			setlucent(0);	
 			showpage();
 		}
@@ -346,7 +346,7 @@ public class V1_Maineffects {
 		while (timer<_dur)
 		{
 			render();
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), color, screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), color);
 			showpage();
 		}
 	}
@@ -363,7 +363,7 @@ public class V1_Maineffects {
 		{
 			render();
 			setlucent(timer*100/_dur);
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), _color, screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), _color);
 			setlucent(0);
 			showpage();
 		}
@@ -380,7 +380,7 @@ public class V1_Maineffects {
 		{
 			render();
 			setlucent(100 - (timer*100/_dur));
-			rectfill(0, 0, imagewidth(screen), imageheight(screen), _color, screen);
+			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), _color);
 			setlucent(0);	
 			showpage();
 		}

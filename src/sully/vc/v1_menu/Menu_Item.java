@@ -119,12 +119,12 @@ public class Menu_Item {
 		int count = MenuGetItemCount();
 		MenuBlitRight(false, menu_option);
 		MenuDrawBackground(MENU_A_X1, MENU_A_Y1, MENU_A_X2, MENU_A_Y2, MenuIsActive("Item"));
-		printright(220, 15, screen, menu_font[0], "Item");
+		menu_font[0].printright(220, 15, screen, "Item");
 		//Line(105, 35, 135, 35, menu_colour[2], screen);
-		printcenter(50, 40, screen, menu_font[0], "Supply");
-		printcenter(120, 40, screen, menu_font[0], "Equip");
-		printcenter(190, 40, screen, menu_font[0], "Key");
-		rect(24 + (menu_sub * 70), 36, 76 + (menu_sub * 70), 53, menu_colour[2], screen);
+		menu_font[0].printcenter(50, 40, screen, "Supply");
+		menu_font[0].printcenter(120, 40, screen, "Equip");
+		menu_font[0].printcenter(190, 40, screen, "Key");
+		screen.rect(24 + (menu_sub * 70), 36, 76 + (menu_sub * 70), 53, menu_colour[2]);
 		
 		if (count == 0)
 		{
@@ -141,11 +141,11 @@ public class Menu_Item {
 				{
 					if (master_items[supply_inventory[i].item_ref].use_flag!=0 & USE_MENU!=0) use = 0;
 					else use = 1;
-					printstring(55, 56 + (13 * (i - menu_start)), screen, menu_font[use], master_items[supply_inventory[i].item_ref].name);
-					printright(205, 56 + (13 * (i - menu_start)), screen, menu_font[use], str(supply_inventory[i].quant));
+					menu_font[use].printstring(55, 56 + (13 * (i - menu_start)), screen, master_items[supply_inventory[i].item_ref].name);
+					menu_font[use].printright(205, 56 + (13 * (i - menu_start)), screen, str(supply_inventory[i].quant));
 					useImage = icon_get(master_items[supply_inventory[i].item_ref].icon);
-					if (i == menu_item) tblit(35, 54 + (13 * (i - menu_start)), useImage, screen);
-					else tscaleblit(35, 58 + (13 * (i - menu_start)), 8, 8, useImage, screen);
+					if (i == menu_item) screen.tblit(35, 54 + (13 * (i - menu_start)), useImage);
+					else screen.tscaleblit(35, 58 + (13 * (i - menu_start)), 8, 8, useImage);
 					//FreeImage(use);
 					if (menu_start + 10 <= i) i = _supply_count + 1;
 				}
@@ -158,11 +158,11 @@ public class Menu_Item {
 				{
 					if (master_items[equipment_inventory[i].item_ref].use_flag!=0 & USE_MENU!=0) use = 0;
 					else use = 1;
-					printstring(55, 56 + (13 * (i - menu_start)), screen, menu_font[use], master_items[equipment_inventory[i].item_ref].name);
-					printright(205, 56 + (13 * (i - menu_start)), screen, menu_font[use], str(equipment_inventory[i].quant));
+					menu_font[use].printstring(55, 56 + (13 * (i - menu_start)), screen, master_items[equipment_inventory[i].item_ref].name);
+					menu_font[use].printright(205, 56 + (13 * (i - menu_start)), screen, str(equipment_inventory[i].quant));
 					useImage = icon_get(master_items[equipment_inventory[i].item_ref].icon);
-					if (i == menu_item) tblit(35, 54 + (13 * (i - menu_start)), useImage, screen);
-					else tscaleblit(35, 58 + (13 * (i - menu_start)), 8, 8, useImage, screen);
+					if (i == menu_item) screen.tblit(35, 54 + (13 * (i - menu_start)), useImage);
+					else screen.tscaleblit(35, 58 + (13 * (i - menu_start)), 8, 8, useImage);
 					//FreeImage(use);
 					if (menu_start + 10 <= i) i = _equip_count + 1;
 				}
@@ -175,11 +175,11 @@ public class Menu_Item {
 				{
 					if (master_items[key_item_inventory[i].item_ref].use_flag!=0 & USE_MENU!=0) use = 0;
 					else use = 1;
-					printstring(55, 56 + (13 * (i - menu_start)), screen, menu_font[use], master_items[key_item_inventory[i].item_ref].name);
-					printright(205, 56 + (13 * (i - menu_start)), screen, menu_font[use], str(key_item_inventory[i].quant));
+					menu_font[use].printstring(55, 56 + (13 * (i - menu_start)), screen, master_items[key_item_inventory[i].item_ref].name);
+					menu_font[use].printright(205, 56 + (13 * (i - menu_start)), screen, str(key_item_inventory[i].quant));
 					useImage = icon_get(master_items[key_item_inventory[i].item_ref].icon);
-					if (i == menu_item) tblit(35, 54 + (13 * (i - menu_start)), useImage, screen);
-					else tscaleblit(35, 58 + (13 * (i - menu_start)), 8, 8, useImage, screen);
+					if (i == menu_item) screen.tblit(35, 54 + (13 * (i - menu_start)), useImage);
+					else screen.tscaleblit(35, 58 + (13 * (i - menu_start)), 8, 8, useImage);
 					//FreeImage(use);
 					if (menu_start + 10 <= i) i = _key_count + 1;
 				}

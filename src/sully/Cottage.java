@@ -26,12 +26,12 @@ public class Cottage {
 		
 		//open chest checks
 	
-		if( flags[CHEST_COTTAGE_A] !=0 ) settile(48,73,0,177);
-		if( flags[CHEST_COTTAGE_B] !=0) settile(48,74,0,177);
-		if( flags[CHEST_COTTAGE_C] !=0) settile(57,73,0,177);
-		if( flags[CHEST_COTTAGE_D] !=0) settile(57,74,0,177);
-		if( flags[CHEST_COTTAGE_E] !=0) settile(46,82,0,177);
-		if( flags[CHEST_COTTAGE_F] !=0) settile(53,82,0,177);
+		if( flags[CHEST_COTTAGE_A] !=0 ) current_map.settile(48,73,0,177);
+		if( flags[CHEST_COTTAGE_B] !=0) current_map.settile(48,74,0,177);
+		if( flags[CHEST_COTTAGE_C] !=0) current_map.settile(57,73,0,177);
+		if( flags[CHEST_COTTAGE_D] !=0) current_map.settile(57,74,0,177);
+		if( flags[CHEST_COTTAGE_E] !=0) current_map.settile(46,82,0,177);
+		if( flags[CHEST_COTTAGE_F] !=0) current_map.settile(53,82,0,177);
 	
 	
 		InitMap();
@@ -332,7 +332,7 @@ public class Cottage {
 		{		
 			render();
 			setlucent(100-(timer*2));
-			rectfill(0, 0, 320, 240, RGB(255,0,0), screen);
+			screen.rectfill(0, 0, 320, 240, RGB(255,0,0));
 			setlucent(0);
 			showpage();
 		}
@@ -349,7 +349,7 @@ public class Cottage {
 		{		
 			render();
 			setlucent(timer*2);
-			rectfill(0, 0, 320, 240, RGB(255,0,0), screen);
+			screen.rectfill(0, 0, 320, 240, RGB(255,0,0));
 			setlucent(0);
 			showpage();
 		}

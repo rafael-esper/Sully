@@ -69,8 +69,8 @@ public class Lab {
 		galfrey = 1;	//galfrey is entity #1 on this map.
 		crystal = 2;	//crystal is entity #2 on this map.
 		
-		settile(18,91,0,226);
-		settile(18,92,0,226); //change some tiles...
+		current_map.settile(18,91,0,226);
+		current_map.settile(18,92,0,226); //change some tiles...
 		
 		entity.get(crystal).setx(18*16);
 		entity.get(crystal).sety(92*16);
@@ -85,7 +85,7 @@ public class Lab {
 		
 		entity.get(playerent).face = FACE_UP;
 	
-		settile(18,87,0,226);
+		current_map.settile(18,87,0,226);
 	    
 		cameratracking = 1; //track the 
 	
@@ -224,16 +224,16 @@ public class Lab {
 		SoundHealingWell();
 		LabPutIMG("res/images/story_fx/SPARKLE7.PCX",GetEntScrX(crystal),GetEntScrY(crystal));
 		Wait(20);
-		rectfill(0, 0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), transcolor, v1_vclayer2); //clear vclayer2
+		v1_vclayer2.rectfill(0, 0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), transcolor); //clear vclayer2
 		LabPutIMG("res/images/story_fx/SPARKLE8.PCX",GetEntScrX(crystal),GetEntScrY(crystal));
 		Wait(20);
-		rectfill(0, 0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), transcolor, v1_vclayer2); //clear vclayer2
+		v1_vclayer2.rectfill(0, 0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), transcolor); //clear vclayer2
 		LabPutIMG("res/images/story_fx/SPARKLE7.PCX",GetEntScrX(crystal),GetEntScrY(crystal));
 		Wait(20);
-		rectfill(0, 0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), transcolor, v1_vclayer2); //clear vclayer2
+		v1_vclayer2.rectfill(0, 0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), transcolor); //clear vclayer2
 		LabPutIMG("res/images/story_fx/SPARKLE8.PCX",GetEntScrX(crystal),GetEntScrY(crystal));
 		Wait(20);
-		rectfill(0, 0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), transcolor, v1_vclayer2); //clear vclayer2
+		v1_vclayer2.rectfill(0, 0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), transcolor); //clear vclayer2
 	  
 		entity.get(crystal).specframe = 25;
 	
@@ -251,15 +251,15 @@ public class Lab {
 		entity.get(crystal).setx(0);
 		entity.get(crystal).sety(0);
 	
-		settile(18,91, 0, 285);
-		settile(18,92, 0, 287);
+		current_map.settile(18,91, 0, 285);
+		current_map.settile(18,92, 0, 287);
 		
 		//let's paint the top vc layer so it's colored the same while we wait a second...
-		rectfill(0, 0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), RGB(0,255,255), v1_vclayer2);
+		v1_vclayer2.rectfill(0, 0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), RGB(0,255,255));
 		Wait(100);
 		
 		//...and then clear vclayer2 so we can see the fade.
-		rectfill(0, 0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), transcolor, v1_vclayer2); 
+		v1_vclayer2.rectfill(0, 0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), transcolor); 
 	
 		FadeFromColor( RGB(0,255,255), 100 );
 		
@@ -1053,7 +1053,7 @@ public class Lab {
 			
 			AlterBTile(18, 6, 226, 0);
 			AlterBTile(18,76, 226, 0);
-			setzone(18,76,21);
+			current_map.setzone(18,76,21);
 			
 			entity.get(darin).specframe		= 23;
 			entity.get(crystal).specframe	= 23;
@@ -1138,15 +1138,15 @@ public class Lab {
 		
 		if( arTemp[0] != x )
 		{
-			rectfill(0, 0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), transcolor, v1_vclayer2); 
+			v1_vclayer2.rectfill(0, 0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), transcolor); 
 		}
 		
 		if( x >= 10 ) 
 		{
-			printstring( 5,190, v1_vclayer2, v1rpg_SmallFont, "00:"+str(x));
+			v1rpg_SmallFont.printstring( 5,190, v1_vclayer2, "00:"+str(x));
 			arTemp[0] = x;
 		} else {
-			printstring( 5,190, v1_vclayer2, v1rpg_SmallFont, "00:0"+str(x));
+			v1rpg_SmallFont.printstring( 5,190, v1_vclayer2, "00:0"+str(x));
 			arTemp[0] = x;
 		}
 		
@@ -1164,7 +1164,7 @@ public class Lab {
 			while( timer < 200 )
 			{
 				render();
-				rectfill(0, 0, imagewidth(screen), imageheight(screen), RGB(255,0,0), screen);
+				screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), RGB(255,0,0));
 				showpage();
 			}
 			
@@ -1348,11 +1348,11 @@ public class Lab {
 			V1_StartDualMode( "3,R,1,E,2,R" );
 			
 			//Let's fill this vc layer with BLACKNESS
-			rectfill(0, 0, imagewidth(v1_vclayer2), imageheight(v1_vclayer2), RGB(0,0,0), v1_vclayer2); 
+			v1_vclayer2.rectfill(0, 0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), RGB(0,0,0)); 
 			
 			//blits the cel to vclayer2
 			im = new VImage( load("res/images/cells/FROZEN.PCX" ));
-			blit( 100,5, im, v1_vclayer2 );
+			v1_vclayer2.blit( 100,5, im);
 			//FreeImage(im);
 					
 			playmusic(load("res/music/CR_GUIT.S3M"));
@@ -1721,7 +1721,7 @@ public class Lab {
 		VImage img;
 		
 		img = new VImage(load( img_name) );
-		tblit( x_pos, y_pos, img, v1_vclayer2 );
+		v1_vclayer2.tblit( x_pos, y_pos, img);
 		//FreeImage(img);
 	}
 	

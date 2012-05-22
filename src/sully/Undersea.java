@@ -27,9 +27,9 @@ public class Undersea {
 		//let's set the warp zone to the right tile based on it's flag
 		switch ( flags[F_SEA_WARP] )
 		{
-			case 0: settile(10, 23, 0, 58); break; 
-			case 1: settile(10, 23, 0, 468); settile(9, 24, 0, 482);break;
-			case 2: settile(10, 23, 0, 474); settile(9, 24, 0, 54);break;
+			case 0: current_map.settile(10, 23, 0, 58); break; 
+			case 1: current_map.settile(10, 23, 0, 468); current_map.settile(9, 24, 0, 482);break;
+			case 2: current_map.settile(10, 23, 0, 474); current_map.settile(9, 24, 0, 54);break;
 		}
 		
 		setdoor(); //set the door-tile to it's proper state
@@ -38,14 +38,14 @@ public class Undersea {
 		if(flags[F_PROCURED_PEARL] !=0)	AlterBTile(47,1,424,2);
 		
 		//make sure the levels are set to their proper state
-		if (flags[F_SEA_LEVER_1]!=0) settile(15, 14, 0, 54);
-		if (flags[F_SEA_LEVER_2]!=0) settile(16, 12, 0, 54);
-		if (flags[F_SEA_LEVER_3]!=0) settile(16, 16, 0, 54);
+		if (flags[F_SEA_LEVER_1]!=0) current_map.settile(15, 14, 0, 54);
+		if (flags[F_SEA_LEVER_2]!=0) current_map.settile(16, 12, 0, 54);
+		if (flags[F_SEA_LEVER_3]!=0) current_map.settile(16, 16, 0, 54);
 		
 		//make sure any open chests stay open.
-		if (flags[CHEST_UNDERSEA_A]!=0) settile(15, 6, 0, 35);	
-		if (flags[CHEST_UNDERSEA_B]!=0) settile(31, 5, 0, 35);	
-		if (flags[CHEST_UNDERSEA_C]!=0) settile(24, 23, 0, 35);
+		if (flags[CHEST_UNDERSEA_A]!=0) current_map.settile(15, 6, 0, 35);	
+		if (flags[CHEST_UNDERSEA_B]!=0) current_map.settile(31, 5, 0, 35);	
+		if (flags[CHEST_UNDERSEA_C]!=0) current_map.settile(24, 23, 0, 35);
 		
 		
 	
@@ -147,18 +147,18 @@ public class Undersea {
 		{
 			case 0: 
 				flags[F_SEA_WARP] = 1;
-				settile(10, 23, 0, 468);
-				settile(9, 24, 0, 482);
+				current_map.settile(10, 23, 0, 468);
+				current_map.settile(9, 24, 0, 482);
 				break;
 			case 1:
 			    flags[F_SEA_WARP] = 2;
-			    settile(10, 23, 0, 474);
-			    settile(9, 24, 0, 54);
+			    current_map.settile(10, 23, 0, 474);
+			    current_map.settile(9, 24, 0, 54);
 			    break;
 			case 2:
 				flags[F_SEA_WARP] = 0;
-				settile(10, 23, 0, 58); 
-				settile(9, 24, 0, 55);
+				current_map.settile(10, 23, 0, 58); 
+				current_map.settile(9, 24, 0, 55);
 				break;
 		}
 	}
@@ -167,10 +167,10 @@ public class Undersea {
 	// Switch Lever A.  This is a once-only switch.
 	public static void leverA()
 	{
-		if (gettile(15,14,0) == 54) //if lever's switched already, do nothing.
+		if (current_map.gettile(15,14,0) == 54) //if lever's switched already, do nothing.
 			return;
 			
-		settile(15, 14, 0, 54);
+		current_map.settile(15, 14, 0, 54);
 		flags[F_SEA_LEVER_1] = 1;	//set lever-1's flag to TRUE
 		flags[F_SEA_LEVER_CNT]++;	//increment the lever count flag
 		SoundSwitch();				//play a cute sound
@@ -181,10 +181,10 @@ public class Undersea {
 	// Switch Lever B.  This is a once-only switch.
 	public static void leverb()
 	{
-		if (gettile(16,12,0) == 54) //if lever's switched already, do nothing.
+		if (current_map.gettile(16,12,0) == 54) //if lever's switched already, do nothing.
 			return;
 			
-		settile(16, 12, 0, 54);
+		current_map.settile(16, 12, 0, 54);
 		flags[F_SEA_LEVER_2] = 1;	//set lever-2's flag to TRUE
 		flags[F_SEA_LEVER_CNT]++;	//increment the lever count flag
 		SoundSwitch();				//play a cute sound
@@ -195,10 +195,10 @@ public class Undersea {
 	// Switch Lever C.  This is a once-only switch.
 	public static void leverc()
 	{
-		if (gettile(16,16,0) == 54) //if lever's switched already, do nothing.
+		if (current_map.gettile(16,16,0) == 54) //if lever's switched already, do nothing.
 			return;
 			
-		settile(16, 16, 0, 54);
+		current_map.settile(16, 16, 0, 54);
 		flags[F_SEA_LEVER_3] = 1;	//set lever-3's flag to TRUE
 		flags[F_SEA_LEVER_CNT]++;	//increment the lever count flag
 		SoundSwitch();				//play a cute sound
@@ -213,10 +213,10 @@ public class Undersea {
 	{
 		switch (flags[F_SEA_LEVER_CNT])
 		{
-			case 1: settile(13,14,0,481);break;	// show the "1/3rd open" tile
-			case 2: settile(13,14,0,480);break;	// show the "2/3rds open" tile
-			case 3: settile(13,14,0,57);		// show the "all open" tile
-					setobs(13, 14, 0);break;	// remove the obstruction now that it's open.
+			case 1: current_map.settile(13,14,0,481);break;	// show the "1/3rd open" tile
+			case 2: current_map.settile(13,14,0,480);break;	// show the "2/3rds open" tile
+			case 3: current_map.settile(13,14,0,57);		// show the "all open" tile
+					current_map.setobs(13, 14, 0);break;	// remove the obstruction now that it's open.
 		}
 	}
 	

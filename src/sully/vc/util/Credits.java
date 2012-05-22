@@ -53,7 +53,7 @@ public static void doSimpleCredits( VFont fnt )
 		
 		for( i=0; i<_creditCount; i++ )
 		{
-			printcenter(imagewidth(screen)/2, imageheight(screen)+_arCred[i]-(timer/4), screen, fnt, _arCredStr[i]);		
+			fnt.printcenter(screen.getWidth()/2, screen.getHeight()+_arCred[i]-(timer/4), screen, _arCredStr[i]);		
 		}
 		
 		showpage();

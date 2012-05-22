@@ -60,7 +60,7 @@ public class Animation {
 		anims[index].active = true;
 		anims[index].sizex = sizex;
 		anims[index].sizey = sizey;
-		anims[index].numframes = imageheight(anims[index].image) / sizey;
+		anims[index].numframes = anims[index].image.getHeight() / sizey;
 		anims[index].bufimage =  new VImage(sizex, sizey);
 		anims[index].bufferedframe = 65535;
 		return index;
@@ -111,14 +111,14 @@ public class Animation {
 			
 		if (frame == anims[anim].bufferedframe)
 		{
-			blit(x, y, anims[anim].bufimage, dest);
+			dest.blit(x, y, anims[anim].bufimage);
 			return;
 		}
 				
 		frametop = anims[anim].sizey * frame;
-		grabregion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image, anims[anim].bufimage);
+		anims[anim].bufimage.grabregion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image);
 		anims[anim].bufferedframe = frame;
-		blit(x, y, anims[anim].bufimage, dest);
+		dest.blit(x, y, anims[anim].bufimage);
 	}
 	
 	// TBlits the specified frame of the specified animation to (x,y) of Dest.
@@ -144,14 +144,14 @@ public class Animation {
 			
 		if (frame == anims[anim].bufferedframe)
 		{
-			tblit(x, y, anims[anim].bufimage, dest);
+			dest.tblit(x, y, anims[anim].bufimage);
 			return;
 		}
 				
 		frametop = anims[anim].sizey * frame;
-		grabregion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image, anims[anim].bufimage);
+		anims[anim].bufimage.grabregion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image);
 		anims[anim].bufferedframe = frame;
-		tblit(x, y, anims[anim].bufimage, dest);
+		dest.tblit(x, y, anims[anim].bufimage);
 	}
 	
 	
@@ -176,14 +176,14 @@ public class Animation {
 	
 		if (frame == anims[anim].bufferedframe)
 		{
-			tblit(x-(anims[anim].sizex/2), y-(anims[anim].sizey/2), anims[anim].bufimage, dest);
+			dest.tblit(x-(anims[anim].sizex/2), y-(anims[anim].sizey/2), anims[anim].bufimage);
 			return;
 		}
 				
 		frametop = anims[anim].sizey * frame;
-		grabregion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image, anims[anim].bufimage);
+		anims[anim].bufimage.grabregion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image);
 		anims[anim].bufferedframe = frame;
-		tblit(x-(anims[anim].sizex/2),  y-(anims[anim].sizey/2), anims[anim].bufimage, dest);
+		dest.tblit(x-(anims[anim].sizex/2),  y-(anims[anim].sizey/2), anims[anim].bufimage);
 		
 	}
 	
@@ -191,7 +191,7 @@ public class Animation {
 	// 'img' and 'dest' must be valid v3 image references.
 	void BlitAt(int x, int y, VImage img, VImage dest)
 	{
-		tblit(x-(imagewidth(img)/2), y-(imagewidth(img)/2), img, dest);
+		dest.tblit(x-(img.getWidth()/2), y-(img.getHeight()/2), img);
 	}
 
 }

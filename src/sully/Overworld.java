@@ -18,8 +18,8 @@ public class Overworld {
 		//if galfrey's joined, the bridge is fixed!
 		if( flags[F_HECK_GALFREY_JOIN] !=0 )
 		{
-			settile( 22,26,0,272 );
-			setobs( 22,26,0 );
+			current_map.settile( 22,26,0,272 );
+			current_map.setobs( 22,26,0 );
 		}
 		
 		SetWeather(WEATHER_CLOUDS);

@@ -131,9 +131,9 @@ public class V1_Weather {
 			_cloud2 = new VImage(load("res/system/cloud2.gif"));
 			_cloud3 = new VImage(load("res/system/cloud3.gif"));
 			
-			_cloud1s= duplicateimage(_cloud1); silhouette(0, 0, RGB(40, 40, 40), _cloud1, _cloud1s);
-			_cloud2s= duplicateimage(_cloud2); silhouette(0, 0, RGB(40, 40, 40), _cloud2, _cloud2s);
-			_cloud3s= duplicateimage(_cloud3); silhouette(0, 0, RGB(40, 40, 40), _cloud3, _cloud3s);
+			_cloud1s= _cloud1.duplicateimage(); _cloud1s.silhouette(0, 0, RGB(40, 40, 40), _cloud1);
+			_cloud2s= _cloud2.duplicateimage(); _cloud2s.silhouette(0, 0, RGB(40, 40, 40), _cloud2);
+			_cloud3s= _cloud3.duplicateimage(); _cloud3s.silhouette(0, 0, RGB(40, 40, 40), _cloud3);
 			clouds_initd = true;
 		}
 		
@@ -195,15 +195,18 @@ public class V1_Weather {
 			
 			switch (_clouds[i].c)
 			{
-				case 0: tblit(zx, zy, _cloud1, screen);
-				setlucent(75);
-						tblit(zx+3, zy+18, _cloud1s, screen);break;
-				case 1: tblit(zx, zy, _cloud2, screen);
-				setlucent(75);
-						tblit(zx+3, zy+32, _cloud2s, screen);break;
-				case 2: tblit(zx, zy, _cloud3, screen);
-				setlucent(75);
-						tblit(zx+3, zy+64, _cloud3s, screen);break;
+				case 0: screen.tblit(zx, zy, _cloud1);
+						setlucent(75);
+						screen.tblit(zx+3, zy+18, _cloud1s);
+						break;
+				case 1: screen.tblit(zx, zy, _cloud2);
+						setlucent(75);
+						screen.tblit(zx+3, zy+32, _cloud2s);
+						break;
+				case 2: screen.tblit(zx, zy, _cloud3);
+						setlucent(75);
+						screen.tblit(zx+3, zy+64, _cloud3s);
+						break;
 			}		
 		}
 		setlucent(0);
@@ -220,7 +223,7 @@ public class V1_Weather {
 	static void RenderFog()
 	{
 		setlucent(50);
-		wrapblit((systemtime/4)+xwin, (systemtime/4)+ywin, _fog, screen);
+		screen.wrapblit((systemtime/4)+xwin, (systemtime/4)+ywin, _fog);
 		setlucent(0);
 	}
 	

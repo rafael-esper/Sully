@@ -51,7 +51,7 @@ public class Menu_Skill {
 		// Draw the background and title
 		MenuBlitRight(false, menu_option);
 		MenuDrawBackground(MENU_A_X1, MENU_A_Y1, MENU_A_X2, MENU_A_Y2, MenuIsActive("Skill"));
-		printstring(80, 15, screen, menu_font[0], "Skill");
+		menu_font[0].printstring(80, 15, screen, "Skill");
 	
 		// Draw the current selected party member and skill type
 		MenuBlitCast(menu_cast, 0, 0);
@@ -59,19 +59,19 @@ public class Menu_Skill {
 		int y_ptr = 120;
 		int sg_count = 0, i;
 		
-		printstring(25, y_ptr, screen, menu_font[0], "Skill Groups: ");
-		y_ptr+=fontheight(menu_font[0])+1;
+		menu_font[0].printstring(25, y_ptr, screen,  "Skill Groups: ");
+		y_ptr+=menu_font[0].fontheight()+1;
 		
 		for( i=0; i<getMySkillGroupCount(party[menu_cast]); i++ )
 		{	
-			printstring(25, y_ptr, screen, menu_font[0], master_skilltypes[GetMySkillGroup(party[menu_cast],i)].name );
-			y_ptr+=fontheight(menu_font[0])+1;
+			menu_font[0].printstring(25, y_ptr, screen,  master_skilltypes[GetMySkillGroup(party[menu_cast],i)].name );
+			y_ptr+=menu_font[0].fontheight()+1;
 			sg_count++;
 		}
 		
 		if( sg_count == 0 )
 		{
-			printstring(25, y_ptr, screen, menu_font[0], "NONE" );
+			menu_font[0].printstring(25, y_ptr, screen,  "NONE" );
 		}
 	}
 }

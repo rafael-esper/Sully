@@ -186,49 +186,49 @@ public class Sully extends VergeEngine {
 		
 		if( sav_rString.equals(""))
 		{
-			rectfill( 0,0, imagewidth(screen), imageheight(screen), RGB(0,0,0), screen );
+			screen.rectfill( 0,0, screen.getWidth(), screen.getHeight(), RGB(0,0,0));
 			setlucent(75);
-			blit( 0,0, im, screen );
+			screen.blit( 0,0, im);
 			Wait(delay);
 	
 			setlucent(0);
-			rectfill( 0,0, imagewidth(screen), imageheight(screen), RGB(0,0,0), screen );
+			screen.rectfill( 0,0, screen.getWidth(), screen.getHeight(), RGB(0,0,0));
 			setlucent(50);
-			blit( 0,0, im, screen );
+			screen.blit( 0,0, im);
 			Wait(delay);
 	
 			setlucent(0);
-			rectfill( 0,0, imagewidth(screen), imageheight(screen), RGB(0,0,0), screen );
+			screen.rectfill( 0,0, screen.getWidth(), screen.getHeight(), RGB(0,0,0));
 			setlucent(25);
-			blit( 0,0, im, screen );
+			screen.blit( 0,0, im);
 			Wait(delay);
 	
 			setlucent(0);
-			rectfill( 0,0, imagewidth(screen), imageheight(screen), RGB(0,0,0), screen );
-			blit( 0,0, im, screen );
+			screen.rectfill( 0,0, screen.getWidth(), screen.getHeight(), RGB(0,0,0));
+			screen.blit( 0,0, im);
 			
 			Wait(longdelay);	
 	
 			setlucent(0);
-			rectfill( 0,0, imagewidth(screen), imageheight(screen), RGB(0,0,0), screen );
+			screen.rectfill( 0,0, screen.getWidth(), screen.getHeight(), RGB(0,0,0));
 			setlucent(25);
-			blit( 0,0, im, screen );
+			screen.blit( 0,0, im);
 			Wait(delay);
 	
 			setlucent(0);
-			rectfill( 0,0, imagewidth(screen), imageheight(screen), RGB(0,0,0), screen );
+			screen.rectfill( 0,0, screen.getWidth(), screen.getHeight(), RGB(0,0,0));
 			setlucent(50);
-			blit( 0,0, im, screen );
+			screen.blit( 0,0, im);
 			Wait(delay);
 	
 			setlucent(0);
-			rectfill( 0,0, imagewidth(screen), imageheight(screen), RGB(0,0,0), screen );
+			screen.rectfill( 0,0, screen.getWidth(), screen.getHeight(), RGB(0,0,0));
 			setlucent(75);
-			blit( 0,0, im, screen );
+			screen.blit( 0,0, im);
 			Wait(delay);
-	
+
 			setlucent(0);
-			rectfill( 0,0, imagewidth(screen), imageheight(screen), RGB(0,0,0), screen );
+			screen.rectfill( 0,0, screen.getWidth(), screen.getHeight(), RGB(0,0,0));
 			Wait(delay);
 		}
 		else

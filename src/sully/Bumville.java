@@ -112,7 +112,7 @@ public class Bumville {
 			FadeOutWSound(30);
 			
 			FillVCLayer( RGB(0,0,0) );
-			printcenter(imagewidth(screen)/2, imageheight(screen)/2, v1_vclayer, v1rpg_SmallFont, "Meanwhile...");
+			v1rpg_SmallFont.printcenter(screen.getWidth()/2, screen.getHeight()/2, v1_vclayer, "Meanwhile...");
 	
 			VCScreenFilterOff(); //turn the nighttime effect off finally...
 			
@@ -544,7 +544,7 @@ public class Bumville {
 		}
 		
 		//set the volume control tile!
-		settile(57,164,0,507+flags[F_BUM_JUKE_VOLUME]);
+		current_map.settile(57,164,0,507+flags[F_BUM_JUKE_VOLUME]);
 	}
 	
 	public static void StudioExit()
@@ -664,8 +664,8 @@ public class Bumville {
 			
 			entity.get(dex_ent).sety(30000);
 			
-			settile( 6,119, 0, 750); //set the sleeping dexter tiles!
-			settile( 7,119, 0, 751);
+			current_map.settile( 6,119, 0, 750); //set the sleeping dexter tiles!
+			current_map.settile( 7,119, 0, 751);
 		}
 	
 		//
@@ -696,11 +696,11 @@ public class Bumville {
 		ChangeTilesForScene( 43,48 );
 		ChangeTilesForScene( 37,64 );
 		
-		settile(37,9,1,0);
-		settile(37,10,0,541);	setobs(37,10, 0);
-		settile(63,64,0,101);	setobs(63,64, 1);
-		settile(63,65,0,0);		setobs(63,65, 1);
-		settile(63,66,0,103);	setobs(63,66, 1);
+		current_map.settile(37,9,1,0);
+		current_map.settile(37,10,0,541);	current_map.setobs(37,10, 0);
+		current_map.settile(63,64,0,101);	current_map.setobs(63,64, 1);
+		current_map.settile(63,65,0,0);		current_map.setobs(63,65, 1);
+		current_map.settile(63,66,0,103);	current_map.setobs(63,66, 1);
 	
 	
 		entity.get(playerent).face = FACE_DOWN;
@@ -714,16 +714,16 @@ public class Bumville {
 	}
 	
 	public static void ChangeTilesForScene( int x, int y ) {
-		settile(x,y,		0, 586);
-		settile(x+1,y,		0, 587);
-		settile(x+2,y,		0, 588);
-		settile(x,y+1,		0, 583);
+		current_map.settile(x,y,		0, 586);
+		current_map.settile(x+1,y,		0, 587);
+		current_map.settile(x+2,y,		0, 588);
+		current_map.settile(x,y+1,		0, 583);
 	
 	
-		settile(x+1,y+1,	0, 584);
-		setobs(x+1,y+1, 1); //obstruct this tile.
+		current_map.settile(x+1,y+1,	0, 584);
+		current_map.setobs(x+1,y+1, 1); //obstruct this tile.
 	
-		settile(x+2,y+1,	0, 585);
+		current_map.settile(x+2,y+1,	0, 585);
 	}
 	
 	public static void ChirpyChirp()
@@ -816,7 +816,7 @@ public class Bumville {
 		}
 		
 		setmusicvolume( flags[F_BUM_JUKE_VOLUME]*10 );
-		settile(57,164,0,507+flags[F_BUM_JUKE_VOLUME]);
+		current_map.settile(57,164,0,507+flags[F_BUM_JUKE_VOLUME]);
 			
 		EntFinish();
 	}
@@ -1720,52 +1720,52 @@ public class Bumville {
 		switch( switch_var ) 
 		{
 			case 0:
-				settile(55,164,0,508);
+				current_map.settile(55,164,0,508);
 				playmusic(load("res/music/AURORA.mod"));
 				TextBox(0,"Now playing 'Hymn to Aurora'.","","");
 				break;
 			case 1:
-				settile(55,164,0,509);
+				current_map.settile(55,164,0,509);
 				playmusic(load("res/music/VANGELIS.mod"));
 				TextBox(0,	"Now playing 'Inventions of History'.","","");
 				break;
 			case 2:
-				settile(55,164,0,510);
+				current_map.settile(55,164,0,510);
 				playmusic(load("res/music/EXAGE.mod"));
 				TextBox(0,"Now playing 'Flying Into Darkness'.","", "");
 				break;
 			case 3:
-				settile(55,164,0,511);
+				current_map.settile(55,164,0,511);
 				playmusic(load("res/music/NONEXIST.mod"));
 				TextBox(0,"Now playing 'Sparks and Piping'.","","");
 				break;
 			case 4:		
-				settile(55,164,0,512);
+				current_map.settile(55,164,0,512);
 				playmusic(load("res/music/MEDIOEVA.mod"));
 				TextBox(0,"Now playing 'Dance of the Sunlight'.","", "");
 				break;
 			case 5:
-				settile(55,164,0,513);
+				current_map.settile(55,164,0,513);
 				playmusic(load("res/music/CR_GUIT.s3m"));
 				TextBox(0,"Now playing 'Cold Separation'.","","");
 				break;
 			case 6:
-				settile(55,164,0,514);
+				current_map.settile(55,164,0,514);
 				playmusic(load("res/music/DISCO.s3m"));
 				TextBox(0,"Now playing 'Shack of Love'.","","");
 				break;
 			case 7:
-				settile(55,164,0,515);
+				current_map.settile(55,164,0,515);
 				playmusic(load("res/music/DREAMS2.s3m"));
 				TextBox(0,"Now playing 'Ascent of the Mountain Eagle'.","", "");
 				break;
 			case 8:
-				settile(55,164,0,516);
+				current_map.settile(55,164,0,516);
 				playmusic(load("res/music/MYSTWATR.s3m"));
 				TextBox(0,"Now playing 'Ocean Rhapsody'.","","");
 				break;
 			case 9:
-				settile(55,164,0,507);
+				current_map.settile(55,164,0,507);
 				playmusic(load("res/music/SYMPHONY.s3m"));
 				TextBox(0,"Now playing 'Clash of the Titans'.","","");
 				flags[F_BUM_JUKEBOX] = 0-1;

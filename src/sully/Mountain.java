@@ -34,10 +34,10 @@ public class Mountain {
 		if( flags[F_LAB_BLOWN_UP] !=0)
 			DestroyLab();
 			
-		if (flags[CHEST_JUJUBE_A]!=0) settile(3, 31, 0, 271);
-		if (flags[CHEST_JUJUBE_B]!=0) settile(5, 31, 0, 271);	
-		if (flags[CHEST_JUJUBE_C]!=0) settile(7, 31, 0, 271);	
-		if (flags[CHEST_JUJUBE_D]!=0) settile(9, 31, 0, 271);
+		if (flags[CHEST_JUJUBE_A]!=0) current_map.settile(3, 31, 0, 271);
+		if (flags[CHEST_JUJUBE_B]!=0) current_map.settile(5, 31, 0, 271);	
+		if (flags[CHEST_JUJUBE_C]!=0) current_map.settile(7, 31, 0, 271);	
+		if (flags[CHEST_JUJUBE_D]!=0) current_map.settile(9, 31, 0, 271);
 	
 		InitMap();
 	
@@ -344,18 +344,18 @@ public class Mountain {
 	// work to remove the sign.
 	public static void DestroySign() 
 	{
-		setobs( 35,7, 0 );
-		setobs( 36,6, 0 );
+		current_map.setobs( 35,7, 0 );
+		current_map.setobs( 36,6, 0 );
 		
-		settile(35,6, 2, 0); // remove the sign from the 
-		settile(35,7, 2, 0); // background overlay layer
-		settile(36,6, 2, 0);
-		settile(36,7, 2, 0);
+		current_map.settile(35,6, 2, 0); // remove the sign from the 
+		current_map.settile(35,7, 2, 0); // background overlay layer
+		current_map.settile(36,6, 2, 0);
+		current_map.settile(36,7, 2, 0);
 		
-		settile(35,6, 0, 744); // add the charred pit!
-		settile(36,6, 0, 745); 
-		settile(35,7, 0, 746); 
-		settile(36,7, 0, 747);
+		current_map.settile(35,6, 0, 744); // add the charred pit!
+		current_map.settile(36,6, 0, 745); 
+		current_map.settile(35,7, 0, 746); 
+		current_map.settile(36,7, 0, 747);
 		
 	}
 	
@@ -377,8 +377,8 @@ public class Mountain {
 			AlterBTile(y,5,199,1);
 		}
 		
-		setzone(20,5,0);
-		setzone(23,5,0);
+		current_map.setzone(20,5,0);
+		current_map.setzone(23,5,0);
 	}
 	
 	public static void VictoryDance() {
@@ -615,18 +615,18 @@ public class Mountain {
 			{
 				if( arTemp[c]==1 )
 				{
-					tblit( arTemp[c-30], arTemp[c-29], pop1, v1_vclayer );
+					v1_vclayer.tblit( arTemp[c-30], arTemp[c-29], pop1);
 				}
 			
 				if( arTemp[c]==2 )
 				{
-					tblit( arTemp[c-30], arTemp[c-29], pop2, v1_vclayer );
+					v1_vclayer.tblit( arTemp[c-30], arTemp[c-29], pop2);
 				}
 		
 	
 				if( arTemp[c]==3 )
 				{
-					tblit( arTemp[c-30], arTemp[c-29], pop3, v1_vclayer );
+					v1_vclayer.tblit( arTemp[c-30], arTemp[c-29], pop3);
 				}
 			}
 		
@@ -658,8 +658,8 @@ public class Mountain {
 		}
 		
 	
-		setzone(20,5,0);
-		setzone(23,5,0);
+		current_map.setzone(20,5,0);
+		current_map.setzone(23,5,0);
 		
 		FadeFromColor( RGB(255,0,0), 100 );
 	

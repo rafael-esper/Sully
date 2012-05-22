@@ -93,31 +93,30 @@ public class Menu_Equip {
 		int i;
 		MenuBlitRight(false, menu_option);
 		MenuDrawBackground(MENU_A_X1, MENU_A_Y1, MENU_A_X2, MENU_A_Y2, MenuIsActive("Equip"));
-		printright(220, 15, screen, menu_font[0], "Equip");
+		menu_font[0].printright(220, 15, screen, "Equip");
 		MenuBlitCast(menu_cast, 0, 0);
 		for (i = 0; i < MAX_STATS; i++)
 		{
 			MenuPrintStat(MENU_CAST_X, MENU_CAST_Y, i, 0, master_cast[party[menu_cast]].stats[i]);
 		}
 	
-		line(20, 110, 220, 110, menu_colour[2], screen);
+		screen.line(20, 110, 220, 110, menu_colour[2]);
 	
 		for (i = 0; i < MAX_EQUIP_SLOTS; i++)
 		{
-			printstring(25, 115 + (15 * i),
-			 screen, menu_font[0], GetSlotName(i));
+			menu_font[0].printstring(25, 115 + (15 * i), screen, GetSlotName(i));
 			
 			if(master_cast[party[menu_cast]].equipment[i] != -1) // [Rafael, the Esper]
-				printstring(75, 115 + (15 * i),
-						screen, menu_font[0], master_items[master_cast[party[menu_cast]].equipment[i]].name);
+				menu_font[0].printstring(75, 115 + (15 * i),
+						screen, master_items[master_cast[party[menu_cast]].equipment[i]].name);
 		}
-		printstring(15, 115 + (15 * menu_sub), screen, menu_font[0], ">");
+		menu_font[0].printstring(15, 115 + (15 * menu_sub), screen, ">");
 	
 	
 		if (HasEquipment(party[menu_cast], menu_sub) && master_cast[party[menu_cast]].equipment[menu_sub]!= -1) // [Rafael, the Esper]
 			MenuPrintDesc(menu_font[0], master_items[master_cast[party[menu_cast]].equipment[menu_sub]].desc, 180);
 		else MenuPrintDesc(menu_font[0], "No item", 180);
-		line(20, 225 - (2 * (menu_fonth + 2)), 220, 225 - (2 * (menu_fonth + 2)), menu_colour[2], screen);
+		screen.line(20, 225 - (2 * (menu_fonth + 2)), 220, 225 - (2 * (menu_fonth + 2)), menu_colour[2]);
 	}
 	
 	
@@ -127,12 +126,12 @@ public class Menu_Equip {
 		VImage equipImage;
 		MenuBlitRight(false, menu_option);
 		MenuDrawBackground(MENU_A_X1, MENU_A_Y1, MENU_A_X2, MENU_A_Y2, MenuIsActive("EquipSub"));
-		printright(220, 15, screen, menu_font[0], "Equip");
+		menu_font[0].printright(220, 15, screen, "Equip");
 		MenuBlitCast(menu_cast, 0, 0);
-		line(20, 110, 220, 110, menu_colour[2], screen);
-		printstring(25, 115, screen, menu_font[0], GetSlotName(menu_sub));
+		screen.line(20, 110, 220, 110, menu_colour[2]);
+		menu_font[0].printstring(25, 115, screen, GetSlotName(menu_sub));
 		if(master_cast[party[menu_cast]].equipment[menu_sub]!= -1) // [Rafael, the Esper]
-			printstring(75, 115, screen, menu_font[0], master_items[master_cast[party[menu_cast]].equipment[menu_sub]].name);
+			menu_font[0].printstring(75, 115, screen, master_items[master_cast[party[menu_cast]].equipment[menu_sub]].name);
 	
 		equ_count = EquCountBySlot(menu_sub);
 	
@@ -168,15 +167,15 @@ public class Menu_Equip {
 		{
 			if (CanEquipI(party[menu_cast], GetEquBySlot(menu_sub, i))!=0) equip = 0;
 			else equip = 1;
-			printstring(55, 133 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[equip], master_items[GetEquBySlot(menu_sub, i)].name);
-			printright(205, 133 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[equip], str(GetEquQuantBySlot(menu_sub, i)));
+			menu_font[equip].printstring(55, 133 + ((menu_fonth + 2) * (i - menu_start)), screen, master_items[GetEquBySlot(menu_sub, i)].name);
+			menu_font[equip].printright(205, 133 + ((menu_fonth + 2) * (i - menu_start)), screen, str(GetEquQuantBySlot(menu_sub, i)));
 			equipImage = icon_get(master_items[GetEquBySlot(menu_sub, i)].icon);
-			if (i == menu_item) tblit(35, 131 + ((menu_fonth + 2) * (i - menu_start)), equipImage, screen);
-			else tscaleblit(35, 135 + ((menu_fonth + 2) * (i - menu_start)), 8, 8, equipImage, screen);
+			if (i == menu_item) screen.tblit(35, 131 + ((menu_fonth + 2) * (i - menu_start)), equipImage);
+			else screen.tscaleblit(35, 135 + ((menu_fonth + 2) * (i - menu_start)), 8, 8, equipImage);
 			//FreeImage(equip);
 			if (menu_start + 4 <= i) i = equ_count + 1;
 		}
-		if (i == equ_count) printstring(55, 133 + ((menu_fonth + 2) * (i - menu_start)), screen, menu_font[0], "(none)"); // if near end
+		if (i == equ_count) menu_font[0].printstring(55, 133 + ((menu_fonth + 2) * (i - menu_start)), screen, "(none)"); // if near end
 	}
 	
 	// Draws a sub window with vertical scroll bar and cursor, but draws none of the contents
@@ -192,14 +191,14 @@ public class Menu_Equip {
 		int ydiff = y2 - y1 - 8;
 		int entry_fit = (y2 - y1) / entry_size;
 		if (entry_total < entry_fit)  entry_fit = entry_total;
-		rect(x1, y1, x2, y2, menu_colour[2], screen);
-		rect(x2 - 10, y1 + 2, x2 - 2, y2 - 2, menu_colour[2], screen);
-		rectfill(x2 - 8, y1 + 4 + ((ydiff * entry_start) / entry_total),
-		 x2 - 4, y1 + 4 + ((ydiff * (entry_fit + entry_start)) / entry_total), menu_colour[2], screen);
+		screen.rect(x1, y1, x2, y2, menu_colour[2]);
+		screen.rect(x2 - 10, y1 + 2, x2 - 2, y2 - 2, menu_colour[2]);
+		screen.rectfill(x2 - 8, y1 + 4 + ((ydiff * entry_start) / entry_total),
+		 x2 - 4, y1 + 4 + ((ydiff * (entry_fit + entry_start)) / entry_total), menu_colour[2]);
 		if (entry_current >= 0)
 		{
-			rect(x1 + 4, y1 + 4 + (entry_size * (entry_current - entry_start)), x1 + 10, y1 + entry_size  - entry_mod + (entry_size * (entry_current - entry_start)), menu_colour[2], screen);
-			rectfill(x1 + 6, y1 + 6 + (entry_size * (entry_current - entry_start)), x1 + 8, y1 + entry_size - entry_mod - 2 + (entry_size * (entry_current - entry_start)), menu_colour[2], screen);
+			screen.rect(x1 + 4, y1 + 4 + (entry_size * (entry_current - entry_start)), x1 + 10, y1 + entry_size  - entry_mod + (entry_size * (entry_current - entry_start)), menu_colour[2]);
+			screen.rectfill(x1 + 6, y1 + 6 + (entry_size * (entry_current - entry_start)), x1 + 8, y1 + entry_size - entry_mod - 2 + (entry_size * (entry_current - entry_start)), menu_colour[2]);
 		}
 	}
 	
@@ -223,25 +222,25 @@ public class Menu_Equip {
 		if (stat == STAT_MAX_HP)
 		{
 			if( value > 1 )
-				printright(x + 185, y + 10, screen, menu_font[font], str(value));
+				menu_font[font].printright(x + 185, y + 10, screen, str(value));
 			else
-				printright(x + 185, y + 10, screen, menu_font[font], "1");
+				menu_font[font].printright(x + 185, y + 10, screen, "1");
 		}
 		else if (stat == STAT_MAX_MP)
 		{
 			if( value > 0 )		
-				printright(x + 185, y + 20, screen, menu_font[font], str(value));
+				menu_font[font].printright(x + 185, y + 20, screen, str(value));
 			else
-				printright(x + 185, y + 20, screen, menu_font[font], "0");
+				menu_font[font].printright(x + 185, y + 20, screen, "0");
 		}
 		else
 		{
-			printstring(x + (32 * xpos) - 32, y + 35 + (24 * ypos), screen, menu_font[font], GetStatName(stat));
+			menu_font[font].printstring(x + (32 * xpos) - 32, y + 35 + (24 * ypos), screen, GetStatName(stat));
 			
 			if(value > 0)
-				printstring(x + (32 * xpos) - 32, y + 45 + (24 * ypos), screen, menu_font[font], str(value));
+				menu_font[font].printstring(x + (32 * xpos) - 32, y + 45 + (24 * ypos), screen, str(value));
 			else 
-				printstring(x + (32 * xpos) - 32, y + 45 + (24 * ypos), screen, menu_font[font], "0");
+				menu_font[font].printstring(x + (32 * xpos) - 32, y + 45 + (24 * ypos), screen, "0");
 		}
 	}
 }

@@ -52,7 +52,7 @@ public class Menu_Status {
 		// Draw the background and title
 		MenuBlitRight(false, menu_option);
 		MenuDrawBackground(MENU_A_X1, MENU_A_Y1, MENU_A_X2, MENU_A_Y2, MenuIsActive("Status"));
-		printright(220, 15, screen, menu_font[0], "Status");
+		menu_font[0].printright(220, 15, screen, "Status");
 	
 		// Draw the current selected party member and stats
 		MenuBlitCast(menu_cast, 0, 0);
@@ -87,17 +87,17 @@ public class Menu_Status {
 	// No error checking
 	{
 		// [Rafael, the Esper]: New implementation!
-		java.util.List<String> rows = wraptext(menu_font[0], desc_text, desc_width);
+		java.util.List<String> rows = menu_font[0].wraptext(desc_text, desc_width);
 		
 		int lines = rows.size();
 		if (lines == 1)
 		{
-			printstring(x, y - (3 * (menu_fonth + 2) / 2), screen, desc_font, rows.get(0));
+			desc_font.printstring(x, y - (3 * (menu_fonth + 2) / 2), screen, rows.get(0));
 		}
 		else
 		{
-			printstring(x, y - ((menu_fonth + 2) * 2), screen, desc_font, rows.get(0));
-			printstring(x, y - ((menu_fonth + 2) * 1), screen, desc_font, rows.get(1));
+			desc_font.printstring(x, y - ((menu_fonth + 2) * 2), screen, rows.get(0));
+			desc_font.printstring(x, y - ((menu_fonth + 2) * 1), screen, rows.get(1));
 		}
 		return lines;
 	}
@@ -106,14 +106,14 @@ public class Menu_Status {
 	static int MenuPrintDescVar(VFont desc_font, String desc_text, int desc_width)
 	{
 		// [Rafael, the Esper]: New implementation!
-		java.util.List<String> rows = wraptext(menu_font[0], desc_text, desc_width);
+		java.util.List<String> rows = menu_font[0].wraptext(desc_text, desc_width);
 
 		for (int i=0; i<rows.size(); i++)
 		{
-			printstring(MENU_DESCRIPTION_X, MENU_DESCRIPTION_Y - ((menu_fonth + 2) * (rows.size() - i)), screen, desc_font, rows.get(i));
+			desc_font.printstring(MENU_DESCRIPTION_X, MENU_DESCRIPTION_Y - ((menu_fonth + 2) * (rows.size() - i)), screen, rows.get(i));
 		}
-		line(MENU_DESCRIPTION_X - 5, MENU_DESCRIPTION_Y - 4 - (rows.size() * (menu_fonth + 2)),
-			MENU_DESCRIPTION_X + desc_width + 5, MENU_DESCRIPTION_Y - 4 - (rows.size() * (menu_fonth + 2)), menu_colour[2], screen);
+		screen.line(MENU_DESCRIPTION_X - 5, MENU_DESCRIPTION_Y - 4 - (rows.size() * (menu_fonth + 2)),
+			MENU_DESCRIPTION_X + desc_width + 5, MENU_DESCRIPTION_Y - 4 - (rows.size() * (menu_fonth + 2)), menu_colour[2]);
 		return rows.size();
 	}
 }
