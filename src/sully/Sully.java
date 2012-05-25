@@ -21,6 +21,7 @@ import java.net.URL;
 
 import core.VergeEngine;
 import domain.VImage;
+import domain.VSound;
 
 import sully.vc.Sfx;
 import sully.vc.util.Animation;
@@ -71,7 +72,7 @@ public class Sully extends VergeEngine {
 	
 	// Some various Story-related variables and effects. 
 	//
-	static URL sfx_waves;	//used in the island.map flashback
+	static VSound sfx_waves;	//used in the island.map flashback
 	static int wavetimer;	//used in the island.map flashback
 	
 	//used in cottage.map Stan-intro scene.

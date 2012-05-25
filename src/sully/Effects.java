@@ -5,6 +5,8 @@ import static sully.Flags.*;
 
 import java.net.URL;
 
+import domain.VSound;
+
 import static sully.vc.simpletype_rpg.Party.*;
 import static sully.vc.simpletype_rpg.Cast.*;
 import static sully.vc.simpletype_rpg.Data.*;
@@ -25,10 +27,10 @@ public class Effects {
 	////////////////////////////////
 	//  Effect-specific sound effects!
 	////////////////////////////////
-	static URL sfx_drink	= load("res/sfx/items/drink.wav" );
-	static URL sfx_drip		= load( "res/sfx/items/drip.wav" );
-	static URL sfx_eat		= load( "res/sfx/items/eat.wav" );
-	static URL sfx_holy		= load( "res/sfx/items/sun.wav" );
+	static VSound sfx_drink	= new VSound(load("res/sfx/items/drink.wav" ));
+	static VSound sfx_drip		= new VSound(load( "res/sfx/items/drip.wav" ));
+	static VSound sfx_eat		= new VSound(load( "res/sfx/items/eat.wav" ));
+	static VSound sfx_holy		= new VSound(load( "res/sfx/items/sun.wav" ));
 	
 	public static void SoundDrink() {
 		playsound( sfx_drink, sfx_volume );

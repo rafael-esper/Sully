@@ -16,6 +16,7 @@ import sully.vc.Sfx;
 
 import domain.VFont;
 import domain.VImage;
+import domain.VSound;
 
 public class Menu_System {
 	// menu_system.vc for Sully www.verge-rpg.com
@@ -103,13 +104,13 @@ public class Menu_System {
 	
 	//
 	// Grue's amazing sound effect handles!
-	static URL sfx_roll = load("res/system/menu/menu_roll.wav" );
-	static URL sfx_beep = load("res/system/menu/happy_beep.wav" );
-	static URL sfx_buzz = load("res/system/menu/angry_buzz.wav" );
-	static URL sfx_page = load("res/system/menu/pageturn.wav" );
-	static URL sfx_wush = load("res/system/menu/woosh.wav" );
-	static URL sfx_mony = load("res/system/menu/BUYSELL.WAV" );
-	static URL sfx_eqip = load("res/system/menu/EQUIP.WAV" );
+	static VSound sfx_roll = new VSound(load("res/system/menu/menu_roll.wav"));
+	static VSound sfx_beep = new VSound(load("res/system/menu/happy_beep.wav" ));
+	static VSound sfx_buzz = new VSound(load("res/system/menu/angry_buzz.wav" ));
+	static VSound sfx_page = new VSound(load("res/system/menu/pageturn.wav" ));
+	static VSound sfx_wush = new VSound(load("res/system/menu/woosh.wav" ));
+	static VSound sfx_mony = new VSound(load("res/system/menu/BUYSELL.WAV" ));
+	static VSound sfx_eqip = new VSound(load("res/system/menu/EQUIP.WAV" ));
 	
 	//        --------------------------
 	//        Menu Initialisation

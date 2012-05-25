@@ -4,6 +4,8 @@ import static core.Script.*;
 
 import java.net.URL;
 
+import domain.VSound;
+
 public class Sfx {
 	
 	// Three global variables for the global music, interface, 
@@ -16,28 +18,28 @@ public class Sfx {
 	
 	/**************************** public resources ****************************/
 	
-	static URL sfx_open 	= load("res/sfx/open03.wav");
-	static URL sfx_warp 	= load("res/sfx/shadow.wav");
-	static URL sfx_switch	= load("res/sfx/boxopen.wav");
-	static URL sfx_save 	= load("res/sfx/ding.wav");
-	static URL sfx_magic1	= load("res/sfx/magic05.mp3");
-	static URL sfx_hit		= load("res/sfx/HIT01.WAV");
-	static URL sfx_well	= load("res/sfx/MAGIC.WAV");
-	static URL sfx_magic2	= load("res/sfx/MAGIC02.WAV");
-	static URL sfx_magic4	= load("res/sfx/MAGIC04.WAV");
-	static URL sfx_bling	= load("res/sfx/BUYSELL.WAV");
-	static URL sfx_bomb	= load("res/sfx/BOMB.WAV");
-	static URL sfx_crikts	= load("res/sfx/CRICKETS.WAV");
-	static URL sfx_shing	= load("res/sfx/SHING.WAV");
-	static URL sfx_quake	= load("res/sfx/QUAKE.WAV");
-	static URL sfx_xplode	= load("res/sfx/EXPLOSION.WAV");
-	static URL sfx_fanfare	= load("res/sfx/SFANFARE.mp3");
-	static URL sfx_splash	= load("res/sfx/WATER02.WAV");
-	static URL sfx_dblclck	= load("res/sfx/CLICK01.WAV");
-	static URL sfx_crash	= load("res/sfx/crash05.WAV");
-	static URL sfx_twinkle	= load("res/sfx/twinkle.WAV");
-	static URL sfx_grandfn	= load("res/sfx/BIGFNFR.mp3");
-	static URL sfx_fall	= load("res/sfx/fall02.wav");
+	static VSound sfx_open 	= new VSound(load("res/sfx/open03.WAV"));
+	static VSound sfx_warp 	= new VSound(load("res/sfx/shadow.WAV"));
+	static VSound sfx_switch	= new VSound(load("res/sfx/boxopen.WAV"));
+	static VSound sfx_save 	= new VSound(load("res/sfx/ding.WAV"));
+	static VSound sfx_magic1	= new VSound(load("res/sfx/magic05.mp3"));
+	static VSound sfx_hit		= new VSound(load("res/sfx/HIT01.WAV"));
+	static VSound sfx_well	= new VSound(load("res/sfx/MAGIC.WAV"));
+	static VSound sfx_magic2	= new VSound(load("res/sfx/MAGIC02.WAV"));
+	static VSound sfx_magic4	= new VSound(load("res/sfx/MAGIC04.WAV"));
+	static VSound sfx_bling	= new VSound(load("res/sfx/BUYSELL.WAV"));
+	static VSound sfx_bomb	= new VSound(load("res/sfx/BOMB.WAV"));
+	static VSound sfx_crikts	= new VSound(load("res/sfx/CRICKETS.WAV"));
+	static VSound sfx_shing	= new VSound(load("res/sfx/SHING.WAV"));
+	static VSound sfx_quake	= new VSound(load("res/sfx/QUAKE.WAV"));
+	static VSound sfx_xplode	= new VSound(load("res/sfx/EXPLOSION.WAV"));
+	static VSound sfx_fanfare	= new VSound(load("res/sfx/SFANFARE.mp3"));
+	static VSound sfx_splash	= new VSound(load("res/sfx/WATER02.WAV"));
+	static VSound sfx_dblclck	= new VSound(load("res/sfx/CLICK01.WAV"));
+	static VSound sfx_crash	= new VSound(load("res/sfx/crash05.WAV"));
+	static VSound sfx_twinkle	= new VSound(load("res/sfx/twinkle.WAV"));
+	static VSound sfx_grandfn	= new VSound(load("res/sfx/BIGFNFR.mp3"));
+	static VSound sfx_fall	= new VSound(load("res/sfx/fall02.WAV"));
 	
 	/**************************** functions ****************************/
 	

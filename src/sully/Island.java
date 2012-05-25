@@ -3,6 +3,7 @@ package sully;
 import static core.Script.*;
 import static sully.Flags.*;
 import static sully.Sully.*;
+import domain.VSound;
 
 import static sully.vc.simpletype_rpg.Party.*;
 import static sully.vc.v1_rpg.V1_RPG.*;
@@ -266,7 +267,7 @@ public class Island {
 		stopmusic();
 		MenuOff();
 		SetWeather(WEATHER_NIGHT);
-		sfx_waves=load("res/sfx/water03.wav");
+		sfx_waves=new VSound(load("res/sfx/water03.wav"));
 		wavetimer = systemtime+680;
 		hooktimer("island_flashback_timer");
 	
