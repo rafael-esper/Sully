@@ -112,7 +112,7 @@ public class Intro {
 			timer = 0;
 			while( timer < arTempImg[0].imageheight() )
 			{
-				render();
+				screen.render();
 				DrawVC2(0,0-timer,arTempImg[0]);
 				showpage();
 			}
@@ -126,7 +126,7 @@ public class Intro {
 			timer = 0;
 			while( timer < 160 )
 			{
-				render();
+				screen.render();
 				
 				entity.get(crystal).setx((10*16) + (_iCry[timer].x_100/100));
 				entity.get(crystal).sety((12*16) + (_iCry[timer].y_100/100));
@@ -161,7 +161,7 @@ public class Intro {
 			
 			while( arTemp[vel]!=0 )
 			{
-				render();
+				screen.render();
 				
 				doDroppy();
 				
@@ -171,7 +171,7 @@ public class Intro {
 			timer=0;
 			while( timer < 100 )
 			{
-				render();
+				screen.render();
 				VCLayerTintScreen(RGB(0,0,0), timer);
 				showpage();
 			}
@@ -251,7 +251,7 @@ public class Intro {
 			timer = 0;
 			while( timer < 100 )
 			{
-				render();
+				screen.render();
 				
 				setlucent( 100-timer );
 				screen.tblit(74, 17, arTempImg[4]);
@@ -316,7 +316,7 @@ public class Intro {
 			
 		while( !MenuConfirm() )
 		{
-			render();
+			screen.render();
 			
 			arrow = MenuControlArrows(arrow, 4);	
 			

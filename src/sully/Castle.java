@@ -1203,7 +1203,7 @@ public class Castle {
 			timer = 0;
 			while( timer < 100 )
 			{
-				render();
+				screen.render();
 				VCLayerTintScreen(RGB(0,0,0), 100-(timer/4));
 				showpage();
 			}
@@ -1215,7 +1215,7 @@ public class Castle {
 			entity.get(5).setx(86*16);
 			entity.get(5).sety(100*16);
 			
-			render();
+			screen.render();
 			
 			finish_sparklies( (86*16)-xwin, (100*16)-ywin-8 );
 			
@@ -1259,14 +1259,14 @@ public class Castle {
 			
 			entity.get(5).setx(74*16);
 			entity.get(5).sety(12*16); //move stanley into position
-			render();
+			screen.render();
 			
 			finish_sparklies( (86*16)-xwin, (100*16)-ywin-8 );
 			
 			timer = 0;
 			while( timer < 100 )
 			{
-				render();
+				screen.render();
 				VCLayerTintScreen(RGB(0,0,0), 75+(timer/4));
 				showpage();
 			}
@@ -1932,7 +1932,7 @@ public class Castle {
 	 	timer=0;
 	 	while( timer < 190 )
 	 	{
-			render();
+			screen.render();
 			
 			if( timer > (lasttime + 5) )
 			{

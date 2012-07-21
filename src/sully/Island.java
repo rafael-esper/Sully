@@ -112,7 +112,7 @@ public class Island {
 		ClearVCLayer();
 		
 		//now that the vclayer is clear, trigger the map-rendering.
-		render();
+		screen.render();
 		FadeIn(30);
 		TextBox(T_CRYSTAL,	"I'm glad you understand. I suppose we",
 		           			"can use the undersea passage. Let's go!", "");

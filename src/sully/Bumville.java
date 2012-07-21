@@ -88,7 +88,7 @@ public class Bumville {
 			timer=0;
 			while( timer<180 )
 			{
-				render();
+				screen.render();
 				xwin = (a-(timer/2));
 				showpage();
 			}
@@ -98,7 +98,7 @@ public class Bumville {
 			timer=0;
 			while( timer<200 )
 			{
-				render();
+				screen.render();
 				xwin = (a-(timer/2));
 				ywin = (b-(timer/2));
 				showpage();
@@ -121,7 +121,7 @@ public class Bumville {
 			timer=0;
 			while( timer < 200 ) 
 			{
-				render();
+				screen.render();
 				showpage();
 			}
 	

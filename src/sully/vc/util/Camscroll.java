@@ -116,7 +116,7 @@ public class Camscroll {
 			if(xwin == txwin && ywin == tywin) done = 1;
 			
 				// lastly, repaint the screen after the camera has been moved
-			render();
+			screen.render();
 			showpage();
 		}
 		
@@ -196,7 +196,7 @@ public class Camscroll {
 			if(xwin == txwin && ywin == tywin) done = 1;
 			
 				// lastly, repaint the screen after the camera has been moved
-			render();
+			screen.render();
 			showpage();
 		}
 		

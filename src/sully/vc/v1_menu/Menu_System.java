@@ -298,7 +298,7 @@ public class Menu_System {
 	// This function does the rendering stuff you want to happen before the custom render each cycle.
 	public static void MenuBackGroundDraw()
 	{
-		render();
+		screen.render();
 	}
 	
 	// A small notification box

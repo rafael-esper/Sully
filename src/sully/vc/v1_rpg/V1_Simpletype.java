@@ -88,7 +88,7 @@ public class V1_Simpletype {
 		EntStart(); // [Rafael, the Esper]
 		while( timer<300 && !b1 )
 		{
-			render();
+			screen.render();
 		
 			V1_Box( (screen.getWidth()/2)-(wid/2)-high, ((screen.getHeight()/2)-high)-16, wid+(high*2), high*3+32 );
 	
@@ -162,7 +162,7 @@ public class V1_Simpletype {
 		//cue a dialog box saying that HP/MP recovered!
 		while ( !b1 ) 
 		{
-			render();
+			screen.render();
 			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
 			CenterMessageBox( v1rpg_SmallFont, "Recovered full HP and MP!" );
 	

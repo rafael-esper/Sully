@@ -213,7 +213,7 @@ public class Lab {
 		timer=0;
 		
 		while( timer <= 100 ) {
-			render();
+			screen.render();
 			setmusicvolume(100 - (timer*100/100));
 			showpage();
 		}
@@ -1163,7 +1163,7 @@ public class Lab {
 			timer = 0;
 			while( timer < 200 )
 			{
-				render();
+				screen.render();
 				screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), RGB(255,0,0));
 				showpage();
 			}

@@ -193,7 +193,7 @@ public class Cottage {
 							
 			VCLayerTintScreen(Color.BLACK, 100-(timer/2));
 			setmusicvolume(100-timer);
-			render();
+			screen.render();
 			showpage();
 		}
 		
@@ -330,7 +330,7 @@ public class Cottage {
 		timer=0;
 		while (timer<50)
 		{		
-			render();
+			screen.render();
 			setlucent(100-(timer*2));
 			screen.rectfill(0, 0, 320, 240, RGB(255,0,0));
 			setlucent(0);
@@ -347,7 +347,7 @@ public class Cottage {
 		timer=0;
 		while (timer<50)
 		{		
-			render();
+			screen.render();
 			setlucent(timer*2);
 			screen.rectfill(0, 0, 320, 240, RGB(255,0,0));
 			setlucent(0);
@@ -436,7 +436,7 @@ public class Cottage {
 		while (timer<100)
 		{
 			VCLayerTintScreen(Color.BLACK, timer/2+50);
-			render();
+			screen.render();
 			showpage();
 		}
 		
@@ -491,7 +491,7 @@ public class Cottage {
 		timer = 0;
 		while (timer<120) //this is the code to start Stan's sparklies!
 		{
-			render();
+			screen.render();
 			i = timer/10;
 			
 			switch (i)
@@ -547,7 +547,7 @@ public class Cottage {
 		timer = 0;
 		while (timer<40) //this is the code to start Stan's sparklies!
 		{
-			render();
+			screen.render();
 			i=0;
 			
 			i = timer/10;

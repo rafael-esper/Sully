@@ -98,7 +98,7 @@ public class Mountain {
 		entitymove(0, "L1");
 		while(entity.get(0).movecode !=0)
 		{
-			render();
+			screen.render();
 			showpage();
 		}
 		
@@ -451,7 +451,7 @@ public class Mountain {
 			//magic sparklie on cane
 			SoundMagic2();
 			for( timer=0; timer<120; ) {
-				render();
+				screen.render();
 				BlitFrameAt(GetEntScrX(dexter)+1,GetEntScrY(dexter)+6, sparklies, timer/20, screen);	
 				showpage();
 			}
@@ -459,7 +459,7 @@ public class Mountain {
 			//fire spell, beginning
 			SoundBomb();
 			for( timer=0; timer<140; ) {
-				render();
+				screen.render();
 				
 				BlitFrameAt(GetTileScrX(36),	GetTileScrY(6)+6, pop, timer/20, screen);
 				BlitFrameAt(GetTileScrX(35)+5, 	GetTileScrY(7), pop, (timer/20)-2, screen);

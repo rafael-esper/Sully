@@ -49,7 +49,7 @@ public static void doSimpleCredits( VFont fnt )
 	timer = 0;
 	while( timer < _arCred[(_creditCount-1)]*4 )
 	{
-		render();
+		screen.render();
 		
 		for( i=0; i<_creditCount; i++ )
 		{

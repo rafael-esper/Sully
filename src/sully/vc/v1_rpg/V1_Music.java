@@ -52,7 +52,7 @@ public class V1_Music {
 		timer = 0;	
 		while (timer<delay)
 		{
-			render();
+			screen.render();
 			
 			global_music_volume = startvol - abs( (chunk*timer)/1000 );
 	
@@ -76,7 +76,7 @@ public class V1_Music {
 		timer = 0;	
 		while (timer<delay)
 		{
-			render();
+			screen.render();
 			setmusicvolume( (chunk*timer)/1000 );
 			showpage();
 		}

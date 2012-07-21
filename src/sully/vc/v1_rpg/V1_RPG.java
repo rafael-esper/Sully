@@ -509,7 +509,7 @@ public class V1_RPG {
 	
 		entity.get(getplayer()).setx(x*16);
 		entity.get(getplayer()).sety(y*16);
-		render();
+		screen.render();
 		unpress(9); //[Rafael, the Esper]
 			
 		switch (effect)
@@ -569,7 +569,7 @@ public class V1_RPG {
 		timer = 0;
 		while ( timer<duration && !b1   )
 		{
-			render();
+			screen.render();
 			CenterMessageBox( v1rpg_SmallFont, msg  );
 			
 			showpage();

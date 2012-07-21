@@ -33,7 +33,7 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			setlucent(timer*100/_dur);
 			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
 			setlucent(0);
@@ -52,7 +52,7 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<100)
 		{
-			render();
+			screen.render();
 			setlucent(timer);
 			V1_Music.V1_SetCurVolume(timer);
 			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
@@ -71,7 +71,7 @@ public class V1_Maineffects {
 		timer = 0;	
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			setlucent(100 - (timer*100/_dur));
 			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), Color.BLACK);
 			setlucent(0);	
@@ -90,7 +90,7 @@ public class V1_Maineffects {
 		timer = 0;	
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			setlucent(100 - (timer*100/_dur));
 			V1_Music.V1_SetCurVolume(100 - (timer*100/_dur));
 			
@@ -109,7 +109,7 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			setlucent(timer*100/_dur);
 			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), RGB(255,255,255));
 			setlucent(0);
@@ -124,7 +124,7 @@ public class V1_Maineffects {
 		timer = 0;	
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			setlucent(100 - (timer*100/_dur));
 			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), RGB(255,255,255));
 			setlucent(0);	
@@ -141,7 +141,7 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			setlucent(timer*100/_dur);
 			screen.blit(0, 0, crossfade_img);
 			setlucent(0);	
@@ -164,7 +164,7 @@ public class V1_Maineffects {
 			x = (timer*370/_dur)-25;
 			alpha_img.blit(x, 0, wipe_img);
 			alpha_img.rectfill(0-30, 0, x-1, 240, Color.BLACK);
-			render();
+			screen.render();
 			screen.alphablit(0, 0, crossfade_img, alpha_img);
 			showpage();
 		}
@@ -180,7 +180,7 @@ public class V1_Maineffects {
 		int hd, vd;
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			hd=timer*160/_dur;
 			vd=timer*120/_dur;
 			screen.rectfill(0,0,hd,240,Color.BLACK);
@@ -201,7 +201,7 @@ public class V1_Maineffects {
 		int hd, vd;
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			hd=timer*160/_dur;
 			vd=timer*120/_dur;
 			hd = 160-hd;
@@ -223,7 +223,7 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<dur)
 		{
-			render();
+			screen.render();
 			crossfade_img.rectfill(0,0,320,240,Color.BLACK);
 			crossfade_img.circlefill(160, 120, 200-(timer*200/dur), 200-(timer*200/dur), transcolor);
 			screen.tblit(0, 0, crossfade_img);
@@ -240,7 +240,7 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<dur)
 		{
-			render();
+			screen.render();
 			crossfade_img.rectfill(0,0,320,240,Color.BLACK);
 			crossfade_img.circlefill(160, 120, timer*200/dur, timer*200/dur, transcolor);
 			screen.tblit(0, 0, crossfade_img);
@@ -331,7 +331,7 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			showpage();
 		}
 	}
@@ -345,7 +345,7 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), color);
 			showpage();
 		}
@@ -361,7 +361,7 @@ public class V1_Maineffects {
 		timer = 0;
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			setlucent(timer*100/_dur);
 			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), _color);
 			setlucent(0);
@@ -378,7 +378,7 @@ public class V1_Maineffects {
 		timer = 0;	
 		while (timer<_dur)
 		{
-			render();
+			screen.render();
 			setlucent(100 - (timer*100/_dur));
 			screen.rectfill(0, 0, screen.getWidth(), screen.getHeight(), _color);
 			setlucent(0);	

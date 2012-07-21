@@ -104,10 +104,10 @@ public class Dungeon {
 		//cameratracker = sara; //let's put the camera on Sara.
 		//cameratracking = 2;
 		setplayer( sara );
-		render();
+		screen.render();
 		cameratracking = 0;
 		ywin += 60;
-		render();
+		screen.render();
 		
 		entity.get(darin).setx(24*16);
 		entity.get(darin).sety(33*16);

@@ -97,7 +97,7 @@ public class General {
 		// While the entity is still doing stuff
 		while (entity.get(wait_entity).movecode != 0)
 		{
-			render(); // Render the map
+			screen.render(); // Render the map
 			showpage(); // Display to screen
 
 			// If they've got stuck

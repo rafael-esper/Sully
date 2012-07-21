@@ -393,7 +393,7 @@ public class Shack {
 		while(ywin<e+33)
 		{
 			ywin=e+timer;
-			render();
+			screen.render();
 			showpage();
 		}
 		
@@ -401,7 +401,7 @@ public class Shack {
 		while(xwin<d+32)
 		{
 			xwin=d+timer;
-			render();
+			screen.render();
 			showpage();
 		}
 		

@@ -87,7 +87,7 @@ public class V1_Weather {
 			xwin =  xwin+random(0-x_intensity,x_intensity);
 			ywin =  ywin+random(0-y_intensity,y_intensity);
 			
-			render();
+			screen.render();
 			showpage();
 		}
 		
