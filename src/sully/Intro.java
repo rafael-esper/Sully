@@ -119,7 +119,7 @@ public class Intro {
 			
 			v1_vclayer2.rectfill( 0,0, v1_vclayer2.imagewidth(), v1_vclayer2.imageheight(), transcolor);
 			
-			current_map.renderstring = "2,R,1,E,R";
+			current_map.setRenderstring("2,R,1,E,R");
 			
 			//runny and jumpy!
 			int darin_hit;
@@ -282,7 +282,7 @@ public class Intro {
 		//
 		V1_StopDualMode();
 		
-		current_map.renderstring = "2,R,1,E";	
+		current_map.setRenderstring("2,R,1,E");	
 		hookretrace("sully.vc.v1_rpg.V1_RPG.V1RPG_RenderFunc" );
 		
 		VCLayerTintOff();	//the tint could've been on during the intro, so turn it off.
@@ -442,7 +442,7 @@ public class Intro {
 		// text in front of it!
 		VCPutIMG("res/images/cells/island.gif",80,50);
 		
-		current_map.renderstring = "R";
+		current_map.setRenderstring("R");
 		Credits c = new Credits();
 		c.resetCredits();
 	

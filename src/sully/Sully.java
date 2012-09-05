@@ -372,11 +372,11 @@ public class Sully extends VergeEngine {
 	
 	static void credits()
 	{
-		String sav_rString = current_map.renderstring;
+		String sav_rString = current_map.getRenderstring();
 	
 		Credits credits = new Credits();
 		
-		current_map.renderstring = "R";	
+		current_map.setRenderstring("R");	
 		FillVCLayer( RGB(0,0,0) );
 		
 		int y=0;	
@@ -510,7 +510,7 @@ public class Sully extends VergeEngine {
 		Credits.doSimpleCredits( menu_font[0] );
 		FadeOut(30);
 		
-		current_map.renderstring = sav_rString;
+		current_map.setRenderstring(sav_rString);
 		
 		//and... return to the very beginning of the game!
 		DoIntro();
@@ -600,6 +600,9 @@ public class Sully extends VergeEngine {
 
 		setSystemPath(new Sully().getClass());
 		
+		// Rafael: This is needed to run Sully in a decent speed
+		setTimeIncrement(2);
+
 		// Path, configfile and args
 		initVergeEngine(args);
 	}

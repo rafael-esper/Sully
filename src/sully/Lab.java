@@ -63,7 +63,7 @@ public class Lab {
 		// 
 		// we only use vclayer2 near the end of this scene, but we're starting it now
 		// so there aren't any visual artifacts later.
-		V1_StartDualMode( current_map.renderstring+",R" );
+		V1_StartDualMode( current_map.getRenderstring()+",R" );
 		
 		stan = 0;		//stan is entity #0 on this map.
 		galfrey = 1;	//galfrey is entity #1 on this map.

@@ -120,7 +120,7 @@ public class Dungeon {
 		entity.get(dexter).specframe=21;
 		
 	
-		current_map.renderstring = "1,2,E,R";
+		current_map.setRenderstring("1,2,E,R");
 		
 		FadeIn(60);
 		
@@ -201,7 +201,7 @@ public class Dungeon {
 		entity.get(dexter).face = FACE_UP;
 		Wait(100);
 		
-		current_map.renderstring = "1,E,2,R";
+		current_map.setRenderstring("1,E,2,R");
 	
 		TextBox(T_SARA,	"Huh? Who are you?",
 						"Oh, don't tell me you fell into that leaf",
@@ -505,7 +505,7 @@ public class Dungeon {
 		AlterFTile(22,24,153,0);
 		AlterFTile(28,24,153,0);
 		
-		current_map.renderstring = "1,2,E,R";
+		current_map.setRenderstring("1,2,E,R");
 	}
 	
 	public static void Bridge_Off() /* 9 */
@@ -564,7 +564,7 @@ public class Dungeon {
 		AlterFTile(22,24,153,1);
 		AlterFTile(28,24,153,1);
 		
-		current_map.renderstring = "1,E,2,R";
+		current_map.setRenderstring("1,E,2,R");
 	}
 	
 	public static void LoveDungMasterChestUpkeep( int flag_idx, int x, int y ) // Chest Cleanup

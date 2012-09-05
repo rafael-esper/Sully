@@ -1827,7 +1827,7 @@ public class Castle {
 	//AlterParallax(flags[54],2,3);
 	//MessageBox( "WalkOutside: needs parallax changing!" );
 	
-		current_map.renderstring = "1,2,E,R";
+		current_map.setRenderstring("1,2,E,R");
 		Warp(x,y,TCROSS);
 	}
 	
@@ -1838,7 +1838,7 @@ public class Castle {
 	
 	//MessageBox( "WalkInside: needs parallax changing!" );
 	
-		current_map.renderstring = "1,E,2,R";
+		current_map.setRenderstring("1,E,2,R");
 	
 		Warp(x,y,TCROSS);
 	}

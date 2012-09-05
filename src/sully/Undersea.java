@@ -21,7 +21,7 @@ public class Undersea {
 		//if we're in the Cyclops' Hall, remove the seaweed so the dramatics are visible!
 		if( flags[F_SEA_IN_CYCLOPS_HALL] != 0 )
 		{
-			current_map.renderstring = "1,E,R";
+			current_map.setRenderstring("1,E,R");
 		}
 		
 		//let's set the warp zone to the right tile based on it's flag

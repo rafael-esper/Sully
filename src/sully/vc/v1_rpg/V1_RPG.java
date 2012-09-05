@@ -350,8 +350,8 @@ public class V1_RPG {
 	public static void V1_StartDualMode( String newrstring ) {
 		_dualmode_on = 1;
 		_dualmode_counter = 0;
-		_old_rstring = current_map.renderstring;
-		current_map.renderstring = newrstring;
+		_old_rstring = current_map.getRenderstring();
+		current_map.setRenderstring(newrstring);
 		
 	
 		//clear vclayer2 before we start!
@@ -370,7 +370,7 @@ public class V1_RPG {
 		{
 			_dualmode_on = 0;
 	
-			current_map.renderstring = _old_rstring;
+			current_map.setRenderstring(_old_rstring);
 	
 			hookretrace("sully.vc.v1_rpg.V1_RPG.V1RPG_RenderFunc");
 		}
