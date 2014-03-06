@@ -91,7 +91,7 @@ public class Lab {
 	
 		ClearVCLayer();
 	
-		setmusicvolume(0);
+		setMusicVolume(0);
 	    playmusic(load("res/music/BADEXPER.MOD"));
 	    FadeInWSound();
 	
@@ -214,7 +214,7 @@ public class Lab {
 		
 		while( timer <= 100 ) {
 			screen.render();
-			setmusicvolume(100 - (timer*100/100));
+			setMusicVolume(100 - (timer*100/100));
 			showpage();
 		}
 	
@@ -1802,7 +1802,7 @@ public class Lab {
 		{
 			//Warp sully down!
 			
-			setmusicvolume(0);
+			setMusicVolume(0);
 			SoundFanfare();
 			
 			dar = GetPartyEntity( "Darin" );
@@ -1878,7 +1878,7 @@ public class Lab {
 			
 			AutoOff();
 			
-			setmusicvolume(global_music_volume);
+			setMusicVolume(global_music_volume);
 			
 			//Warp Sully away!
 			flags[F_LAB_SULLY] = 1;

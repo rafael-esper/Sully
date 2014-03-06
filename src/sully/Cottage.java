@@ -48,19 +48,20 @@ public class Cottage {
 	public static void enterspeak()
 	{
 		MenuOff(); //always with the menu offing...
+		System.out.println(invc);
 		pauseplayerinput(); // [Rafael, the Esper]
-		
+		System.out.println(invc);
 		//if we haven't done this scene before, let's do it!
 		if (flags[F_COT_INTRO] == 0)
-		{
-			playermove("U4 W10 F3 W40 F1 W20 F2 W40 F0");
-			AutoOn();
-			Wait(100);
-			
+		{System.out.println(invc);
+			playermove("U4 W10 F3 W40 F1 W20 F2 W40 F0");System.out.println(invc);
+			AutoOn();System.out.println(invc);
+			Wait(100);System.out.println(invc);
+			System.out.println(invc);
 			TextBoxM(T_DARIN,	"Ahhh... Home Sweet Home at last! We",
-			            		"should rest up here for our trip.", "");
+			            		"should rest up here for our trip.", "");System.out.println(invc);
 			TextBox(T_DARIN,	"My parents went to Acapulco for the",
-			           			"month, so we have the place to ourselves.", "");
+			           			"month, so we have the place to ourselves.", "");System.out.println(invc);
 			           
 			entitymove(3, "F0 W40 Z24 W20 Z0 W20 Z24 W20 Z0 W60 Z23 W100 Z22");
 			while (entity.get(3).movecode != 0)
@@ -192,7 +193,7 @@ public class Cottage {
 							//go half-dark and the music go quiet over the course of a second.
 							
 			VCLayerTintScreen(Color.BLACK, 100-(timer/2));
-			setmusicvolume(100-timer);
+			setMusicVolume(100-timer);
 			screen.render();
 			showpage();
 		}

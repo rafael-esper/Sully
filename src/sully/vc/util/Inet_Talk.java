@@ -12,7 +12,7 @@ public class Inet_Talk {
 	//
 	int DoInternetConversation( String url )
 	{
-		String src = geturltext( url );	
+		String src = "Not implemented"; //geturltext( url );	
 		int linecount = tokencount( src, chr(10) );
 		String s1,s2,s3;
 		int prt, i = 0;
@@ -86,7 +86,7 @@ public class Inet_Talk {
 	
 	public static String GetTag( String s )
 	{
-		String src = geturltext( "http://www.verge-rpg.com/sully/tagboard.php?s="+s );
+		String src = "Not implemented!"; //geturltext( "http://www.verge-rpg.com/sully/tagboard.php?s="+s );
 		String a_txt = null;
 		int i;
 	
@@ -107,7 +107,7 @@ public class Inet_Talk {
 	
 	//log( "'"+src+"'" );
 	
-		VImage img = geturlimage( img_url );
+		VImage img = new VImage(100, 100); // Rafael: Not implemented! geturlimage( img_url );
 	
 		v1_vclayer.tblit( SPEECH_X, SPEECH_Y-68, img);
 		MakeBox(SPEECH_X+2+img.getWidth(), TEXTBOX_BORDER_Y1-textBox_font.fontheight()-13, textBox_font.textwidth(name)+12, textBox_font.fontheight()+12, true, v1_vclayer);
@@ -125,7 +125,7 @@ public class Inet_Talk {
 	
 	public static void SendMessage( String user, String pass, String msg )
 	{
-		String src = geturltext( "http://www.verge-rpg.com/sully/tagboard.php?_user="+user+"&_pass="+pass+"&msg="+msg );
+		String src = "Not implemented!"; //geturltext( "http://www.verge-rpg.com/sully/tagboard.php?_user="+user+"&_pass="+pass+"&msg="+msg );
 		AutoText(T_SANCHO,src);
 	}
 }

@@ -440,7 +440,7 @@ public class V1_Textbox {
 			//draw the textbox bg.
 			V1_Box( TEXTBOX_BORDER_X1,TEXTBOX_BORDER_Y1,  TEXTBOX_BORDER_WIDTH,TEXTBOX_BORDER_HIGH );
 			
-			screen.setclip( 	TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y, 
+			screen.setClip( 	TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y, 
 						TEXTBOX_TEXTAREA_X+TEXTBOX_TEXTAREA_WIDTH,TEXTBOX_TEXTAREA_Y+TEXTBOX_TEXTAREA_HIGH);
 						
 			for (line_it = 0; line_it < line_num; line_it++)
@@ -450,7 +450,7 @@ public class V1_Textbox {
 					
 			v1rpg_LargeFont.printstring(TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y + (font_h * line_num), screen, left(gettoken(s, "&", line_num), (systemtime - time_last) / 2));
 			
-			screen.setclip(0, 0, screen.getWidth(), screen.getHeight());
+			screen.setClip(0, 0, screen.getWidth(), screen.getHeight());
 			
 			if (MenuConfirm()) { line_num++; time_last = systemtime; }
 			else if ((systemtime - time_last) / 2 >= len(gettoken(s, "&", line_num)))
@@ -571,7 +571,7 @@ public class V1_Textbox {
 			V1_Box( TEXTBOX_BORDER_X1,TEXTBOX_BORDER_Y1,  TEXTBOX_BORDER_WIDTH,TEXTBOX_BORDER_HIGH );
 			
 			//set clipping so we cannot draw outside the textbox
-			screen.setclip( 	TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y, 
+			screen.setClip( 	TEXTBOX_TEXTAREA_X,TEXTBOX_TEXTAREA_Y, 
 						TEXTBOX_TEXTAREA_X+TEXTBOX_TEXTAREA_WIDTH,TEXTBOX_TEXTAREA_Y+TEXTBOX_TEXTAREA_HIGH);
 			//print out the textbox lines.
 			for (i = 0; i < TEXTBOX_LINES; i++)
@@ -580,14 +580,14 @@ public class V1_Textbox {
 			}
 	
 			//restore clipping
-			screen.setclip(0,0, screen.getWidth(), screen.getHeight());
+			screen.setClip(0,0, screen.getWidth(), screen.getHeight());
 	
 			menu_item = MenuControlArrows(menu_item, count);
 	
 			V1_Box( prompt_x1, prompt_y1-TEXTBOX_Y_BUFF, prompt_wid, prompt_high );
 	
 			//set the clipping rectangle so we cannot draw outside the promptbox's area!
-			screen.setclip( 	prompt_x1+PROMPT_PADDING, prompt_y1+PROMPT_PADDING, 
+			screen.setClip( 	prompt_x1+PROMPT_PADDING, prompt_y1+PROMPT_PADDING, 
 						prompt_x2-PROMPT_PADDING,prompt_y1+prompt_high-PROMPT_PADDING);
 	
 			//print out the options.
@@ -600,7 +600,7 @@ public class V1_Textbox {
 			v1rpg_LargeFont.printstring(prompt_x1+PROMPT_PADDING+TEXTBOX_Y_BUFF, prompt_y1+PROMPT_PADDING+((menu_item) * font_h), screen, ">");
 			
 			//restore the clipping rectangle.
-			screen.setclip(0,0, screen.getWidth(), screen.getHeight());
+			screen.setClip(0,0, screen.getWidth(), screen.getHeight());
 			
 			
 			DrawSpeechPortrait( sp );

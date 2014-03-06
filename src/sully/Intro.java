@@ -52,7 +52,9 @@ public class Intro {
 		arTempImg[2] = new VImage(load( "res/images/story_fx/intro/background-2.gif" ));
 		arTempImg[3] =	new VImage(load( "res/images/story_fx/intro/castles.gif" ));
 		arTempImg[4] = new VImage(load( "res/images/story_fx/intro/title-2.pcx" ));
-	
+		
+		//RBP TEMP
+		runningIntro = false;
 
 		// Rafael: Running the Intro in a separate thread
 		Thread thread = new Thread() {
@@ -110,14 +112,14 @@ public class Intro {
 			entitymove(darin, "W20 L8 W10 R0 W10 L0 W10 R0 W10 L0");
 			
 			timer = 0;
-			while( timer < arTempImg[0].imageheight() )
+			while( timer < arTempImg[0].getHeight() )
 			{
 				screen.render();
 				DrawVC2(0,0-timer,arTempImg[0]);
 				showpage();
 			}
 			
-			v1_vclayer2.rectfill( 0,0, v1_vclayer2.imagewidth(), v1_vclayer2.imageheight(), transcolor);
+			v1_vclayer2.rectfill( 0,0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), transcolor);
 			
 			current_map.setRenderstring("2,R,1,E,R");
 			
@@ -370,7 +372,7 @@ public class Intro {
 	// helper function: draws an image to vc layer 2
 	static void DrawVC2( int x, int y, VImage im )
 	{
-		v1_vclayer2.rectfill( 0,0, v1_vclayer2.imagewidth(), v1_vclayer2.imageheight(), transcolor);
+		v1_vclayer2.rectfill( 0,0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight(), transcolor);
 		//v1_vclayer2.g.clearRect(0,0, v1_vclayer2.getWidth(), v1_vclayer2.getHeight());
 		v1_vclayer2.tblit(x, y, im);
 	}

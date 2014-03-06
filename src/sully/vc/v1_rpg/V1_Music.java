@@ -36,7 +36,7 @@ public class V1_Music {
 	// playing music to that volume.
 	public static void V1_SetCurVolume( int new_vol ) {
 		global_music_volume = new_vol;
-		setmusicvolume( global_music_volume );
+		setMusicVolume( global_music_volume );
 	}
 	
 	// Fades the music to volume 0 over a period of delay time.
@@ -56,11 +56,11 @@ public class V1_Music {
 			
 			global_music_volume = startvol - abs( (chunk*timer)/1000 );
 	
-			setmusicvolume( global_music_volume );
+			setMusicVolume( global_music_volume );
 			showpage();
 		}
 		
-		setmusicvolume( 0 );
+		setMusicVolume( 0 );
 	}
 	
 	// Fades the music to volume vol over a period of delay time.
@@ -77,10 +77,10 @@ public class V1_Music {
 		while (timer<delay)
 		{
 			screen.render();
-			setmusicvolume( (chunk*timer)/1000 );
+			setMusicVolume( (chunk*timer)/1000 );
 			showpage();
 		}
 		
-		setmusicvolume( vol );
+		setMusicVolume( vol );
 	}
 }

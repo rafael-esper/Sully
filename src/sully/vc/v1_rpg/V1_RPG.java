@@ -43,8 +43,8 @@ public class V1_RPG {
 	
 	// the two vc layers!  
 	// These are basically optional persistant images you can draw to.
-	public static VImage v1_vclayer = screen.duplicateimage();
-	public static VImage v1_vclayer2 = screen.duplicateimage();
+	public static VImage v1_vclayer = screen.duplicateImage();
+	public static VImage v1_vclayer2 = screen.duplicateImage();
 	
 	/****************************** internal data *****************************/
 	
@@ -451,7 +451,7 @@ public class V1_RPG {
 			case 6: V1_Maineffects.CircleOut(50);break;
 		}
 		
-		setmusicvolume( global_music_volume );
+		setMusicVolume( global_music_volume );
 		V1_Weather.SetWeather(V1_Weather.WEATHER_NONE);
 		map(mapn);
 	}
@@ -470,7 +470,7 @@ public class V1_RPG {
 	// defined in system.vc
 	public static void V1_InitMap()
 	{
-		setmusicvolume( global_music_volume );
+		setMusicVolume( global_music_volume );
 	
 		// Do fade transition
 		switch (mapswitche)

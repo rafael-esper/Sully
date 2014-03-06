@@ -1367,8 +1367,8 @@ public class Castle {
 			{
 				for( y=y1; y<=(y1+103); y+=16 )
 				{
-					v1_vclayer.blittile(x1+x,y,378);
-					v1_vclayer.blittile(x2-x,y,378);
+					v1_vclayer.blitTile(x1+x,y,378);
+					v1_vclayer.blitTile(x2-x,y,378);
 				}
 				
 				Wait(3);
@@ -1603,7 +1603,7 @@ public class Castle {
 			
 			V1_FadeOutMusic(100);
 			stopmusic();
-			setmusicvolume( save_vol );
+			setMusicVolume( save_vol );
 			playmusic(load("res/music/SYMPHONY.S3M"));
 			
 			TextBoxM(T_STAN,	"Welcome to your doom, you fool, Darin!",

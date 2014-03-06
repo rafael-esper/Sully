@@ -16,8 +16,8 @@ public class V1_Maineffects {
 
 	/********************************** data **********************************/
 	
-	static VImage crossfade_img = screen.duplicateimage();
-	static VImage alpha_img = screen.duplicateimage();
+	static VImage crossfade_img = screen.duplicateImage();
+	static VImage alpha_img = screen.duplicateImage();
 	static VImage wipe_img = new VImage(load("res/system/wipe2.gif"));
 	
 	/********************************** code **********************************/
@@ -271,7 +271,7 @@ public class V1_Maineffects {
 	public static void FadeOutImg(int _dur)
 	{
 		timer = 0;
-		VImage _img = screen.duplicateimage();
+		VImage _img = screen.duplicateImage();
 		while (timer<_dur)
 		{
 			screen.blit(0, 0, _img);
@@ -298,7 +298,7 @@ public class V1_Maineffects {
 	public static void WhiteOutImg(int _dur)
 	{
 		timer = 0;
-		VImage _img = screen.duplicateimage();
+		VImage _img = screen.duplicateImage();
 		while (timer<_dur)
 		{
 			screen.blit(0, 0, _img);
@@ -312,7 +312,7 @@ public class V1_Maineffects {
 	public static void CrossFadeImg(int _dur, VImage _img)
 	{
 		timer = 0;
-		VImage _scr = screen.duplicateimage();
+		VImage _scr = screen.duplicateImage();
 		while (timer<_dur)
 		{
 			screen.blit(0, 0, _img);

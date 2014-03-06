@@ -408,7 +408,7 @@ public class Menu_System {
 		MenuDrawBackground(prompt_x1, prompt_y1-TEXTBOX_Y_BUFF, prompt_x1+prompt_wid, prompt_high+prompt_y1-TEXTBOX_Y_BUFF, true);
 	
 		//set the clipping rectangle so we cannot draw outside the promptbox's area!
-		screen.setclip( 	prompt_x1+PROMPT_PADDING, prompt_y1+PROMPT_PADDING, 
+		screen.setClip( 	prompt_x1+PROMPT_PADDING, prompt_y1+PROMPT_PADDING, 
 					prompt_x2-PROMPT_PADDING,prompt_y1+prompt_high-PROMPT_PADDING);
 	
 		//print out the options.
@@ -421,7 +421,7 @@ public class Menu_System {
 		promptBox_font.printstring(prompt_x1+PROMPT_PADDING+TEXTBOX_Y_BUFF, prompt_y1+PROMPT_PADDING+((_menu_simple_choice) * font_h), screen, ">");
 	
 		//restore the clipping rectangle.
-		screen.setclip(0,0, screen.getWidth(), screen.getHeight());
+		screen.setClip(0,0, screen.getWidth(), screen.getHeight());
 	
 		Menu1ArrowSetSounds( "" );
 	}
@@ -653,24 +653,24 @@ public class Menu_System {
 		
 	
 		screen.rect(x1 + 1, y1 + 1, x2 - 2, y2 - 2, menu_colour[1]);
-		screen.setpixel(x1 + 1, y1 + 1, menu_colour[0]); // TL
-		 screen.setpixel(x2 - 2, y1 + 1, menu_colour[0]); // TR
-		 screen.setpixel(x1 + 1, y2 - 2, menu_colour[0]); // BL
-		 screen.setpixel(x2 - 2, y2 - 2, menu_colour[0]); // BR
+		screen.setPixel(x1 + 1, y1 + 1, menu_colour[0]); // TL
+		 screen.setPixel(x2 - 2, y1 + 1, menu_colour[0]); // TR
+		 screen.setPixel(x1 + 1, y2 - 2, menu_colour[0]); // BL
+		 screen.setPixel(x2 - 2, y2 - 2, menu_colour[0]); // BR
 		
 	
 		 screen.rect(x1 + 2, y1 + 2, x2 - 3, y2 - 3, menu_colour[2]);
-		screen.setpixel(x1 + 2, y1 + 2, menu_colour[1]); // TL
-		 screen.setpixel(x2 - 3, y1 + 2, menu_colour[1]); // TR
-		 screen.setpixel(x1 + 2, y2 - 3, menu_colour[1]); // BL
-		 screen.setpixel(x2 - 3, y2 - 3, menu_colour[1]); // BR
+		screen.setPixel(x1 + 2, y1 + 2, menu_colour[1]); // TL
+		 screen.setPixel(x2 - 3, y1 + 2, menu_colour[1]); // TR
+		 screen.setPixel(x1 + 2, y2 - 3, menu_colour[1]); // BL
+		 screen.setPixel(x2 - 3, y2 - 3, menu_colour[1]); // BR
 		
 	
 		screen.rect(x1 + 3, y1 + 3, x2 - 4, y2 - 4, menu_colour[0]);
-		screen.setpixel(x1 + 3, y1 + 3, menu_colour[2]); // TL
-		screen.setpixel(x2 - 4, y1 + 3, menu_colour[2]); // TR
-		screen.setpixel(x1 + 3, y2 - 4, menu_colour[2]); // BL
-		screen.setpixel(x2 - 4, y2 - 4, menu_colour[2]); // BR
+		screen.setPixel(x1 + 3, y1 + 3, menu_colour[2]); // TL
+		screen.setPixel(x2 - 4, y1 + 3, menu_colour[2]); // TR
+		screen.setPixel(x1 + 3, y2 - 4, menu_colour[2]); // BL
+		screen.setPixel(x2 - 4, y2 - 4, menu_colour[2]); // BR
 		 
 		if( VCCustomFilterOn() )
 		{
@@ -887,24 +887,24 @@ public class Menu_System {
 		
 	
 		dest.rect(x1 + 1, y1 + 1, x2 - 2, y2 - 2, menu_colour[1]);
-		dest.setpixel(x1 + 1, y1 + 1, menu_colour[0]); // TL
-		dest.setpixel(x2 - 2, y1 + 1, menu_colour[0]); // TR
-		dest.setpixel(x1 + 1, y2 - 2, menu_colour[0]); // BL
-		dest.setpixel(x2 - 2, y2 - 2, menu_colour[0]); // BR
+		dest.setPixel(x1 + 1, y1 + 1, menu_colour[0]); // TL
+		dest.setPixel(x2 - 2, y1 + 1, menu_colour[0]); // TR
+		dest.setPixel(x1 + 1, y2 - 2, menu_colour[0]); // BL
+		dest.setPixel(x2 - 2, y2 - 2, menu_colour[0]); // BR
 		
 	
 		dest.rect(x1 + 2, y1 + 2, x2 - 3, y2 - 3, menu_colour[2]);
-		dest.setpixel(x1 + 2, y1 + 2, menu_colour[1]); // TL
-		dest.setpixel(x2 - 3, y1 + 2, menu_colour[1]); // TR
-		dest.setpixel(x1 + 2, y2 - 3, menu_colour[1]); // BL
-		dest.setpixel(x2 - 3, y2 - 3, menu_colour[1]); // BR
+		dest.setPixel(x1 + 2, y1 + 2, menu_colour[1]); // TL
+		dest.setPixel(x2 - 3, y1 + 2, menu_colour[1]); // TR
+		dest.setPixel(x1 + 2, y2 - 3, menu_colour[1]); // BL
+		dest.setPixel(x2 - 3, y2 - 3, menu_colour[1]); // BR
 		
 	
 		dest.rect(x1 + 3, y1 + 3, x2 - 4, y2 - 4, menu_colour[0]);
-		dest.setpixel(x1 + 3, y1 + 3, menu_colour[2]); // TL
-		dest.setpixel(x2 - 4, y1 + 3, menu_colour[2]); // TR
-		dest.setpixel(x1 + 3, y2 - 4, menu_colour[2]); // BL
-		dest.setpixel(x2 - 4, y2 - 4, menu_colour[2]); // BR
+		dest.setPixel(x1 + 3, y1 + 3, menu_colour[2]); // TL
+		dest.setPixel(x2 - 4, y1 + 3, menu_colour[2]); // TR
+		dest.setPixel(x1 + 3, y2 - 4, menu_colour[2]); // BL
+		dest.setPixel(x2 - 4, y2 - 4, menu_colour[2]); // BR
 
 		if( VCCustomFilterOn() )
 		{

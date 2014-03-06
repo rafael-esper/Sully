@@ -309,7 +309,7 @@ public class Undersea {
 								
 			V1_FadeInMusic( 400, save_vol );//restore the volume
 			
-			setmusicvolume( save_vol );
+			setMusicVolume( save_vol );
 			
 			flags[F_PROCURED_PEARL]=1;
 		}

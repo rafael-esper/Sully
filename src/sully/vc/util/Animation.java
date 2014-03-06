@@ -116,7 +116,7 @@ public class Animation {
 		}
 				
 		frametop = anims[anim].sizey * frame;
-		anims[anim].bufimage.grabregion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image);
+		anims[anim].bufimage.grabRegion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image);
 		anims[anim].bufferedframe = frame;
 		dest.blit(x, y, anims[anim].bufimage);
 	}
@@ -149,7 +149,7 @@ public class Animation {
 		}
 				
 		frametop = anims[anim].sizey * frame;
-		anims[anim].bufimage.grabregion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image);
+		anims[anim].bufimage.grabRegion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image);
 		anims[anim].bufferedframe = frame;
 		dest.tblit(x, y, anims[anim].bufimage);
 	}
@@ -181,7 +181,7 @@ public class Animation {
 		}
 				
 		frametop = anims[anim].sizey * frame;
-		anims[anim].bufimage.grabregion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image);
+		anims[anim].bufimage.grabRegion(0, frametop, anims[anim].sizex-1, frametop+anims[anim].sizey-1, 0, 0, anims[anim].image);
 		anims[anim].bufferedframe = frame;
 		dest.tblit(x-(anims[anim].sizex/2),  y-(anims[anim].sizey/2), anims[anim].bufimage);
 		

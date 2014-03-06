@@ -71,7 +71,7 @@ public class Icons {
 			
 		// [Rafael, the Esper]
 		VImage dst = new VImage(ICON_WIDTH, ICON_HEIGHT);
-		dst.grabregion(x, y, x+ICON_WIDTH, y+ICON_HEIGHT, 0, 0, im_iconsource);
+		dst.grabRegion(x, y, x+ICON_WIDTH, y+ICON_HEIGHT, 0, 0, im_iconsource);
 		return dst;
 		//return imageshell(x, y, ICON_WIDTH, ICON_HEIGHT, im_iconsource );
 	}

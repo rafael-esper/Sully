@@ -36,7 +36,7 @@ public class Bumville {
 			Sully.SaveDisable(); //cannot save in towns.
 			InitMap();
 			
-			setmusicvolume(0);
+			setMusicVolume(0);
 			V1_StartMusic( "res/music/SIMPL2.S3M" );
 	
 			cameratracking = 1;
@@ -550,7 +550,7 @@ public class Bumville {
 	public static void StudioExit()
 	{
 		Warp(18, 48, TCROSS);
-		setmusicvolume( global_music_volume );
+		setMusicVolume( global_music_volume );
 	}
 	
 	public static void ItemEnter()
@@ -815,7 +815,7 @@ public class Bumville {
 			}
 		}
 		
-		setmusicvolume( flags[F_BUM_JUKE_VOLUME]*10 );
+		setMusicVolume( flags[F_BUM_JUKE_VOLUME]*10 );
 		current_map.settile(57,164,0,507+flags[F_BUM_JUKE_VOLUME]);
 			
 		EntFinish();
@@ -1713,7 +1713,7 @@ public class Bumville {
 	
 		MenuHappyBeep();
 		
-		setmusicvolume( flags[F_BUM_JUKE_VOLUME]*10 );
+		setMusicVolume( flags[F_BUM_JUKE_VOLUME]*10 );
 		
 		switch_var = flags[F_BUM_JUKEBOX];
 	

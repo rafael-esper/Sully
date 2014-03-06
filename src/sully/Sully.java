@@ -176,7 +176,7 @@ public class Sully extends VergeEngine {
 		
 		//play the unofficial VERGE theme song, Hymn to Aurora!
 		playmusic(load("res/music/AURORA.MOD")); 
-		setmusicvolume( 70 ) ;
+		setMusicVolume( 70 ) ;
 		
 		int delay = 40;
 		int longdelay = 100;

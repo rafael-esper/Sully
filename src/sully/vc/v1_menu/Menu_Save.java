@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
 
 import persist.ExtendedDataInputStream;
 import persist.ExtendedDataOutputStream;
@@ -233,15 +234,16 @@ public class Menu_Save {
 	// Pass: An open file handle in FILE_WRITE mode
 	// No error checking
 	{
-		
-		edos.writeSignedIntegerLittleEndian(vc_GetYear());	// the system clock year
-		edos.writeSignedIntegerLittleEndian(vc_GetMonth());	// current month
-		edos.writeSignedIntegerLittleEndian(vc_GetDay());	// current day-of-month
+		// Rafael, the Esper: modified to Calendar, instead of 
+		Calendar cal = Calendar.getInstance();
+		edos.writeSignedIntegerLittleEndian(cal.get(Calendar.YEAR));	// the system clock year
+		edos.writeSignedIntegerLittleEndian(cal.get(Calendar.MONTH));	// current month
+		edos.writeSignedIntegerLittleEndian(cal.get(Calendar.DAY_OF_MONTH));	// current day-of-month
 		//int sysdate.dayofweek; 	// current day of week (0=sunday, 6=saturday)
 	
-		edos.writeSignedIntegerLittleEndian(vc_GetHour());	// system clock hour (24hour format)
-		edos.writeSignedIntegerLittleEndian(vc_GetMinute());	// current clock minute
-		edos.writeSignedIntegerLittleEndian(vc_GetSecond());	// current clock second
+		edos.writeSignedIntegerLittleEndian(cal.get(Calendar.HOUR));	// system clock hour (24hour format)
+		edos.writeSignedIntegerLittleEndian(cal.get(Calendar.MINUTE));	// current clock minute
+		edos.writeSignedIntegerLittleEndian(cal.get(Calendar.SECOND));	// current clock second
 	}
 	
 	// Reads a date from current postion in file, and returns in String form
@@ -301,7 +303,7 @@ public class Menu_Save {
 			{
 				for (xc = 0; xc <  32; xc++)
 				{
-					edos.writeSignedIntegerLittleEndian(mini.readpixel(xc, yc));
+					edos.writeSignedIntegerLittleEndian(mini.readPixel(xc, yc));
 				}
 			}
 		// Party Data
@@ -575,7 +577,7 @@ public class Menu_Save {
 			{
 				for (xc = 0; xc <  32; xc++)
 				{
-					save_display[slot % 5].image.setpixel(xc, yc, new Color(edis.readSignedIntegerLittleEndian()));
+					save_display[slot % 5].image.setPixel(xc, yc, new Color(edis.readSignedIntegerLittleEndian()));
 				}
 			}
 		edis.close();

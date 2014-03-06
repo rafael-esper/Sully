@@ -131,9 +131,9 @@ public class V1_Weather {
 			_cloud2 = new VImage(load("res/system/cloud2.gif"));
 			_cloud3 = new VImage(load("res/system/cloud3.gif"));
 			
-			_cloud1s= _cloud1.duplicateimage(); _cloud1s.silhouette(0, 0, RGB(40, 40, 40), _cloud1);
-			_cloud2s= _cloud2.duplicateimage(); _cloud2s.silhouette(0, 0, RGB(40, 40, 40), _cloud2);
-			_cloud3s= _cloud3.duplicateimage(); _cloud3s.silhouette(0, 0, RGB(40, 40, 40), _cloud3);
+			_cloud1s= _cloud1.duplicateImage(); _cloud1s.silhouette(0, 0, RGB(40, 40, 40), _cloud1);
+			_cloud2s= _cloud2.duplicateImage(); _cloud2s.silhouette(0, 0, RGB(40, 40, 40), _cloud2);
+			_cloud3s= _cloud3.duplicateImage(); _cloud3s.silhouette(0, 0, RGB(40, 40, 40), _cloud3);
 			clouds_initd = true;
 		}
 		
@@ -223,7 +223,7 @@ public class V1_Weather {
 	static void RenderFog()
 	{
 		setlucent(50);
-		screen.wrapblit((systemtime/4)+xwin, (systemtime/4)+ywin, _fog);
+		screen.wrapBlit((systemtime/4)+xwin, (systemtime/4)+ywin, _fog);
 		setlucent(0);
 	}
 	

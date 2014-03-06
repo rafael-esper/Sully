@@ -77,7 +77,7 @@ public class Blur {
 	
 	//grab focus region
 		VImage tempImage=new VImage(screen.getWidth()*2, screen.getHeight()*2);
-		tempImage.grabregion(x-(tempImage.getWidth()/2), y-(tempImage.getHeight()/2), x+(tempImage.getWidth()/2), y+(tempImage.getHeight()/2),0,0,src);
+		tempImage.grabRegion(x-(tempImage.getWidth()/2), y-(tempImage.getHeight()/2), x+(tempImage.getWidth()/2), y+(tempImage.getHeight()/2),0,0,src);
 		
 	//Make sure that the iterations does not exceed the distance
 		if(iterations >= distance) iterations=distance-1;

@@ -143,7 +143,7 @@ public class Menu_Option {
 			if (menu_item == 0)
 			{
 				Sfx.global_music_volume =  menu_sub;
-				setmusicvolume(Sfx.global_music_volume);
+				setMusicVolume(Sfx.global_music_volume);
 			}
 			else if (menu_item == 1) Sfx.sfx_volume = menu_sub;
 			else if (menu_item == 2) Sfx.interface_volume = menu_sub;
